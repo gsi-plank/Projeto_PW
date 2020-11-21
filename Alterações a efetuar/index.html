@@ -1,0 +1,53 @@
+<!--Aterar o formato de Caixa de texto no pefil-->
+
+<br>
+<div class="container">
+    <input type="text" placeholder="Email">
+    <div class="border-line"></div>
+</div>
+
+
+<style>
+    .container {
+        position: relative;
+        display: table;
+        margin: auto;
+        top: 150px;
+    }
+
+    .container.border-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 2px;
+        width: 0%;
+        background-color: #6200EA;
+        transition: .3s;
+
+    }
+
+    input[type="text"] {
+        outline: 0;
+        font-size: 40px;
+        border: 0;
+        border-bottom: 2px solid rgba(88, 78, 0, 0.2);
+    }
+
+    &::placeholder {
+        font-weight: 100;
+        color: rgba(25, 88, 0, 0.15);
+
+    }
+
+    input[type="text"]:focus~.border-line {
+        width: 100%;
+        transition: .3s;
+        border-bottom: 2px solid rgba(200, 78, 0, 0.2);
+        border-top: 2px solid rgba(200, 78, 0, 0.2);
+
+
+
+    }
+</style>
