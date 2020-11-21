@@ -2,62 +2,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="profile.css">
-    <title>Editar perfil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css" />
+    <title>Perfil</title>
 </head>
 
 <body>
-    
-    <div class="screen">
-        <nav class="navbar fixed-top">
-            <span id="perfilTxt" class="title">Perfil Test</span>
-        </nav>
-        
-        <form id="perfilForm">
-            <img src="images/profile.png" alt="profile picture" class="profilePicture" >
-            <div class="form-group">
-                <label id="labelperfilNome" for="perfilNome" class="labelPerfil"> Nome</label>
-                <input id="perfilNome" class="inputPerfil form-control border-top-0 border-left-0 border-right-0" type="text" disabled value="indisponivel"></input>
-            </div>
-            <div class="form-group">
-                <label id="fution" for="funcao" class="labelPerfil">Função</label>
-                <input id="perfilEspecialidade" class="inputPerfil form-control border-top-0 border-left-0 border-right-0" type="text" disabled value="indisponivel"></span>
-            </div>
-            <div class="form-group">
-                <label id="labelperfilEmail" for="perfilEmail" class="labelPerfil"> E-mail</label>
-                <input id="perfilEmail" class="inputPerfil form-control border-top-0 border-left-0 border-right-0" type="email" disabled value="A92960@borat.com"></input>
-            </div>
-            <div class="form-group">
-                <label id="labelperfilNascimento" for="perfilNascimento" class="labelPerfil">Data de nascimento</label>
-                <input id="perfilNascimento" class="inputPerfil form-control border-top-0 border-left-0 border-right-0" type="date" disabled value=""></input>
-            </div>
-            <div class="form-group">
-                <label id="labelperfilPassword" for="perfilPassword" class="labelPerfil">Password</label>
-                <input id="perfilPassword" class="inputPerfil form-control border-top-0 border-left-0 border-right-0" type="password" disabled value="password"></input>
-            </div>
-        </form>
+    <!--<div id="splash">-->
+    <!--    <img src="images/logo.png" alt="" class="logo">-->
+    <!--</div>-->
 
-        <nav class="menubar fixed-bottom">
-            <div id="barraInferior"></div>
-            <ul id="menu" class="nav navbar-nav">
-                <li><a href="home.html" class="button" id="buttonHome"><img src="images/home.png" alt="home picture"
-                            id="iconHome" class="icon"></a></li>
-                <li><a href="rank.html" class="button" id="buttonMedal"><img src="images/medal.png" alt="medal picture"
-                            id="iconRank" class="icon"></a></li>
-                <li><a href="dashborad.html" class="button" id="buttonCombo"><img src="images/combo_chart.png"
-                            alt="combo chart picture" id="iconDashboard" class="icon"></a></li>
-                <li><a href="editProfile.html" class="button" id="buttonPerfil"><img src="images/profile.png" alt="profile picture"
-                            class=""></a></li>
-            </ul>
-        </nav>
+    <div class="content">
+        <header class="app-header">
+            <div class="container"> 
+
+                <h1>Perfil</h1>
+                 
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="item" id="marginPicture">
+                <ul>
+                <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
+                <li><button type="button" class="btn btn-primary">Editar perfil</button></li>
+                </ul>
+            </div>
+            <div class="item">
+                <h4>Nome</h4>
+                <input type="text" class="name">
+            </div>
+            <div class="item">
+                <h4>Função</h4>
+                <input type="text" class="fution">
+            </div>
+            <div class="item">
+                <h4>Email</h4>
+                <input type="email" class="email">
+            </div>
+            <div class="item">
+                <h4>Data de nascimento</h4>
+                <input type="date" class="date">
+            </div>
+        </div>
     </div>
+
+    <footer class="app-footer">
+        <ul>
+            <li><a href="home.html"><img src="images/home.png" alt="home picture" id="iconHome" class="icon"></a></li>
+            <li><a href="rank.html"><img src="images/medal.png" alt="medal picture" id="iconRank" class="icon"></a></li>
+            <li><a href="dashborad.html"><img src="images/combo_chart.png" alt="combo chart picture" id="iconDashboard"
+                        class="icon"></a></li>
+            <li><a href="profile.html"><img src="images/profile.png" alt="profile picture" class=""></a></li>
+        </ul>
+    </footer>
+
+    <script>
+    //     setTimeout(() => {
+    //         document.getElementById('splash').classList.toggle('fade');
+    //     },2000);
+    // </script>
+
+
 </body>
 
 </html>
