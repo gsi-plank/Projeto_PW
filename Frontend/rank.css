@@ -1,124 +1,169 @@
- .screen{
-    width:100%;
-    height:100%;
-    max-width: 414px;
+/*Estilo Padrão*/
+:root{
+    --primary-color: #E7E7E7;
+    --secondary-color: #AB0404;
+}
+.title {
+  font-size: 25px;
+}
+
+.textCenter{
+  width:100%;
+  text-align: center;
+  background-color:white;
+  margin-bottom: 0px;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
     max-height: 736px;
-    background: rgba(255,255,255,1);
-    opacity: 1;
-    position: absolute;
-    overflow: hidden;
-    z-index:-1;
-  }
+    max-width: 414px;
+}
 
-  .menubar{
-    width:100%;
-    max-width:414px;
-    max-height:100%;
-    background-color:rgba(226, 225, 225, 0.22);
-    z-index:1;
-    float: center;
-    overflow: hidden;
-    height:67px;
-    display:block;
-  }
-
-  .navbar{
+/* Alteracao do estilo do cabecalho */
+#app-header {
+    box-shadow: 0 5px 5px -5px #333;
+    position: fixed;
+    align-items: center;
     width: 100%;
-    max-width:414px;
-    background-color: rgba(255,255,255,1);
-    z-index:3;
-    text-align:center;
-    overflow: hidden;
-  }
+    z-index: 2;
+}
 
-  .hidden{
-    display: none;
-  }
-  
-  .text-center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    position:relative;
-    text-align: center;
-  }
-  
- 
-  /* MenuBar */
-#buttonHome {
-    color: rgba(0,0,0,1);
-    opacity: 1;
+
+    
+#app-header .container ul {
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+
+
+
+/* Alteracao do estilo de footer */
+
+#app-footer {
+    position:absolute; 
+    overflow:hidden;
+    box-shadow: 0 -5px 5px -5px #333;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#app-footer ul {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+/*padroes de ferramentas*/
+
+.icon{
+    width: 35px;
+}
+
+.link{
+    color: red;
+    text-decoration:none;
+}
+
+/*__________________________________________________________________________________________________*/
+
+/*Estilo da pagina*/
+
+.box{
+    background: var(--primary-color);
+    box-shadow: 0 0 5px #777;
+}
+
+#boxWinnerOne{
     position: absolute;
-    top: 10%;
-    left:5%;
-    z-index:2;
-  }
-  
-#buttonMedal{
-  max-width: 50px;
-  max-height: 50px;
-  color: rgba(0,0,0,1);
-  /*background-repeat: no-repeat;
-  background-size: cover; */
-  opacity: 1;
-  position: absolute;
-  top: 15%;
-  left: 30%;
-  overflow: hidden;
-  z-index:2;
+    width: 110px;
+    height: 175px;
+    left: 151px;
+    top: 119px;
 }
 
-#buttonCombo{
-  width: 50px;
-  height:50px;
-  opacity: 1;
-  position: absolute;
-  bottom: 20%;
-  left: 55%;
-  overflow: hidden;
-  z-index:2;
+#boxWinnerTwo {
+    position: absolute;
+    width: 110px;
+    height: 150px;
+    left: 41px;
+    top: 145px;
+    
 }
 
-#buttonPerfil{
-  max-width: 50px;
-  max-height: 50px;
-  color: rgba(0,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 5%;
-  left: 80%;
-  border: 4px solid rgba(89,11,11,0);
+#boxWinnerTree{
+    position: absolute;
+    width: 110px;
+    height: 125px;
+    left: 261px;
+    top: 170px;
 }
 
-#barraSuperior {
-  position: absolute;
-  width: 414px;
-  height: 0px;
-  left: 0px;
-  top: 56px;
-  opacity: 0.4;
-  border: 2px solid rgba(105, 104, 104, 0.15);
+#iconOne {
+    position: absolute;
+width: 50px;
+height: 50px;
+left: 181px;
+top: 65px;
+}
+#iconTwo {
+    position: absolute;
+width: 50px;
+height: 50px;
+left: 294px;
+top: 115px;
 }
 
-#barraInferior {
-  position: absolute;
-  width: 414px;
-  height: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.10);
+#iconTree {
+    position: absolute;
+    width: 48.91px;
+    height: 50px;
+    left: 74px;
+    top: 87px;
 }
 
-#rankingTxt {
-  position: absolute;
-  width: 144px;
-  height: 28px;
-  left: 135px;
-  top: 17px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  display: flex;
-  align-items: center;
-  color: #000000;
+#numberOne {
+   position:relative;
+   text-align: center;
+   bottom:40px;
+}
+
+#numberTwo {
+     position:relative;
+   text-align: center;
+   bottom:40px;
+}
+#numberTree {
+     position:relative;
+   text-align: center;
+   bottom:40px;
+}
+
+.container ul{
+    position:absolute;
+    top: 300px;
+    left: 0px;
+    display: align;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    
+}
+
+.container ul li {
+    background: var(--primary-color);
+    width: 332px;
+    margin-top:10px;
+    height: 50px;
+    
 }
