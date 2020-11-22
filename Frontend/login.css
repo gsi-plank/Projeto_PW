@@ -120,8 +120,9 @@
 
   #recoverPwd{
     color:rgba(171,4,4,1);
-    position: relative;
-    top: 25%;
+    position: absolute;
+    top: 440px;
+    left: 100px;
     font-family: Inter;
     font-size: small;
     text-align: center;
@@ -225,35 +226,5 @@
     color:rgba(171,4,4,1);
   }
 
-  /* ---------------------------------------------------------- */
-/* body{
-    text-align: center;
-}
 
-
-
-.title{
-    font-size: 26px;
-}
-
-
-footer{
-    background-color: rgb(233, 216, 216);
-    padding: 20px 10px;
-}
-
-
-
-header li {
-    display: inline;
-  }
-  
-  header h1, nav {
-    display: inline-block;
-  }
-  
-  header h1 {
-    width: 100%;
-  }
-*/
   

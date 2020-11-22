@@ -2,7 +2,10 @@
 :root{
     --primary-color: #E7E7E7;
     --secondary-color: #AB0404;
+    --shadow-color: #777;
+    --font-color: black;
 }
+
 .title {
   font-size: 25px;
 }
@@ -14,19 +17,24 @@
   margin-bottom: 0px;
 }
 
+html, body {
+    height: 100%;
+    max-width: 414px;
+    max-height: 736px;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     background-color: white;
-    max-height: 736px;
-    max-width: 414px;
+    color: var(--font-color);
 }
 
 /* Alteracao do estilo do cabecalho */
 #app-header {
-    box-shadow: 0 5px 5px -5px #333;
+    box-shadow: 0 5px 5px -5px var(--shadow-color);
     position: fixed;
     align-items: center;
-    width: 100%;
+    width:  414px;
     z-index: 2;
 }
 
@@ -49,15 +57,16 @@ body{
 #app-footer {
     position:absolute; 
     overflow:hidden;
-    box-shadow: 0 -5px 5px -5px #333;
+    box-shadow: 0 -5px 5px -5px var(--shadow-color);
     background-color: white;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 414px;
 }
 
 #app-footer ul {
-    
+    padding: 0px;
+    margin:0px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -66,8 +75,8 @@ body{
 
 /*padroes de ferramentas*/
 
-.icon{
-    width: 35px;
+.button svg {
+    color: var(--font-color);
 }
 
 .link{
@@ -81,7 +90,7 @@ body{
 
 .box{
     background: var(--primary-color);
-    box-shadow: 0 0 5px #777;
+    box-shadow: 0 0 5px var(--shadow-color);
 }
 
 #boxWinnerOne{

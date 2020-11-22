@@ -1,31 +1,113 @@
-:root {
-    --primary-color: #AB0404;
-    --secondary-color: #E7E7E7;
+/*Estilo Padrão*/
+:root{
+    --primary-color: #E7E7E7;
+    --secondary-color: #AB0404;
+    --shadow-color: #777;
+    --font-color: black;
 }
 
-* {
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
+.title {
+  font-size: 25px;
 }
 
+.textCenter{
+  width:100%;
+  text-align: center;
+  background-color:white;
+  margin-bottom: 0px;
+}
 
 html, body {
     height: 100%;
-}
-
-body{
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
     max-width: 414px;
     max-height: 736px;
 }
 
-.content {
-    flex: 1 0 auto;
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    color: var(--font-color);
 }
+
+/* Alteracao do estilo do cabecalho */
+#app-header {
+    box-shadow: 0 5px 5px -5px var(--shadow-color);
+    position: fixed;
+    align-items: center;
+    width:  414px;
+    z-index: 2;
+}
+
+
+    
+#app-header .container ul {
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+
+
+
+/* Alteracao do estilo de footer */
+
+#app-footer {
+    position:absolute; 
+    overflow:hidden;
+    box-shadow: 0 -5px 5px -5px var(--shadow-color);
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    width: 414px;
+}
+
+#app-footer ul {
+    padding: 0px;
+    margin:0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+/*padroes de ferramentas*/
+
+.button svg {
+    color: var(--font-color);
+}
+
+.link{
+    color: red;
+    text-decoration:none;
+}
+
+/*____________________________________________________________________________________________________________*/
+
+#profilePicture{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100px;
+}
+
+#marginPicture{
+    position: relative;
+    right: 20px;
+    margin-top: 70px;
+    margin-bottom: 60px;
+  
+}
+
+#marginPicture ul{
+    list-style: none;
+      display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .container {
     width: 90%;
@@ -73,44 +155,9 @@ body{
     margin-top: 20px;
 }
 
-#profilePicture{
-    margin-right: auto;
-    margin-left: auto;
-    width: 100px;
-}
-
-#marginPicture{
-    margin-bottom: 60px;
-  
-}
-
-#marginPicture ul{
-    list-style: none;
-      display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 
-.icon{
-    width: 40px;
-}
 
-.app-footer {
-    flex-shrink: 0;
-    background: white;
-    padding-top: 0px;
-    margin-top:5px;
-    box-shadow: 0 -5px 5px -5px #333;
-}
-
-.app-footer ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
-}
 
 
 /* Splash */

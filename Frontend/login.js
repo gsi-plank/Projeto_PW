@@ -25,7 +25,7 @@ function myLogin() {
                  }
              }
          }*/
-        window.location.href = "MenuPrincipal.html";
+        window.location.href = "mainPage.html";
     }
 }
 
