@@ -65,7 +65,7 @@ body{
 }
 
 #app-footer ul {
-    padding: 0px;
+    padding: 7px;
     margin:0px;
     display: flex;
     align-items: center;
@@ -80,6 +80,6 @@ body{
 }
 
 .link{
-    color: red;
+    color: var(--secudary-color);
     text-decoration:none;
 }

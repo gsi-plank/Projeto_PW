@@ -1,0 +1,19 @@
+{
+  "name": "app.js",
+  "version": "1.0.0",
+  "description": "a minha bd",
+  "main": "bd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bd",
+    "node"
+  ],
+  "author": "ACP",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "save": "^2.4.0"
+  }
+}

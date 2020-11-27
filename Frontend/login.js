@@ -61,3 +61,8 @@ function openForm() {
 function closeForm() {
     document.getElementById("errorFrame").className = "hidden";
 }
+
+// SPLASH
+    //   setTimeout(() => {
+    //         document.getElementById('splash').classList.toggle('fade');
+    //     },2000);

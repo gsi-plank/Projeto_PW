@@ -1,124 +1,71 @@
-:root {
-    --primary-color: #AB0404;
-    --secondary-color: #E7E7E7;
+
+.borderClass {
+  width: 414px;
+  height: 747px;
+  background: rgba(255,255,255,0.30000001192092896);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.44999998807907104);
+  overflow: hidden;
 }
-
-* {
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
+.errorBoxClass {
+  width: 344px;
+  height: 64px;
+  background: rgba(248,248,248,0.949999988079071);
+  opacity: 1;
+  position: absolute;
+  top: 311px;
+  left: 38px;
+  border: 1px solid rgba(148,147,147,1);
 }
-
-
-
-html, body {
-    height: 100%;
+.confirmBoxClass {
+  width: 344px;
+  height: 29px;
+  background: rgba(248,247,247,0.699999988079071);
+  opacity: 1;
+  position: absolute;
+  top: 375px;
+  left: 38px;
+  border: 1px solid rgba(150,149,151,1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
 }
-
-body{
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    max-width: 414px;
-    max-height: 736px;
+.confirmarTxtClass {
+  width: 222px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 380px;
+  left: 99px;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: center;
 }
-
-.content {
-    flex: 1 0 auto;
+.errorTxtClass {
+  width: 36px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 320px;
+  left: 192px;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: center;
 }
-
-.app-header .container ul {
-    margin: 0 auto;
-    padding: 0px;
-     display: flex;
-     align-items: center;
-    justify-content:space-between;
-    list-style: none;
+.textTxtClass {
+  width: 251px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 344px;
+  left: 81px;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: center;
 }
-
-
-
-
-.container div input{
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom-color: #777;
-    width:300px;
-    padding: 10px;
-}
-
-.container h4{
-    margin: 5px;
-    color: #777;
-}
-
-.app-header {
-    background-color: white;
-    box-shadow: 0 5px 5px -5px #333;
-}
-
-
-.btn-primary {
-    color: black;
-    background-color: white;
-    border-color: #000000;
-    width: 250px;
-    margin-top: 20px;
-}
-
-.app-header div ul {
-    margin-bottom: 0px;
-}
-
-.title{
-    margin-top:0px;
-    margin-bottom: 0px;
-}
-
-#profilePicture{
-    margin-right: auto;
-    margin-left: auto;
-    width: 100px;
-}
-
-#marginPicture{
-    margin-bottom: 60px;
-    margin-top: 10px;
-}
-
-#marginPicture ul{
-    list-style: none;
-      display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.icon{
-    width: 40px;
-}
-
-.app-footer {
-    flex-shrink: 0;
-    background: white;
-    padding-top: 0px;
-    margin-top:5px;
-    box-shadow: 0 -5px 5px -5px #333;
-}
-
-.app-footer ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
-}
-
-
-
-
-
-
-
