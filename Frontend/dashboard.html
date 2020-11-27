@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="dashboard.css"/ type="text/css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="global.css" type="text/css" />
   
   <title>Dashboard</title>
 </head>
@@ -19,10 +22,22 @@
         
         
         
+          <div class="container">
+              <div class="stv-radio-buttons-wrapper">
+	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="1" id="button1" checked />
+	<label for="button1">Esta semana</label>
+	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="2" id="button2" />
+	<label for="button2">Este mês</label>
+	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="3" id="button3" />
+	<label for="button3">Este ano</label>
+    </div>
+    <canvas id="lineChart"></canvas>
+  </div>
         
-        
-        
-        
+        <div class="container">
+    <canvas id="barChart"></canvas>
+  </div>
+
         <div id="app-footer">
         <ul>
             <li><a href="mainPage.html" class="button"><svg width="30px" height="30px" viewBox="0 0 16 16"
@@ -44,9 +59,12 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
-            
     
-   
+  
+
+
+    
+   <script type="text/javascript" src="dashboard.js"></script>
 
 </body>
     

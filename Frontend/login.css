@@ -1,14 +1,6 @@
-/* PlaceHolders */
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #BDBDBD;
-    opacity: 1; /* Firefox */
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #BDBDBD;
-  }
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #BDBDBD;
-  }
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
   .hidden{
     display: none;

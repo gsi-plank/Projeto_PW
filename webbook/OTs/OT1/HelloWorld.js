@@ -26,14 +26,14 @@ var server = http.createServer(function (request, response) {
                 if(err) 
                     response.write(err.mensagem); 
                 else
-                    response.send(data);; 
+                    response.send(data);
                 });
             fs.readFileSync('./Projeto_PW/Frontend/login.html', function(err, data) {
                 response.writeHead(200, {'Content-Type': 'text/html'});
                 if(err) 
                     response.write(err.mensagem); 
                 else
-                    response.send(data);; 
+                    response.send(data);
                 });
         }else{
             response.write("<html><body><h1>PAGE NOT FOUND!</h1></body></html>");
