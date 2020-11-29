@@ -10,5 +10,6 @@ var server = app.listen(port, function () {
         var uc = req.param('uc');
         res.send(name + ' is ' + position + ' in ' + uc);
     });
+    
     console.log("Servidor a funcionar na porta %s...", server.address().port);
 }); 
