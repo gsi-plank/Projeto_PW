@@ -43,9 +43,10 @@
     padding: 10px;
 }
 
-.container h4{
-    margin: px;
+h4{
+    margin-top: 10px;
     color: #777;
+    font-size: 15px;
 }
 
 .app-header {

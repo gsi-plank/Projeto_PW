@@ -49,13 +49,15 @@ body{
     position: fixed;
     align-items: center;
     width:  414px;
-    z-index: 2;
+    z-index: 3;
+    background: white;
 }
 
 
     
 #app-header .container ul {
-    margin: 0 auto;
+    width: 100%;
+    margin: 0px;
     padding: 0px;
     display: flex;
     align-items: center;
@@ -96,4 +98,8 @@ body{
 .link{
     color: red;
     text-decoration:none;
+}
+
+#check{
+  color: var(--secondary-color);
 }
