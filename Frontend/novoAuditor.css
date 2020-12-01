@@ -1,0 +1,30 @@
+#content{
+    position: relative;
+    top: 150px;
+    left: 40px;
+    
+}
+
+.container div input{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #777;
+    width:300px;
+    padding: 6px;
+}
+
+ h4{
+    margin-top: 10px;
+    color: #777;
+    font-size: 15px;
+}
+
+.app-header .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 5px;
+}
+

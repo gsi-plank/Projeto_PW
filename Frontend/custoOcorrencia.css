@@ -1,0 +1,124 @@
+.container2{
+    position: absolute;
+width: 378px;
+height: 456px;
+left: 18px;
+top: 169px;
+
+
+}
+.item {
+    display: flex;
+
+}
+.input{
+    padding: 0px;
+}
+
+ h2{
+    position: absolute;
+width: 361px;
+height: 29px;
+left: 18px;
+top: 99px;
+
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+
+color: #000000;
+
+}
+h3{
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+
+color: #000000;
+
+}
+
+h4{
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+
+color: #000000;
+
+}
+
+h5{
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #000000;
+    
+}
+
+h6{
+    font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #000000;
+    
+}
+
+#custo{
+    position: absolute;
+width: 134px;
+height: 29px;
+left: 114px;
+top: 395px;
+
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+text-align: center;
+
+color: #000000;
+}
+
+.btn{
+position: absolute;
+    left: 114px;
+    top: 310px;
+}
+
+.btn-primary{
+    background: #AB0404;
+    border-color: #AB0404;;
+}
+
+
+
+
+
+

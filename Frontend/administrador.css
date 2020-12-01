@@ -1,0 +1,79 @@
+
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 26px;
+line-height: 31px;
+display: flex;
+align-items: center;
+
+color: #000000;
+
+    #back{
+      position: absolute;
+max-width: 31px;
+max-height: 44px;
+left: 17px;
+top: 7px;
+  }
+  
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  max-width:370px;
+  top: 110px;
+  position: relative;
+      margin-left: auto;
+    margin-right: auto;
+    background:#AB0404;
+    color:#fff;
+}
+
+td, th {
+  border: 1px solid #FFF;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #000000;
+}
+
+#auditoresTxt{
+    position: absolute;
+width: 124px;
+height: 23px;
+left: 33px;
+top: 82px;
+
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 19px;
+line-height: 23px;
+
+
+letter-spacing: 1px;
+
+color: #000000;
+}
+
+#addAuditor{
+position: absolute;
+    width: 270px;
+    height: 30px;
+    left: 63px;
+    top: 619px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 23px;
+    margin-top: 2px;
+    border-radius: 50px;
+    background-color: #AB0404;
+    color: white;
+    border: none;
+
+}
+
