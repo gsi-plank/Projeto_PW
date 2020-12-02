@@ -9,8 +9,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="global.css" type="text/css"/> 
   <link rel="stylesheet" href="editProfile.css" />
-  
-    <title>Edit Perfil</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+    <title>Editar Perfil</title>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                     </svg></a></li>
                 <li>
-                    <p id="rankingTxt" class="title textCenter">Editar Perfil</p>
+                    <p id="editarPerfilTxt" class="title textCenter">Editar perfil</p>
                 </li>
 
                 <li><a href="#" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
@@ -42,7 +43,7 @@
             <div class="item" id="marginPicture">
                 <ul>
                 <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
-                <li><button id="editProfile" type="button">Escolher a foto </button></li>
+                <li><button id="editProfile" type="button">Editar foto de perfil</button></li>
                 </ul>
             </div>
             <div class="item">
@@ -87,18 +88,7 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
-
- 
-    <div id="errorFrame" class="hidden">
-        <div id="errorBoxClass" class="errorBoxClass">
-            <span id="errorTxtClass" class="errorTxtClass text-center">Erro!</span>
-            <span id="textTxt" class="hidden">Password diferente da confirmação</span>
-            <span id="textTxt1" class="hidden">Preencha ambos os campos</span>
-        </div>
-            <div id="confirmBoxId"class="confirmBoxClass">
-                <button id="confirmarTxtId" class="confirmarTxtClass text-center" type="button">Confirmar</button>
-            </div>
-    </div>
+    
     <script type="text/javascript" src="editProfile.js"></script>
 
 </body>

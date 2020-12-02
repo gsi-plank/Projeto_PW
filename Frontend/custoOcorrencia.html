@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="global.css" type="text/css"/> 
+    <link rel="stylesheet" href="custoOcorrencia.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+    <title>Custo da ocorrência</title>
+    </head>
+
+    <body>
     
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="custoOcorrencia.css" type="text/css"/>
-  <link rel="stylesheet" href="global.css" type="text/css"/>
-  <script src="custoOcorrencia.js"></script>
-  
-  <title>Custo Ocorrência</title>
-</head>
-<body>
 
     <div id="app-header">
         <div class="container">
             <ul>
-                <li><a href="mainPage.html" class="button"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
+                <li><a href="registoTrabalho.html" class="button"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                     </svg></a></li>
                 <li>
-                    <p id="rankingTxt" class="title textCenter">Custo da Ocorrência</p>
+                    <p id="custoOcorrenciaTxt" class="title textCenter">Custo da ocorrência</p>
                 </li>
 
                 <li><a href="#" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
@@ -35,36 +37,30 @@
             </ul>
         </div>
     </div>
-    <h2> 2.Calcular custo da ocorrência: </h2>
     
-    <div id="content2" class="container2">
-        <div class="item">
-            <h3>Distância Percorrida</h3>
-            <input id="distance" type="km" class="distance">
+     <div id= "content" class="container">
+            <div class="item">
+                <h4>Distância percorrida</h4>
+                <input id="newDistance" type="distance" class="distance">
+            </div>
+            <div class="item">
+                <h4>Combustível gasto</h4>
+                <input id="newFuel" type="fuel" class="fuel">
+            </div>
+            <div class="item">  
+                <h4>Duração da operação</h4>
+                <input id="newDuration" type="duration" class="duration">
+            </div>
+            <div class="item">
+                <h4>Nº de operacionais</h4>
+                <input id="newNumber"type="numberofPeople" class="numberofPeople">
+            </div>
+            <div  id= "custo" class="item">
+                <h4>Custo total:</h4>
+                <input id="totalCost" type= "cost" class="cost">
+            </div>
         </div>
-        <div class="item">
-            <h4>Média de Combustível do Automóvel</h4>
-            <input id="fuel" type="litros" class="fuel">
-        </div>
-        <div class="item">
-            <h5>Duração da operação</h5>
-            <input id="duration" type="horas" class="duration">
-        </div>
-        <div class="item">
-            <h6>Nº de operacionais</h6>
-            <input id="numberofPeople" type="numero" class="people">
-        </div>
-        <button id="submit" type="button" class="btn btn-primary" onclick="calcularValor()">Calcular total</button>
-        
-        <span id="custo"> Custo Total da Ocorrência: </span>
     </div>
-    
-    
-    
-    
-  
-    
-    
     
     <div id="app-footer">
         <ul>
@@ -87,6 +83,8 @@
         </ul>
     </div>
     
-    </body>
-        
-    </html>
+    <script type="text/javascript" src="editProfile.js"></script>
+
+</body>
+
+</html>

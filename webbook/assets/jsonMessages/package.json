@@ -1,19 +1,16 @@
 {
-  "name": "app.js",
+  "name": "jsonMessages",
   "version": "1.0.0",
-  "description": "a minha bd",
-  "main": "bd.js",
+  "description": "",
+  "main": "connect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "bd",
-    "node"
-  ],
-  "author": "ACP",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1",
-    "save": "^2.4.0"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   }
 }

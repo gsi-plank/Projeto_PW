@@ -9,12 +9,12 @@ align-items: center;
 
 color: #000000;
 
-    #back{
-      position: absolute;
-max-width: 31px;
-max-height: 44px;
-left: 17px;
-top: 7px;
+  #back{
+  position: absolute;
+  max-width: 31px;
+  max-height: 44px;
+  left: 17px;
+  top: 7px;
   }
   
   table {
@@ -23,10 +23,10 @@ top: 7px;
   max-width:370px;
   top: 110px;
   position: relative;
-      margin-left: auto;
-    margin-right: auto;
-    background:#AB0404;
-    color:#fff;
+  margin-left: auto;
+  margin-right: auto;
+  background:#AB0404;
+  color:#fff;
 }
 
 td, th {
@@ -59,21 +59,25 @@ color: #000000;
 }
 
 #addAuditor{
-position: absolute;
-    width: 270px;
-    height: 30px;
-    left: 63px;
-    top: 619px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 23px;
-    margin-top: 2px;
-    border-radius: 50px;
-    background-color: #AB0404;
-    color: white;
-    border: none;
+  position: absolute;
+  width: 270px;
+  height: 30px;
+  left: 63px;
+  top: 500px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 24px;
+  line-height: 23px;
+  margin-top: 2px;
+  border-radius: 50px;
+  background-color: #AB0404;
+  color: white;
+  border: none;
 
 }
 
+#administradorTxt {
+ position: relative;
+ right: 190px;
+}

@@ -1,26 +1,27 @@
-let newPassword = document.getElementById("newPassword").value;
-let confirmPassword = document.getElementById("confirmPassword").value;
-let checked = document.getElementById("check").onclick;
-
-function saveChanges(){
-    if(checked){
-        confirmPassword();
-    }
-}
-
-function confirmPassword(){
-    if(newPassword.length !== newPassword.length || newPassword !== newPassword){
-        document.getElementById("textTxt1").className = "textTxtClass text-center";
-        document.getElementById("textTxt").className = "hidden";
-        document.getElementById("errorFrame").className = "errorFrame";
-    }
-    else {
-        changePassword();
-    }
-}
+// let newPassword = document.getElementById("newPassword").value;
+// let confirmPassword = document.getElementById("confirmPassword").value;
+// let checked = document.getElementById("check");
 
 
 
-function changePassword(){
+
+
+$(function(){
+  $("#check").on("click",function(){
+ 
+    var notify = $.notify('<strong>Erro!</strong> As palavra passes não coincidem', {
+      type: 'danger',
+      allow_dismiss: true,
+    });
+
+
+    notify('message', '<strong>Erro!</strong> Page Data.');
+
+
+    setTimeout(function() {
+      notify('message', '<strong>Erro!</strong> User Data.');
+    }, 500);
     
-}
+  });
+});
+
