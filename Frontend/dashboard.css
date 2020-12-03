@@ -23,7 +23,7 @@
   border: none;
   margin-right: -1px;
   color: black;
-  background-color: white;
+  background-color: var(--background-color);
 }
 .stv-radio-button:checked + label {
   background-color: var(--secondary-color);

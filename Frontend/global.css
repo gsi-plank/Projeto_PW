@@ -27,6 +27,7 @@
     --shadow-color: white;
     --font-color: white;
     --background-color:#3D3D3D;
+    --input-color: rgb()
 }
 
 .title {
@@ -39,11 +40,18 @@
   margin-bottom: 0px;
 }
 
+/*html, body {*/
+/*    height: 100%;*/
+/*    max-width: 414px;*/
+/*    max-height: 736px;*/
+/*}*/
+
 html, body {
-    height: 100%;
-    max-width: 414px;
-    max-height: 736px;
+    width: 414px;
+    height: 536px;
 }
+
+
 
 body{
     font-family: 'Roboto', sans-serif;
