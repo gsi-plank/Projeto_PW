@@ -1,4 +1,4 @@
- #logoImg {
+  #logoImg {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -14,7 +14,7 @@
     position:relative;
   }
   
-  #operacaoAvaliadaTxt{
+  #equipaAvaliadaTxt{
     position: absolute;
     width: 349px;
     height: 66px;

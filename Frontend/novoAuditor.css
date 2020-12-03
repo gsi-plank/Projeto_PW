@@ -28,3 +28,8 @@
     padding: 5px 5px;
 }
 
+#novoAuditorTxt {
+ position: relative;
+ right: 90px;
+}
+

@@ -1,14 +1,3 @@
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
-line-height: 31px;
-display: flex;
-align-items: center;
-
-color: #000000;
-
   #back{
   position: absolute;
   max-width: 31px;
@@ -25,37 +14,25 @@ color: #000000;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  background:#AB0404;
-  color:#fff;
 }
 
 td, th {
-  border: 1px solid #FFF;
-  text-align: left;
-  padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
 }
-
-tr:nth-child(even) {
-  background-color: #000000;
-}
-
+^
+/*linhas da tabela a cinzento*/
+/*tr:nth-child(even) {*/
+/*  background-color: #dddddd;*/
+/*}*/
+  
 #auditoresTxt{
-    position: absolute;
-width: 124px;
-height: 23px;
-left: 33px;
-top: 82px;
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 19px;
-line-height: 23px;
-
-
-letter-spacing: 1px;
-
-color: #000000;
+  position: absolute;
+  left: 47px;
+  top: 80px;
+  font-family: roboto;
+  color:white;
 }
 
 #addAuditor{
@@ -71,13 +48,17 @@ color: #000000;
   line-height: 23px;
   margin-top: 2px;
   border-radius: 50px;
-  background-color: #AB0404;
-  color: white;
+  background-color: white;
+  color: #AB0404;
   border: none;
-
 }
 
 #administradorTxt {
  position: relative;
- right: 190px;
+ right: 220px;
+}
+
+#diference {
+  background: #AB0404;
+  color: white;
 }

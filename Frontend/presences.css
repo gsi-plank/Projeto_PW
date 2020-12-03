@@ -1,9 +1,7 @@
-
-
 .form{
 position: absolute;
-left: 20px;
-top: 120px;
+left: 40px;
+top: 150px;
 font-family: Roboto;
 font-style: normal;
 font-size: 12px;
@@ -18,4 +16,22 @@ font-size: 12px;
   -webkit-transform-origin: 0 0;
   -o-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
+}
+
+#presencasTxt {
+ position: relative;
+ right: 110px;
+}
+
+#registoColab {
+ position: absolute;
+ top: 90px;
+ left: 15px;
+}
+
+h5 {
+ font-family: roboto;
+ font-weight: bold;
+ color: black;
+ font-size: 22px;
 }

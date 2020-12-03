@@ -1,8 +1,4 @@
-
-
-/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-  .hidden{
+.hidden{
     display: none;
   }
   .text-center{
@@ -214,10 +210,36 @@
   } 
 
 
-  .link{
-    color:rgba(171,4,4,1);
-  }
 
+
+
+   /*Splash */
+/*#splash {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 414px;*/
+/*    height: 736px;*/
+/*    background-color: white;*/
+/*    z-index: 2;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    transition: opacity 1s;*/
+/*}*/
+
+/*#splash img {*/
+/*    width: 300px;*/
+/*}*/
+
+/*#splash.fade {*/
+/*    opacity: 0;*/
+/*}*/
+
+
+
+    
 
    /*Splash */
 /*#splash {*/

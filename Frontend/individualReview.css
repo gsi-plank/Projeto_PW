@@ -1,6 +1,6 @@
-#avaliacaoEquipaTxt {
+#avaliacaoIndividualTxt {
  position: relative;
- right: 60px;
+ right: 40px;
 }
 
 h4{
@@ -8,7 +8,6 @@ h4{
     color: black;
     font-size: 15px;
     padding: 5px;
-    font-weight: semi Bold;
 }
 
 #content{
@@ -28,12 +27,11 @@ h4{
 
 h3{
     position: relative;
-    font-size: 22px;
-    font-weight:  semi Bold;
-    font-family: roboto;
+    font-size: 20px;
+    font-style: Bold;
     margin-left: -80px;
 }
 
-#equipaTxt {
-    
-}
+/*#equipaTxt {*/
+/*    margin-left: 0;*/
+/*}*/
