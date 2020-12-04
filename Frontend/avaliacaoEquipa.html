@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="global.css" type="text/css"/> 
+    <link rel="stylesheet" href="global.css" type="text/css" />
     <link rel="stylesheet" href="avaliacaoEquipa.css" />
     <script type="text/javascript" href="avaliacaoEquipa.js"></script>
     <title>Avaliação da equipa</title>
-    </head>
+</head>
 
-    <body>
-        
+<body>
+
     <div id="app-header">
         <div class="container">
             <ul>
@@ -27,7 +27,7 @@
                     <p id="avaliacaoEquipaTxt" class="title textCenter">Avaliação da equipa</p>
                 </li>
 
-                <li><a href="#" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
+                <li><a href="equipaAvaliada.html" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -35,46 +35,38 @@
             </ul>
         </div>
     </div>
-    
-    <div id= "content" class="container">
-        <h3 id="equipaTxt">Avaliar a equipa:</h3>
-        <div class="item">
-            <h4>Interajuda</h4>
-            <input type="range" name="interajuda" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
-        <div class="item">
-            <h4>Interação com as testemunhas</h4>
-            <input type="range" name="interTestemunhas" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
-        <div class="item">
-            <h4>Manuseamento do material</h4>
-            <input type="range" name="manuMaterial" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
-        <div class="item">
-            <h4>Rapidez</h4>
-            <input type="range" name="rapidez" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
-        <div class="item">
-            <h4>Eficiência</h4>
-            <input type="range" name="eficiencia" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
-        <div class="item">
-            <h4>Interação com as vítimas</h4>
-            <input type="range" name="vitimas" class="slider" min="0" max="5" value="0">
-            <span  class="slider_label"></span></p>
-        </div>
+
+    <div id="content" class="container">
+        <h2 id="equipaTxt">Avaliar a equipa:</h2>
+        
+            <div class="slidecontainer">
+                <h3> Interajuda </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review1">
+                <p>Avaliação: <span id="value1"></span></p>
+                <h3> Interação com as testemunhas </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review2">
+                <p>Avaliação: <span id="value2"></span></p>
+                <h3> Manuseamento do material </h3>
+                <input type="range" name="slider" min="0" max="5" value="0" class="slider" id="review3">
+                <p>Avaliação: <span id="value3"></span></p>
+                <h3> Rapidez </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review4">
+                <p>Avaliação: <span id="value4"></span></p>
+                <h3> Eficiência</h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review5">
+                <p>Avaliação: <span id="value5"></span></p>
+                <h3> Interação com as vítimas </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review6">
+                <p>Avaliação: <span id="value6"></span></p>
+            </div>
+
         <div id="observacoes">
             <h4>Observações:</h4>
             <input type="text" class="inputText" size="35">
         </div>
     </div>
-    
-        
+
+
     <div id="app-footer">
         <ul>
             <li><a href="mainPage.html" class="button"><svg width="30px" height="30px" viewBox="0 0 16 16"
@@ -95,5 +87,8 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
+
+    <script type="text/javascript" src="avaliacaoEquipa.js"></script>
 </body>
+
 </html>

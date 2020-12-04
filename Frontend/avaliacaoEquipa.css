@@ -3,37 +3,43 @@
  right: 60px;
 }
 
-h4{
-    margin-top: 20px;
-    color: black;
-    font-size: 15px;
-    padding: 5px;
-    font-weight: semi Bold;
-}
-
 #content{
     position: absolute;
     top: 80px;
     left: 80px;
 }
 
-.slider {
-    width: 180px;
-}
 
 #observacoes {
     bottom: 50px;
     margin-left: -75px;
 }
 
+#equipaTxt {
+    top: 5px;
+}
+
 h3{
     position: relative;
-    font-size: 22px;
-    font-weight:  semi Bold;
-    font-family: roboto;
+    font-size: 18px;
+    margin-left: -60px;
+}
+
+h4{
+    position: relative;
+    font-size: 14px;
+    padding: 5px;
+}
+
+h2{
+    position: relative;
+    font-size: 20px;
+    font-weight: Bold;
     margin-left: -80px;
 }
 
-#equipaTxt {
-    
+.slidecontainer p{
+    color: var(--shadow-color);
 }
+
+
