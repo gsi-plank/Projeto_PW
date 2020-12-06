@@ -1,0 +1,39 @@
+#avaliacaoIndividualTxt {
+ position: relative;
+ right: 60px;
+}
+
+#content{
+    position: absolute;
+    top: 80px;
+    left: 80px;
+}
+
+
+#observacoes {
+    bottom: 50px;
+    margin-left: -75px;
+}
+
+h3{
+    position: relative;
+    font-size: 18px;
+    margin-left: -60px;
+}
+
+h2{
+    position: relative;
+    font-size: 20px;
+    font-weight: Bold;
+    margin-left: -80px;
+}
+
+h4{
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.slidecontainer p{
+    color: var(--shadow-color);
+}

@@ -1,0 +1,15 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+#team{
+    position: absolute;
+width: 120px;
+height: 120px;
+left: 237px;
+top: 245px;
+
+}

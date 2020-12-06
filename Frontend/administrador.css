@@ -12,7 +12,7 @@
   max-width:370px;
   top: 15px;
   position: relative;
-  margin-left: 60px;
+  margin-left: 24px;
 }
 
 td, th {
@@ -33,7 +33,7 @@ td, th {
 }
 
 h4 {
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 #content {

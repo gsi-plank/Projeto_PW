@@ -25,20 +25,42 @@ h4{
 }
 
 
-#custo{
-    position: absolute;
-    width: 134px;
-    height: 29px;
-    left: 80px;
-    top: 300px;
-    margin: 10px;
-}
-
 #custoOcorrenciaTxt{
  position: relative;
  right: 60px;
 }
 
+/*.btn {*/
+/*    background: #AB0404;*/
+/*border-radius: 100px;*/
+/*position: absolute;*/
+/*width: 196px;*/
+/*height: 53px;*/
+/*left: 19px;*/
+/*top: 310px;*/
+/*}*/
+
+#submit {
+  width: 205px;
+  height: 30px;
+  margin-top: 30px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border:none;
+}
+
+#preco{
+    position: absolute;
+    width: 196px;
+    height: 53px;
+    left: 120px;
+    top: 350px;
+}
+
+#custoTotal {
+    top: 400px;
+}
 
 
 
