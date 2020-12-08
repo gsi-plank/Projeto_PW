@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="registoTrabalho.css" type="text/css"/>
-  <link rel="stylesheet" href="global.css" type="text/css"/>
-  
-  <title>Registo de trabalho</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="registoTrabalho.css" type="text/css" />
+    <link rel="stylesheet" href="global.css" type="text/css" />
+
+    <title>Registo de trabalho</title>
 </head>
 
 <body>
-<div id="app-header">
+    <div id="app-header">
         <div class="container">
             <ul>
                 <li><a href="#" class="button"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
@@ -25,7 +25,7 @@
                 <li>
                     <p id="checklistTxt" class="title textCenter">Checklist</p>
                 </li>
-               
+
                 <li><a href="custoOcorrencia.html" class="button"><svg id="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -37,22 +37,22 @@
     <h5 id="registoTrabalho">2. Registo de trabalho:</h5>
     <div id="content" class="container">
         <div class="form">
-        <form action="/action_page.php">
-  <input type="checkbox" id="action1" name="action1" value="Presente">
-  <label for="action1">Incêndio controlado</label><br>
-  <input type="checkbox" id="action2" name="action2" value="Presente">
-  <label for="action2">Feridos assistidos</label><br>
-  <input type="checkbox" id="action3" name="action3" value="Presente">
-  <label for="action3">Fonte de ignição encontrada</label><br>
-  <input type="checkbox" id="action4" name="action4" value="Presente">
-  <label for="action4">Testemunhas entrevistadas</label><br>
-  <input type="checkbox" id="action5" name="action5" value="Presente">
-  <label for="action5">Incêndio extinto</label><br><br>
-</form>
-</div>
-        
+            <form action="/action_page.php">
+                <input type="checkbox" class="chb" id="action1" name="action1" value="Presente">
+                <span for="action1">Incêndio controlado</span><br>
+                <input type="checkbox" class="chb" id="action2" name="action2" value="Presente">
+                <span for="action2">Feridos assistidos</span><br>
+                <input type="checkbox" class="chb" id="action3" name="action3" value="Presente">
+                <span for="action3">Fonte de ignição encontrada</span><br>
+                <input type="checkbox" class="chb" id="action4" name="action4" value="Presente">
+                <span for="action4">Testemunhas entrevistadas</span><br>
+                    <input type="checkbox" class="chb" id="action5" name="action5" value="Presente">
+                    <span for="action5">Incêndio extinto</span><br><br>
+            </form>
+        </div>
+
     </div>
-    
+
     <div id="app-footer">
         <ul>
             <li><a href="mainPage.html" class="button"><svg width="30px" height="30px" viewBox="0 0 16 16"
@@ -73,5 +73,7 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
+    <script type="text/javascript" src="registoTrabalho.js"></script>
 </body>
+
 </html>
