@@ -78,6 +78,4 @@ function updateRow(data) {
 
 
 //Exports
-module.exports = {
-    
-}
+addRow()
