@@ -12,84 +12,83 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["checklist",data.id_occurrence,data.idq1,data.question_1,data.idq2,data.question_2,data.idq3,data.question_3,data.idq4,data.question_4,data.idq5,data.question_5]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO checklist (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_occurrence,
+        req.body.iq1,
+        req.body.question_1,
+        req.body.iq2,
+        req.body.question_2,
+        req.body.iq3,
+        req.body.question_3,
+        req.body.iq4,
+        req.body.question_4,
+        req.body.iq5,
+        req.body.question_5,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readID(id) {
-    let selectQuery = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["checklist","id_occurrence", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM checklist WHERE id_occurrence = ?';    
+    global.connection.query (sql, [
+        req.params.id_occurrence,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM ??';
-    let query = mysql.format(selectQuery,["checklist"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM checklist';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["checklist", "id_occurrence", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from checklist where id_occurrence= ?";
+    global.connection.query(sql, req.params.id_occurrence, function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["checklist",data.alterar,data.value,"id_occurrence",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE checklist SET question_1=?, question_2=?, question_3=?, question_4=?, question_5=? WHERE id_occurrence= ?";
+    global.connection.query(sql, [
+        req.body.question_1,
+        req.body.question_2,
+        req.body.question_3,
+        req.body.question_4,
+        req.body.question_5,
+        req.params.id_auditor
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
 
-
-//Exports
-exports.addRowQueryList = addRow;
-exports.updatedQueryList = updateRow;
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

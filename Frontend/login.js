@@ -1,3 +1,5 @@
+
+
 let login = document.getElementById("submitInput");
 login.onclick = myLogin;
 
@@ -62,7 +64,7 @@ function closeForm() {
     document.getElementById("errorFrame").className = "hidden";
 }
 
-// SPLASH
+    // SPLASH
     //   setTimeout(() => {
     //         document.getElementById('splash').classList.toggle('fade');
     //     },2000);

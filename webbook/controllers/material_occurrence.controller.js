@@ -102,3 +102,11 @@ function updateRow(data) {
         console.log(response.affectedRows);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readIdOccur,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

@@ -27,7 +27,7 @@ function addRow(data) {
 
 
 //SELECTS
-function readId(id) {
+function readID(id) {
     let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["witness_occurrence","id_witness", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
@@ -101,3 +101,11 @@ function updateRow(data) {
         console.log(response.affectedRows);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

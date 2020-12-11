@@ -1,3 +1,7 @@
+#dadosTxt {
+    position: relative;
+    right: 160px;
+}
 
 #content{
     position:absolute;
@@ -5,19 +9,27 @@
     left: 20px;
 }
 
+#workers {
+    color: #AB0404;
+    margin-left: 30px;
+    font-size: 20px;
+}
 
 .boxOne{
     background-color: var(--primary-color);
-    margin-bottom: 50px;
-    width: 380px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: 135px;
     padding: 20px;
     border-radius: 20px;
+    margin-left: 28px;
 }
 
 .boxTwo{
     display: flex;
     align-items: center;
     width: 300px;
+    margin-left: 20px;
 }
 
 #itemOne{
@@ -40,4 +52,18 @@
     position: relative;
   top: 200px;
   right: 200px;
+}
+
+#list3 {
+    padding: 8spx;
+    list-style-type: none;
+}
+
+h3 {
+    color: #5A5A5A;
+    font-size: 18px;
+}
+
+.resposta {
+    color: #AB0404;
 }

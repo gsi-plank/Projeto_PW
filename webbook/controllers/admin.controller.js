@@ -12,79 +12,83 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["administrador",data.id_admin,data.name,data.age,data.nationality,data.cc,data.date_birth,data.phone_nr,data.adress,data.id_login]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO administrador (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) VALUES (?,?,?,?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_admin,
+        req.body.name,
+        req.body.age,
+        req.body.nationality,
+        req.body.cc,
+        req.body.date_birth,
+        req.body.phone_nr,
+        req.body.address,
+        req.body.id_login
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
 
-function readID(id) {
-    let selectQuery = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["administrador","id_admin", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM administrador WHERE id_admin = ?';    
+    global.connection.query (sql, [
+        req.params.id_admin,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM ??';    
-    let query = mysql.format(selectQuery,["administrador"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM administrador';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["administrador", "id_admin", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql= "DELETE from administrador where id_admin = ?";
+    global.connection.query(sql, req.params.id_admin, function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["administrador",data.alterar,data.value,"id_admin",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE administrador SET name=?, age=?, nationality=?, cc=?, phone_nr=?, address=? WHERE id_admin = ?";
+    //(id_admin, name, age, nationality, cc, date_birth, phone_nr, address)
+    global.connection.query(sql, [
+        req.body.name,
+        req.body.age,
+        req.body.nationality,
+        req.body.cc,
+        req.body.phone_nr,
+        req.body.address, 
+        req.params.id_admin
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
+}
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
 }

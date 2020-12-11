@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="global.css" type="text/css" />
     <link rel="stylesheet" href="novoAuditor.css" type="text/css" />
     <title>Novo Auditor</title>
@@ -28,7 +27,7 @@
                     <p id="novoAuditorTxt" class="title textCenter">Novo auditor</p>
                 </li>
 
-                <li><a href="administrador.html" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16"
+                <li><a href="administrador.html" id="btnRegister" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16"
                             class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -49,11 +48,11 @@
         </div>
         <div class="item">
             <h4>Palavra-passe</h4>
-            <input id="newPassword" type="password" class="password">
+            <input id="password" type="password" class="password">
         </div>
         <div class="item">
             <h4>Data de nascimento</h4>
-            <input type="date" class="date" value="1997-02-09">
+            <input id="date" type="date" class="date" value="1997-02-09">
         </div>
     </div>
 
@@ -80,3 +79,7 @@
                         class="icon" alt="profile picture"></a></li>
         </ul>
     </div>
+    <script type="text/javascript" src="novoAuditor.js"></script>
+</body>
+
+</html>

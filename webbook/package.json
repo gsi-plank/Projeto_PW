@@ -15,9 +15,13 @@
     "mysql": "^2.18.1",
     "router": "^1.3.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "devstart": "nodemon server.js"
+    "test": "nodemon test.js"
   },
   "keywords": [
     "pw"

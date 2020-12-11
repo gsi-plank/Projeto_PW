@@ -8,6 +8,11 @@
   color: Black;
 }
 
+.diference2 {
+  background: white;
+  border: none;
+}
+
 #ocorrenceTxt{
   position: absolute;
   top: 100px;

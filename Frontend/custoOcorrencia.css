@@ -24,21 +24,14 @@ h4{
     font-size: 15px;
 }
 
+h6 {
+    
+}
 
 #custoOcorrenciaTxt{
  position: relative;
  right: 60px;
 }
-
-/*.btn {*/
-/*    background: #AB0404;*/
-/*border-radius: 100px;*/
-/*position: absolute;*/
-/*width: 196px;*/
-/*height: 53px;*/
-/*left: 19px;*/
-/*top: 310px;*/
-/*}*/
 
 #submit {
   width: 205px;
@@ -59,7 +52,7 @@ h4{
 }
 
 #custoTotal {
-    top: 400px;
+    top: 450px;
 }
 
 

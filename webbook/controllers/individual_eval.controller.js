@@ -12,107 +12,104 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["individual_evaluation",data.id_evaluation,data.id_occurrence,data.id_operational,data.score,data.invoices]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO individual_evaluation (id_evaluation, id_occurrence, id_operational, score, invoices) VALUES (?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_evaluation,
+        req.body.id_occurrence,
+        req.body.id_operational,
+        req.body.score,
+        req.body.invoices
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readIdInd(id) {
-    let selectQuery = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["individual_evaluation","id_evaluation", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readIdInd(req, res) {
+    let sql = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM individual_evaluation WHERE id_evaluation= ?';    
+    global.connection.query (sql, [
+        req.params.id_evaluation
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM ?? ';
-    let query = mysql.format(selectQuery,["individual_evaluation"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM individual_evaluation ';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
-function readIdOccur(id_occur) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["individual_evaluation","id_occurrence", id_occur]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readIdOccur(req, res) {
+    let sql = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM individual_evaluation WHERE id_occurrence=?';    
+    global.connection.query (sql, [
+        req.params.id_occurrence
+        ], function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results);
     });
 }
 
-function readIdOp(id_op) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["individual_evaluation","id_operational", id_op]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readIdOp(req, res) {
+    let sql = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM individual_evaluation WHERE id_operational=?';    
+    global.connection.query (sql, [
+        req.params.id_operational
+        ], function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["individual_evaluation", "id_evaluation", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from individual_evaluation where id_evaluation=?";
+    global.connection.query(sql, [
+        req.params.id_evaluation
+        ], function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["individual_evaluation",data.alterar,data.value,"id_evaluation",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE individual_evaluation SET score=?, invoices=? WHERE id_evaluation=?";
+    global.connection.query(sql, [
+        req.body.score,
+        req.body.invoices,
+        req.params.id_group
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readIdInd,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

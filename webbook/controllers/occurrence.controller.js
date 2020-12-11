@@ -27,10 +27,23 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["occurrence","id_occurrence", id]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readAll() {
+    let selectQuery = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM ??';
+    let query = mysql.format(selectQuery,["occurrence"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -75,3 +88,11 @@ function updateRow(data) {
         console.log(response.affectedRows);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

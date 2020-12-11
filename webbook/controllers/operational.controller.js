@@ -13,8 +13,8 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["operational",data.id_operational,data.name,data.birth_date,data.address,data.entry_date,data.cc,data.phone_number,data.pay_per_hour,data.operational_type,data.speciality,data.id_login,data.password]);
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    let query = mysql.format(insertQuery,["occurrence",data.id_occurrence,data.local,data.distance,data.occurrence_type,data.status,data.asccess_code,data.arrival,data.departure,data.cost,data.origin,data.description,data.id_entity,data.id_request]);
     pool.query(query,(err, response) => {
         if(err) {
             console.error(err);
@@ -28,8 +28,8 @@ function addRow(data) {
 
 //SELECTS
 function readID(id) {
-    let selectQuery = 'SELECT (id_operational, name, birth_date, address, entry_date, cc, phone_number, pay_per_hour, operational_type, speciality, id_login) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["operational","id_operational", id]);
+    let selectQuery = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["occurrence","id_occurrence", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -42,8 +42,8 @@ function readID(id) {
 }
 
 function readAll() {
-    let selectQuery = 'SELECT (id_operational, name, birth_date, address, entry_date, cc, phone_number, pay_per_hour, operational_type, speciality, id_login) FROM ?? ';
-    let query = mysql.format(selectQuery,["operational"]);
+    let selectQuery = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM ??';
+    let query = mysql.format(selectQuery,["occurrence"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -60,7 +60,7 @@ function readAll() {
 
 function deleteRow(id) {
     let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["operational", "id_operational", id]);
+    let query = mysql.format(deleteQuery, ["occurrence", "id_occurrence", id]);
     // query = DELETE from `todo` where `user`='shahid';
     pool.query(query,(err, response) => {
         if(err) {
@@ -77,7 +77,7 @@ function deleteRow(id) {
 
 function updateRow(data) {
     let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["operational",data.alterar,data.value,"id_operational",data.id]);
+    let query = mysql.format(updateQuery,["occurrence",data.alterar,data.value,"id_occurrence",data.id]);
     // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
     pool.query(query,(err, response) => {
         if(err) {
@@ -88,3 +88,11 @@ function updateRow(data) {
         console.log(response.affectedRows);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

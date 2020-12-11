@@ -12,79 +12,77 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["cost_occurrence",data.id_occurrence,data.duration,data.num_of_operationals,data.distance,data.cost]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO cost_occurrence (id_occurrence, duration, num_of_operationals, distance, cost) VALUES (?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_occurrence,
+        req.body.duration,
+        req.body.num_of_operationals,
+        req.body.distance,
+        req.body.cost,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readID(id) {
-    let selectQuery = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["cost_occurrence","id_occurrence", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM cost_occurrence WHERE id_occurrence = ?';    
+    global.connection.query (sql, [
+        req.params.id_occurrence,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM ??';
-    let query = mysql.format(selectQuery,["cost_occurrence"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM cost_occurrence';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["cost_occurrence", "id_occurrence", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from cost_occurrence where id_occurrence = ?";
+    global.connection.query(sql, req.params.id_occurrence, function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["cost_occurrence",data.alterar,data.value,"id_occurrence",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE cost_occurrence SET duration=?, num_of_operationals=?, distance=?, cost=? WHERE id_occurrence= ?";
+    //(id_occurrence, duration, num_of_operationals, distance, cost)
+    global.connection.query(sql, [
+        req.body.duration,
+        req.body.num_of_operationals,
+        req.body.distance,
+        req.body.cost,
+        req.params.id_occurrence
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

@@ -12,79 +12,80 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["fire_commander",data.id_operational,data.name,data.age,data.cc,data.date_birth,data.phone_nr,data.id_login]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO fire_commander (id_operational, name, age, cc, date_birth, phone_nr, id_login) VALUES (?,?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_operational,
+        req.body.name,
+        req.body.age,
+        req.body.cc,
+        req.body.date_birth,
+        req.body.phone_nr,
+        req.body.id_login,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readID(id) {
-    let selectQuery = 'SELECT (id_operational, name, age, cc, date_birth, phone_nr) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["fire_commander","id_operational", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (id_operational, name, age, cc, date_birth, phone_nr) FROM fire_commander WHERE id_operational = ?';    
+    global.connection.query (sql, [
+        req.params.id_operational,
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_operational, name, age, cc, date_birth, phone_nr) FROM ?? ';
-    let query = mysql.format(selectQuery,["fire_commander"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_operational, name, age, cc, date_birth, phone_nr) FROM fire_commander ';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["fire_commander", "id_operational", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from fire_commander where id_operational= ?";
+    global.connection.query(sql, req.params.id_operational, function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["fire_commander",data.alterar,data.value,"id_operational",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE fire_commander SET name=?, age=?, cc=?, date_birth=?, phone_nr=? WHERE id_operational= ?";
+    //(id_operational, name, age, cc, date_birth, phone_nr)
+    global.connection.query(sql, [
+        req.body.name,
+        req.body.age,
+        req.body.cc,
+        req.body.date_birth,
+        req.body.phone_nr,
+        req.params.id_operational
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};

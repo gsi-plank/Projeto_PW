@@ -88,3 +88,11 @@ function updateRow(data) {
         console.log(response.affectedRows);
     });
 }
+
+module.exports = {
+    list: readAll,
+    read: readID,
+    create: addRow,
+    update: updateRow,
+    delete: deleteRow
+};
