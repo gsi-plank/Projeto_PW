@@ -21,7 +21,7 @@
 
 h3{
     position: relative;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: -60px;
 }
 
@@ -40,6 +40,7 @@ h2{
 
 .slidecontainer p{
     color: var(--shadow-color);
+    font-size: 14px;
 }
 
 

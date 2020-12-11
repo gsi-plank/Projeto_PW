@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["operational_occurrence",data.statute,data.points,data.arrival,data.departure,data.presence,data.id_operational,data.id_occurrence]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,9 +27,21 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByIdOccur(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readAll() {
+    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? ';
+    let query = mysql.format(selectQuery,["auditor"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+function readIdOccur(id) {
+    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["operational_occurrence","id_occurrence", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
@@ -42,8 +54,8 @@ function queryByIdOccur(id) {
     });
 }
 
-function queryByIdOp(id_op) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readIdOp(id_op) {
+    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["operational_occurrence","id_operational", id_op]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {

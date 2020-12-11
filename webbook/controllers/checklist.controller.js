@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["checklist",data.id_occurrence,data.idq1,data.question_1,data.idq2,data.question_2,data.idq3,data.question_3,data.idq4,data.question_4,data.idq5,data.question_5]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,23 @@ function addRow(data) {
 
 
 //SELECTS
-
-function querybyID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["checklist","id_occurrence", id]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readAll() {
+    let selectQuery = 'SELECT (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) FROM ??';
+    let query = mysql.format(selectQuery,["checklist"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -78,4 +91,5 @@ function updateRow(data) {
 
 
 //Exports
-addRow()
+exports.addRowQueryList = addRow;
+exports.updatedQueryList = updateRow;

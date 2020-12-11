@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["occurrence",data.id_occurrence,data.local,data.distance,data.occurrence_type,data.status,data.asccess_code,data.arrival,data.departure,data.cost,data.origin,data.description,data.id_entity,data.id_request]);
     pool.query(query,(err, response) => {
         if(err) {

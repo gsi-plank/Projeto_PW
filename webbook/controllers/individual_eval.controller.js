@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?)';
     let query = mysql.format(insertQuery,["individual_evaluation",data.id_evaluation,data.id_occurrence,data.id_operational,data.score,data.invoices]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,9 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByIdEval(id_eval) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["individual_evaluation","id_evaluation", id_eval]);
+function readIdInd(id) {
+    let selectQuery = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["individual_evaluation","id_evaluation", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -42,7 +41,21 @@ function queryByIdEval(id_eval) {
     });
 }
 
-function queryByIdOccur(id_occur) {
+function readAll() {
+    let selectQuery = 'SELECT (id_evaluation, id_occurrence, id_operational, score, invoices) FROM ?? ';
+    let query = mysql.format(selectQuery,["individual_evaluation"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readIdOccur(id_occur) {
     let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["individual_evaluation","id_occurrence", id_occur]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
@@ -56,7 +69,7 @@ function queryByIdOccur(id_occur) {
     });
 }
 
-function queryByIdOp(id_op) {
+function readIdOp(id_op) {
     let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["individual_evaluation","id_operational", id_op]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'

@@ -1,0 +1,43 @@
+
+#content{
+    position:absolute;
+    top: 50px;
+    left: 20px;
+}
+
+
+.boxOne{
+    background-color: var(--primary-color);
+    margin-bottom: 50px;
+    width: 380px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.boxTwo{
+    display: flex;
+    align-items: center;
+    width: 300px;
+}
+
+#itemOne{
+    position: relative;
+    left: 20px;
+}
+
+#itemTwo{
+    position: relative;
+    left: 50px;
+}
+
+#itemThree{
+  position: relative;
+  top: 200px;
+  right: 230px;
+}
+
+#intemFour{
+    position: relative;
+  top: 200px;
+  right: 200px;
+}

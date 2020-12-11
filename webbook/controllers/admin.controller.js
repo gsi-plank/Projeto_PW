@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["administrador",data.id_admin,data.name,data.age,data.nationality,data.cc,data.date_birth,data.phone_nr,data.adress,data.id_login]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -28,8 +28,8 @@ function addRow(data) {
 
 //SELECTS
 
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["administrador","id_admin", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
@@ -42,6 +42,19 @@ function queryByID(id) {
     });
 }
 
+function readAll() {
+    let selectQuery = 'SELECT (id_admin, name, age, nationality, cc, date_birth, phone_nr, address) FROM ??';    
+    let query = mysql.format(selectQuery,["administrador"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
 
 // DELETE
 

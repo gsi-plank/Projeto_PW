@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["vehicle",data.regist,data.capacity,data.fuel_average,data.brand,data.model,data.id_admin]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,23 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByRegist(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["vehicle","regist", id]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readAll() {
+    let selectQuery = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM ?? ';
+    let query = mysql.format(selectQuery,["vehicle"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {

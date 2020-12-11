@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["operational",data.id_operational,data.name,data.birth_date,data.address,data.entry_date,data.cc,data.phone_number,data.pay_per_hour,data.operational_type,data.speciality,data.id_login,data.password]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,23 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_operational, name, birth_date, address, entry_date, cc, phone_number, pay_per_hour, operational_type, speciality, id_login) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["operational","id_operational", id]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readAll() {
+    let selectQuery = 'SELECT (id_operational, name, birth_date, address, entry_date, cc, phone_number, pay_per_hour, operational_type, speciality, id_login) FROM ?? ';
+    let query = mysql.format(selectQuery,["operational"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {

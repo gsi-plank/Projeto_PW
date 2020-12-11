@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?)';
     let query = mysql.format(insertQuery,["cost_occurrence",data.id_occurrence,data.duration,data.num_of_operationals,data.distance,data.cost]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,23 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["cost_occurrence","id_occurrence", id]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readAll() {
+    let selectQuery = 'SELECT (id_occurrence, duration, num_of_operationals, distance, cost) FROM ??';
+    let query = mysql.format(selectQuery,["cost_occurrence"]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {

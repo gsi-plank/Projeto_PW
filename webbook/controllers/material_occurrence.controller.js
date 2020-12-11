@@ -27,9 +27,8 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByIdMat(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readIdMat(id) {
+    let selectQuery = 'SELECT (id_material, material_name, id_occurrence) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["material_occurrence","id_material", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
@@ -42,8 +41,22 @@ function queryByIdMat(id) {
     });
 }
 
-function queryByIdOccur(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readAll() {
+    let selectQuery = 'SELECT (id_material, material_name, id_occurrence) FROM ?? ';
+    let query = mysql.format(selectQuery,["material_occurrence"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readIdOccur(id) {
+    let selectQuery = 'SELECT (id_material, material_name, id_occurrence) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["material_occurrence","id_occurrence", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {

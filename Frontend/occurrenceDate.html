@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="global.css" type="text/css"/> 
-  <link rel="stylesheet" href="ocurrenceData.css" />
+  <link rel="stylesheet" href="occurrenceDate.css" />
   
     <title>Perfil</title>
 </head>
@@ -19,42 +19,54 @@
      <div id="app-header">
              <div class="container"> 
              <ul>
-             <li><svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-left"
+             <li><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                             </svg></li>
-             <li><p id="rankingTxt" class="title textCenter">Dados da ocurrência</p>
+             <li><p id="" class="title textCenter">Dados da ocurrência</p>
              </ul></li>
              </div>
              
              
     </div>
      
-    <div class="container">
+    <div class="container" id="content">
         <div class="boxOne">
-            <!--<h3>Informações da Ocorrência</h3>-->
-            <!--<ul>-->
-            <!--    <li>Número de vítimas: <span>2</span></li>-->
-            <!--    <li>Tipo: <span>Urbano</span></li>-->
-            <!--    <li>Localidade <span>Vizela</span></li>-->
-            <!--</ul>-->
-        </div>
-        <div class="boxTwo">
-            <h3>Informações da Equipa</h3>
+            <h3>Informações da Ocorrência</h3>
             <ul>
-                <p>Elementos</p>
-                <ul>
-                    <li><span>Carlos Pereira</span></li>
-                    <li><span>Maria Barbosa</span></li>
-                    <li><span>João Pereira</span></li>
-                    <li><span>Ricardo Rodrigues</span></li>
-                </ul>
-                <p>Chefe da Equipa</p>
-                    <ul>
-                        <li><span>João Vieira</span></li>    
-                    </ul>
+                <li>Número de vítimas: <span>2</span></li>
+                <li>Tipo: <span>Urbano</span></li>
+                <li>Localidade <span>Vizela</span></li>
             </ul>
+        </div>
+         <h4>Registo de colaboradores no terreno</h4>
+        <div class="boxTwo">
+           
+            <div id="itemOne">
+                <a href="">
+                    <img src="./images/fires.png" width ="120px" height="120px"></img>
+                </a>
+                <p>Avaliação <br> Ocorrência</p>
+            </div>
+            <div id="itemTwo">
+                <a>
+                    <img src="./images/crowd.png" width ="120px" height="120px"></img>
+                </a>
+                    <p>Avaliação da <br> Equipa</p>
+            </div>
+            <div id="itemThree">
+                <a>
+                    <img src="./images/human_head.png" width ="120px" height="120px"></img>
+                </a>
+                    <p>Avaliação <br> Individual</p>
+            </div>
+            <div id="intemFour">
+                <a>
+                    <img src="./images/map_marker.png" width ="120px" height="120px"></img>
+                </a>
+                    <p>Avaliação do<br> Local/Externa</p>
+            </div>
         </div>
     </div>
     

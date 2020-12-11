@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["auditor",data.id_auditor,data.age,data.cc, data.date_birth, data.phone_nr, data.id_login]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,9 +27,8 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
+function readID(id) {
+    let selectQuery = 'SELECT (id_auditor, name, age, cc, date_birth, phone_nr) FROM ?? WHERE ?? = ?';    
     let query = mysql.format(selectQuery,["auditor","id_auditor", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
@@ -42,6 +41,19 @@ function queryByID(id) {
     });
 }
 
+function readAll() {
+    let selectQuery = 'SELECT (id_auditor, name, age, cc, date_birth, phone_nr) FROM ?? ';
+    let query = mysql.format(selectQuery,["auditor"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
 
 // DELETE
 

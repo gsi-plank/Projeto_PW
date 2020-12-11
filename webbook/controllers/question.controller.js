@@ -27,10 +27,9 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByType(tipo) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["question","occurrence_type", tipo]);
+function readID(id) {
+    let selectQuery = 'SELECT (id_question, occurrence_type, question) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["question","id_question", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -42,9 +41,23 @@ function queryByType(tipo) {
     });
 }
 
-function queryByID(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["question","id_question", id]);
+function readAll() {
+    let selectQuery = 'SELECT (id_question, occurrence_type, question) FROM ?? ';
+    let query = mysql.format(selectQuery,["question"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+
+function readType(tipo) {
+    let selectQuery = 'SELECT (id_question, occurrence_type, question) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["question","occurrence_type", tipo]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {

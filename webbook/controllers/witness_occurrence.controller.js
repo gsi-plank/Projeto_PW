@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 // INSERTS
 
 function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?)';
+    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?)';
     let query = mysql.format(insertQuery,["witness_occurrence",data.id_occurrence,data.id_witness,data.testimony,data.date,data.group_nr,data.justification]);
     pool.query(query,(err, response) => {
         if(err) {
@@ -27,10 +27,9 @@ function addRow(data) {
 
 
 //SELECTS
-
-function queryByIdOccur(id) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["witness_occurrence","id_occurrence", id]);
+function readId(id) {
+    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["witness_occurrence","id_witness", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
@@ -42,9 +41,22 @@ function queryByIdOccur(id) {
     });
 }
 
-function queryByIdWitn(id_witn) {
-    let selectQuery = 'SELECT * FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["witness_occurrence","id_witness", id_witn]);
+function readAll() {
+    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? ';
+    let query = mysql.format(selectQuery,["witness_occurrence"]);
+    // query = SELECT * FROM `todo` where `user` = 'shahid'
+    pool.query(query,(err, data) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        // rows fetch
+        console.log(data);
+    });
+}
+function readIdOccur(id) {
+    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? WHERE ?? = ?';    
+    let query = mysql.format(selectQuery,["witness_occurrence","id_occurrence", id]);
     // query = SELECT * FROM `todo` where `user` = 'shahid'
     pool.query(query,(err, data) => {
         if(err) {
