@@ -3,16 +3,14 @@ const controllerOccurrence = require('../controllers/occurrence.controller');
 const bodyParser = require('body-parser');
 
 server.route('/occurrences')
-    .get(controllerOccurrence.list)
-    
-    
+    .get(controllerOccurrence.listOccurrence)
 
 server.route('/occurrences/:id_occurrence')
-    .get(controllerOccurrence.readIDOccurrence) // certo
-/**    .put(controllerOccurrence.updateOccurrence) // provavelmente fazer outros updates para o departure, arrival, e status
-    .delete(controllerOccurrence.deleteIDOccurrence)
+    .get(controllerOccurrence.readOccurrence) 
+    .put(controllerOccurrence.updateOccurrence) // updates de merda
+    .delete(controllerOccurrence.deleteOccurrence) //pqp
 
-// Operational Occurrence
+/** Operational Occurrence
 server.route('/occurrences/:id_occurrence/operationals')
     .get(controllerOccurrence.readOperationalFromOccurrence) // certo
     .post(controllerOccurrence.saveOperationalOccurrence)
