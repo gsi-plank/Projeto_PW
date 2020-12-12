@@ -2,48 +2,52 @@
 <html lang="en">
 
 <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="global.css" type="text/css"/> 
-  <link rel="stylesheet" href="profile.css" />
-  
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="global.css" type="text/css" />
+    <link rel="stylesheet" href="profile.css" />
+
     <title>Perfil</title>
 </head>
 
 <body>
-    
+
 
     <div id="app-header">
-             <p id="perfilTxt" class="title textCenter">Pefil</p>
+        <p id="perfilTxt" class="title textCenter">Pefil</p>
     </div>
- 
 
-        <div id="content" class="container">
-            <div class="item" id="marginPicture">
-                <ul>
-                <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
-                <a href="editProfile.html"><li><button id="editProfile" type="button">Editar perfil</button></li></a>
-                </ul>
-            </div>
-            <div class="item">
-                <h4>Nome</h4>
-                <input type="text" class="name" value="indisponivel" readonly>
-            </div>
-            <div class="item">  
-                <h4>Email</h4>
-                <input type="email" class="email" value="example@gmk.com" readonly>
-            </div>
-            <div class="item">
-                <h4>Data de nascimento</h4>
-                <input type="date" class="date" value="1997-02-09" readonly>
-            </div>
+
+    <div id="content" class="container">
+        <div class="item" id="marginPicture">
+            <ul>
+                <li id="picture"></li>
+                <a href="editProfile.html">
+                    <li><button id="editProfile" type="button">Editar perfil</button></li>
+                </a>
+            </ul>
         </div>
+        <form>
+            <div class="form-group item">
+                <h4>Nome</h4>
+                <input id="name" type="text" class="name">
+            </div>
+            <div class="form-group item">
+                <h4>Email</h4>
+                <input id="email" type="email" class="email" value="example@gmk.com">
+            </div>
+            <div class="form-group item">
+                <h4>Data de nascimento</h4>
+                <input id="date" type="date" class="date" value="1997-02-09">
+            </div>
+        </form>
     </div>
-    
-    
+    </div>
+
+
     <div id="app-footer">
         <ul>
             <li><a href="mainPage.html" class="button"><svg width="30px" height="30px" viewBox="0 0 16 16"
@@ -64,7 +68,7 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
-
+    <script type="text/javascript" src="profile.js"></script>
 </body>
 
 </html>

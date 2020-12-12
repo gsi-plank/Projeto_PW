@@ -1,6 +1,6 @@
 const express = require('express');
 const port = process.env.PORT || 8080;
-const host = process.env.HOST || '127.0.0.1';
+const host = process.env.HOST || '3.86.254.40';
 
 //carregar bibliotecas globais
 const cors = require('cors');
@@ -11,7 +11,7 @@ const expressValidator = require('express-validator');
 
 //iniciar a aplicação
 var server = express();
-server.use(express.static("../../Frontend/"));
+server.use(express.static("../Frontend/"));
 server.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 server.use(expressSanitizer());
 server.use(expressValidator());

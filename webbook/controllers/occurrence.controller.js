@@ -14,7 +14,7 @@ const pool = mysql.createPool({
 
 function addRow(req, res) {
     let sql = 'INSERT INTO occurrence (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
-    global.connection.query (sql, [
+    mysql.connection.query (sql, [
         req.body.id_occurrence,
         req.body.local,
         req.body.distance,
@@ -37,8 +37,9 @@ function addRow(req, res) {
 
 //SELECTS
 function readID(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
     let sql = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM occurrence WHERE id_occurrence=?';    
-    global.connection.query (sql, [
+    mysql.connection.query (sql, [
         req.params.id_occurrence
         ], function (err, results) {
         if (err) return res.status(500).end();
@@ -49,12 +50,15 @@ function readID(req, res) {
 
 function readAll(req, res) {
     let sql = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM occurrence';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
-        }
-        return res.json(results);
+    mysql.con.query (sql, function (err, results, fields) {
+        if (!err) {
+            if (results.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(results);
+                }
+        } else
+            console.log('Error while performing query', err);
     });
 }
 

@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "body-parse": "^0.1.0",
-    "cookie-parse": "^0.4.0",
+    "body-parser": "^0.1.0",
+    "cookie-parser": "^0.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "devstart": "nodemon server.js"
+    "devstart": "nodemon server.js",
     "test": "nodemon test.js"
   },
   "keywords": [
@@ -29,3 +29,4 @@
   "author": "Grupo4",
   "license": "ISC"
 }
+
