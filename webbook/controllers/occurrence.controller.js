@@ -5,14 +5,25 @@ const connect = require('../assets/bd');
 //SELECTS
 function readID(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    let sql = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM occurrence WHERE id_occurrence=?';    
-    connect.con.query (sql, [
-        req.params.id_occurrence
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results[0]);
-    });
+    connect.con.query('SELECT * from occurrence where id_occurrence = ?', [id_occurrence],
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
 }
 
 function readAll(req, res) {
