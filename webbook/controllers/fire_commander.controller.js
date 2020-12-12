@@ -33,7 +33,7 @@ function addRow(req, res) {
 function readID(req, res) {
     let sql = 'SELECT (id_operational, name, age, cc, date_birth, phone_nr) FROM fire_commander WHERE id_operational = ?';    
     global.connection.query (sql, [
-        req.params.id_operational,
+        req.params.id_operational
         ], function (err, results) {
         if (err) return res.status(500).end();
         if (results.length == 0) return res.status(404).end();

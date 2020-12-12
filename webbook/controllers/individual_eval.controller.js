@@ -99,7 +99,7 @@ function updateRow(req, res) {
     global.connection.query(sql, [
         req.body.score,
         req.body.invoices,
-        req.params.id_group
+        req.params.id_evaluation
       ], function(err, results) {
             if (err) return res.status(500).end();
             res.json(results);

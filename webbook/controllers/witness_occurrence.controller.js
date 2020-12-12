@@ -12,93 +12,87 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["witness_occurrence",data.id_occurrence,data.id_witness,data.testimony,data.date,data.group_nr,data.justification]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO witness_occurrence (id_witness, id_occurrence, testimony, date, group_nr, justification) VALUES (?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.id_witness,
+        req.body.id_occurrence,
+        req.body.testimony,
+        req.body.date,
+        req.body.group_nr,
+        req.body.justification
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readID(id) {
-    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["witness_occurrence","id_witness", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence WHERE id_witness= ?';    
+    global.connection.query (sql, [
+        req.params.id_witness
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? ';
-    let query = mysql.format(selectQuery,["witness_occurrence"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence ';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
-function readIdOccur(id) {
-    let selectQuery = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["witness_occurrence","id_occurrence", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+
+function readIdOccur(req, res) {
+    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence WHERE id_occurrence = ?';    
+    global.connection.query (sql, [
+        req.params.id_occurrence
+        ], function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["witness_occurrence", "id_witness", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from witness_occurrence where id_witness=?";
+    global.connection.query(sql, [
+        req.params.id_witness
+        ], function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["witness_occurrence",data.alterar,data.value,"id_witness",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE witness_occurrence SET testimony=?, date=?, group_nr=?, justification=? WHERE id_witness=?";
+    //(id_witness, id_occurrence, testimony, date, group_nr, justification)
+    global.connection.query(sql, [
+        req.body.testimony,
+        req.body.date,
+        req.body.group_nr,
+        req.body.justification,
+        req.params.id_witness
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
 

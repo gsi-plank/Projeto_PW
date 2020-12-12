@@ -12,99 +12,100 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["operational_occurrence",data.statute,data.points,data.arrival,data.departure,data.presence,data.id_operational,data.id_occurrence]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO operational_occurrence (statute, points, arrival, departure, presence, id_operational, id_occurrence) VALUES (?,?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.statute,
+        req.body.points,
+        req.body.arrival,
+        req.body.departure,
+        req.body.presence,
+        req.body.id_operational,
+        req.body.id_occurrence
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readAll() {
-    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? ';
-    let query = mysql.format(selectQuery,["auditor"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence ';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
-function readIdOccur(id) {
-    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["operational_occurrence","id_occurrence", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readIdOccur(req, res) {
+    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence WHERE id_occurrence = ?';    
+    global.connection.query (sql, [
+        req.params.id_occurrence
+        ], function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results);
     });
 }
 
-function readIdOp(id_op) {
-    let selectQuery = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["operational_occurrence","id_operational", id_op]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readIdOp(req, res) {
+    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence WHERE id_operational = ?';    
+    global.connection.query (sql, [
+        req.params.id_operational
+        ], function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(data) {
-    let deleteQuery = "DELETE from ?? where ?? = ? and ? = ?";
-    let query = mysql.format(deleteQuery, ["operational_occurrence", "id_occurrence",data.id_occur,"id_operational",data.id_op]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from operational_occurrence where id_operational = ? and id_occurrence = ?";
+    global.connection.query(sql, [
+        req.params.id_operational,
+        req.params.id_occurrence
+        ], function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ? and ? = ?";
-    let query = mysql.format(updateQuery,["operational_occurrence",data.alterar,data.value,"id_occurrence",data.id_occur,"id_operational",data.id_op]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE operational_occurrence SET statute=?, points=?, arrival=?, departure=?, presence=? WHERE id_operational= ? and id_occurrence= ?";
+    //(statute, points, arrival, departure, presence, id_operational, id_occurrence)
+    global.connection.query(sql, [
+        req.body.statute,
+        req.body.points,
+        req.body.arrival,
+        req.body.departure,
+        req.body.presence,
+        req.params.id_operational,
+        req.params.id_occurrence
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
 
 module.exports = {
     list: readAll,
-    read: readIdOccur(),
+    readOccur: readIdOccur,
+    readInd: readIdOp,
     create: addRow,
     update: updateRow,
     delete: deleteRow

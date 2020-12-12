@@ -12,80 +12,74 @@ const pool = mysql.createPool({
 
 // INSERTS
 
-function addRow(data) {
-    let insertQuery = 'INSERT INTO ?? VALUES (?,?,?,?,?,?)';
-    let query = mysql.format(insertQuery,["vehicle",data.regist,data.capacity,data.fuel_average,data.brand,data.model,data.id_admin]);
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows added
-        console.log(response.insertId);
+function addRow(req, res) {
+    let sql = 'INSERT INTO vehicle (regist, capacity, fuel_average, brand, model, id_admin) VALUES (?,?,?,?,?,?)';
+    global.connection.query (sql, [
+        req.body.regist,
+        req.body.capacity,
+        req.body.fuel_average,
+        req.body.brand,
+        req.body.model,
+        req.body.id_admin
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        res.json(results);
     });
 }
 
 
 //SELECTS
-function readID(id) {
-    let selectQuery = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM ?? WHERE ?? = ?';    
-    let query = mysql.format(selectQuery,["vehicle","regist", id]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows fetch
-        console.log(data);
+function readID(req, res) {
+    let sql = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM vehicle WHERE regist = ?';    
+    global.connection.query (sql, [
+        req.params.regist
+        ], function (err, results) {
+        if (err) return res.status(500).end();
+        if (results.length == 0) return res.status(404).end();
+        return res.json(results[0]);
     });
 }
 
-function readAll() {
-    let selectQuery = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM ?? ';
-    let query = mysql.format(selectQuery,["vehicle"]);
-    // query = SELECT * FROM `todo` where `user` = 'shahid'
-    pool.query(query,(err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+function readAll(req, res) {
+    let sql = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM vehicle';
+    global.connection.query (sql, function (err, results) {
+        if (err) {
+            console.log(err);
+            return res.status(500).end();
         }
-        // rows fetch
-        console.log(data);
+        return res.json(results);
     });
 }
 
 
 // DELETE
 
-function deleteRow(id) {
-    let deleteQuery = "DELETE from ?? where ?? = ?";
-    let query = mysql.format(deleteQuery, ["vehicle", "regist", id]);
-    // query = DELETE from `todo` where `user`='shahid';
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows deleted
-        console.log(response.affectedRows);
+function deleteRow(req, res) {
+    let sql = "DELETE from vehicle where regist=?";
+    global.connection.query(sql, [
+        req.params.regist
+        ], function(err, results){
+        if (err) return res.status(500).end();
+        res.status(204).end();
     });
 }
 
 
 // UPDATES
 
-function updateRow(data) {
-    let updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    let query = mysql.format(updateQuery,["vehicle",data.alterar,data.value,"regist",data.id]);
-    // query = UPDATE `todo` SET `notes`='Hello' WHERE `name`='shahid'
-    pool.query(query,(err, response) => {
-        if(err) {
-            console.error(err);
-            return;
-        }
-        // rows updated
-        console.log(response.affectedRows);
+function updateRow(req, res) {
+    let sql = "UPDATE vehicle SET capacity=?, fuel_average=?, brand=?, model=? WHERE regist=?";
+    //(regist, capacity, fuel_average, brand, model, id_admin)
+    global.connection.query(sql, [
+        req.body.capacity,
+        req.body.fuel_average,
+        req.body.brand,
+        req.body.brand,
+        req.body.model,
+        req.params.regist
+      ], function(err, results) {
+            if (err) return res.status(500).end();
+            res.json(results);
     });
 }
 

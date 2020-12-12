@@ -1,31 +1,28 @@
 const express = require('express');
-const app = express();
 const port = process.env.PORT || 8080;
-app.listen(port);
-console.log('Server started! At http://localhost:' + port);
+const host = process.env.HOST || '127.0.0.1';
 
+//carregar bibliotecas globais
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressSanitizer = require('express-sanitizer');
+const expressValidator = require('express-validator');
 
-// //O sitema vai estar a espera de tres parametros
-// app.get('/api/users', function(req, res) {
-//     const user_id = req.param('id');
-//     const token = req.param('token');
-//     const geo = req.param('geo');
-//     res.send(user_id + ' ' + token + ' ' + geo);
-// });
+//iniciar a aplicação
+var server = express();
+server.use(express.static("../../Frontend/"));
+server.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
+server.use(expressSanitizer());
+server.use(expressValidator());
+server.listen(port, function(err) {
+    if (!err) {
+        console.log('Your app is listening on ' + host + ' and port ' + port);
+    }
+    else { console.log(err); }
+});
 
-// //adicionar o variavel global
-// const bodyParser = require('body-parse');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
-
-// //Pedido post
-// // http://localhost:8080/api/users 
-// app.post('/api/users', function (req, res) {
-//     const user_id = req.body.id;
-//     const token = req.body.token;
-//     const geo = req.body.geo;
-//     res.send(user_id + ' ' + token + ' ' + geo);
-    
-// })
+//forçar utilização das bibliotecas
+server.use(cors());
+server.use(cookieParser());
+module.exports = server;

@@ -78,7 +78,7 @@ function updateRow(req, res) {
         req.body.question_3,
         req.body.question_4,
         req.body.question_5,
-        req.params.id_auditor
+        req.params.id_occurrence
       ], function(err, results) {
             if (err) return res.status(500).end();
             res.json(results);

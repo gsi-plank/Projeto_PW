@@ -1,6 +1,7 @@
 /**
 * Simple Encapsulation Class template
 */
+
 (function (root) {
 
     "use strict";
