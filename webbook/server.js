@@ -26,3 +26,5 @@ server.listen(port, function(err) {
 server.use(cors());
 server.use(cookieParser());
 module.exports = server;
+
+require('./routes/occurrence.route');

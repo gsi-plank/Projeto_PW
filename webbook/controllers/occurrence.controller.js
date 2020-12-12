@@ -1,45 +1,12 @@
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host        : 'remotemysql.com',
-    user        : 'SKMj4aTpc9',
-    password    : 'djKHE1y1Pg',
-    database    : 'SKMj4aTpc9',
-    debug       :  false
-});
-
+const connect = require('../assets/bd');
 
 // INSERTS
-
-function addRow(req, res) {
-    let sql = 'INSERT INTO occurrence (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
-    mysql.connection.query (sql, [
-        req.body.id_occurrence,
-        req.body.local,
-        req.body.distance,
-        req.body.occurrence_type,
-        req.body.status,
-        req.body.access_code,
-        req.body.arrival,
-        req.body.departure,
-        req.body.cost,
-        req.body.origin,
-        req.body.description,
-        req.body.id_entity,
-        req.body.id_request
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
-    });
-}
-
 
 //SELECTS
 function readID(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let sql = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM occurrence WHERE id_occurrence=?';    
-    mysql.connection.query (sql, [
+    connect.con.query (sql, [
         req.params.id_occurrence
         ], function (err, results) {
         if (err) return res.status(500).end();
@@ -49,13 +16,12 @@ function readID(req, res) {
 }
 
 function readAll(req, res) {
-    let sql = 'SELECT (id_occurrence, local, distance, occurrence_type, status, access_code, arrival, departure, cost, origin, description, id_entity, id_request) FROM occurrence';
-    mysql.con.query (sql, function (err, results, fields) {
+    connect.con.query ('SELECT * FROM occurrence order by id_occurrence', function (err, rows, fields) {
         if (!err) {
-            if (results.length == 0) {
+            if (rows.length == 0) {
                 res.status(404).send("Data not found");
                 } else {
-                    res.status(200).send(results);
+                    res.status(200).send(rows);
                 }
         } else
             console.log('Error while performing query', err);
@@ -102,7 +68,6 @@ function updateRow(req, res) {
 module.exports = {
     list: readAll,
     read: readID,
-    create: addRow,
     update: updateRow,
     delete: deleteRow
 };

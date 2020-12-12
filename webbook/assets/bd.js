@@ -8,22 +8,3 @@ const pool = mysql.createPool({
   password  : 'djKHE1y1Pg',
   database  : 'SKMj4aTpc9'
 });
-
-
-app.get("/",(req,res) => {
-    pool.getConnection((err, connection) => {
-        if(err) throw err;
-        console.log('connected as id ' + connection.threadId);
-        connection.query('SELECT * from question LIMIT 20', (err, rows) => {
-            connection.release(); // return the connection to pool
-            if(err) throw err;
-            console.log('The data from the question table is: \n', rows);
-        });
-    });
-});
-
-const port = process.env.port || 8080;
-
-app.listen(port, () => {
-    console.log('Server is running at port ' + port);
-});
