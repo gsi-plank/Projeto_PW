@@ -2,14 +2,11 @@ const server = require('../server.js');
 const controllerOccurrence = require('../controllers/occurrence.controller');
 const bodyParser = require('body-parser');
 
-server.get('/', function (req, res){
-    res.send('hello');
-})
-
 server.route('/occurrences')
-    .get(controllerOccurrence.list) // certo
-/**    .post(controllerOccurrence.saveOccurrence)
-
+    .get(controllerOccurrence.list)
+    
+    
+/**
 app.route('/occurrences/:id_occurrence')
     .get(controllerOccurrence.readIDOccurrence) // certo
     .put(controllerOccurrence.updateOccurrence) // provavelmente fazer outros updates para o departure, arrival, e status

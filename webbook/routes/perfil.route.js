@@ -16,4 +16,3 @@ app.route('/operationals/:id_operational/occurrences')
 
 module.exports = app;
 
-// Rocky isto nao devia ser de auditores ????
