@@ -18,7 +18,7 @@ validator();
             rules: {
                 password: function(value) {
                     console.log(value);
-                    return (value === document.getElementById("rep_pwd").value);
+                    return (value === document.getElementById("pwd").value);
                 }
             },
             messages: {
