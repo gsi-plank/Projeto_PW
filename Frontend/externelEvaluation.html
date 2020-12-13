@@ -15,9 +15,36 @@
 
 <body>
     
+    <div id="app-header">
+        <div class="container">
+            <ul>
+                <li><a href="occurrenceDate.html" class="button"><svg width="2em" height="2em" viewBox="0 0 16 16"
+                            class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg></a></li>
+                <li>
+                    <p id="avalLocalExternalTxt" class="title textCenter">Avaliação Local/Externa</p>
+                </li>
+
+                <li><a href="occurrenceDate.html" id="btnRegister" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16"
+                            class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                        </svg></a></li>
+            </ul>
+        </div>
+    </div>
+    
+     <b>Escreva a sua avaliação:</b>
+    <input id="localExternal" type="text" class="localExternal"> </input>
     
     
-    
+<form action="/action_page.php">
+  <label for="myfile">Escolha ficheiros:</label>
+  <input type="file" id="myfile" name="myfile" multiple><br><br>
+  <input type="submit">
+</form>
 
 
  <div id="app-footer">
