@@ -56,3 +56,31 @@ function addAll() {
     });
     $('#totalPontos').html(sum);
 }
+
+/* $(document).ready (function(e) {
+  var toplam = 0;
+  $("input(class=slider)").each(function(){
+    toplam=toplam + parseInt($(this).val()); 
+} 
+  
+  $("input(id=totalPontos)").val(toplam);
+  }) ;
+  
+*/
+
+
+
+/*$('slider').on(input,function(){
+  var totalSum=0;
+  $('slider').each(function(){
+    var inputVal = $(this).val();
+    
+      totalSum += parseFloat(inputVal);
+      
+    
+  })
+})
+*/
+
+
+

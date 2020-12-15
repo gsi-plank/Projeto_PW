@@ -113,10 +113,6 @@ window.onload = function () {
     }
 }
 
-
-
-
-
     // Date difference
     var DateDiff = {
 

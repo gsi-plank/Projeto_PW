@@ -1,75 +1,39 @@
-* 
-/* PlaceHolders */
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #BDBDBD;
-    opacity: 1; /* Firefox */
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #BDBDBD;
-  }
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #BDBDBD;
+  .search{
+    position: absolute;
+    width: 372px;
+    height: 38px;
+    left: 21px;
+    top: 81px;
   }
   
-  .screen{
-    width:100%;
-    height:100%;
-    max-width: 414px;
-    max-height: 736px;
-    background: rgba(255,255,255,1);
-    opacity: 1;
-    position: absolute;
-    overflow: hidden;
-    z-index:-1;
-  }
-  .navbar{
-    width: 100%;
-    max-width:414px;
-    background-color: rgba(255,255,255,1);
-    z-index:3;
-    text-align:center;
-    overflow: hidden;
-  }
-  .search{
-      position: absolute;
-width: 372px;
-height: 38px;
-left: 21px;
-top: 81px;
-  }
   #ocorrenciasporTxt{
-      position: absolute;
-width: 306px;
-height: 26px;
-left: -26px;
-top: 149px;
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-text-align: center;
-
-color: #000000;
+    position: absolute;
+    width: 306px;
+    height: 26px;
+    left: -26px;
+    top: 149px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
   }
+  
   #notificationTxt{
-      position: absolute;
-width: 159px;
-height: 31px;
-left: 63px;
-
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
-line-height: 31px;
-display: flex;
-align-items: center;
-
-color: #000000;
-
+    position: absolute;
+    width: 159px;
+    height: 31px;
+    left: 63px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    color: #000000;
   }
   #barraSuperior{
        position: absolute;

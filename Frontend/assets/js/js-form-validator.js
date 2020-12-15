@@ -56,16 +56,6 @@
                 eventsList: ['keyup', 'change', 'blur']
             };
 
-
-
-
-
-
-
-
-
-
-
             var self = this;
 
             // set handle
@@ -77,17 +67,8 @@
             // get fields and rules
             this.fields = this.getFields(this.formHandle.querySelectorAll('[data-rule]'));
 
-
-
-
-
             // apply custom settings
             this.applySettings(settings || {});
-
-
-
-
-
 
             this.submitCallback = this.submitCallback.bind(this);
             this._eventChangeWithDelay = this._eventChangeWithDelay.bind(this);
@@ -98,11 +79,6 @@
 
             // bind events
             this.submitCallback && this.eventsBuilder('addEventListener');
-
-
-
-
-
 
 
             // autotracking for new form elements
@@ -154,77 +130,73 @@
      */
     Protected.prototype = {
 
-
-
-
-
         messages: {
 
             // English
             en: {
                 required: {
-                    empty: 'This field is required',
-                    incorrect: 'Incorrect value'
+                    empty: 'Este campo é obrigatório',
+                    incorrect: 'Valor incorreto'
                 },
                 notzero: {
-                    empty: 'Please make a selection',
-                    incorrect: 'Incorrect value'
+                    empty: 'Por favor, faça uma seleção',
+                    incorrect: 'Valor incorreto'
                 },
                 integer: {
-                    empty: 'Enter an integer value',
-                    incorrect: 'Incorrect integer value'
+                    empty: 'Insira um valor inteiro',
+                    incorrect: 'Valor inteiro incorreto'
                 },
                 float: {
-                    empty: 'Enter an float number',
-                    incorrect: 'Incorrect float'
+                    empty: 'Insira um número flutuante',
+                    incorrect: 'Flutuação incorreta'
                 },
                 min: {
-                    empty: 'Enter more',
-                    incorrect: 'Enter more'
+                    empty: 'Insira mais',
+                    incorrect: 'Insira mais'
                 },
                 max: {
-                    empty: 'Enter less',
-                    incorrect: 'Enter less'
+                    empty: 'Insira menos',
+                    incorrect: 'Insira menos'
                 },
                 between: {
-                    empty: 'Enter the between {0}-{1}',
-                    incorrect: 'Enter the between {0}-{1}'
+                    empty: 'Insira entre {0}-{1}',
+                    incorrect: 'Insira entre {0}-{1}'
                 },
                 name: {
-                    empty: 'Please, enter your name',
-                    incorrect: 'Incorrect name'
+                    empty: 'Por favor, insira o seu nome',
+                    incorrect: 'Nome incorreto'
                 },
                 lastname: {
-                    empty: 'Please, enter your lastname',
-                    incorrect: 'Incorrect lastname'
+                    empty: 'Por favor, insira o seu sobrenome',
+                    incorrect: 'Sobrenome incorreto'
                 },
                 phone: {
-                    empty: 'Please, enter the phone number',
-                    incorrect: 'Incorrect phone number'
+                    empty: 'Por favor, insira o seu número de telefone',
+                    incorrect: 'Número de telefone incorreto'
                 },
                 email: {
-                    empty: 'Please, enter your email address',
-                    incorrect: 'Incorrect email address'
+                    empty: 'Por favor, insira o seu email',
+                    incorrect: 'Email incorreto'
                 },
                 length: {
-                    empty: 'Please, Enter a minimum of {0} characters and a maximum of {1}',
-                    incorrect: 'Incorrect. Enter a minimum of {0} characters and a maximum of {1}'
+                    empty: 'Por favor, insira no mínimo {0} caracteres e no máximo {1}',
+                    incorrect: 'Incorreto. Insira no mínimo {0} caracteres e no máximo {1}'
                 },
                 minlength: {
-                    empty: 'Please, enter at least {0} characters',
-                    incorrect: 'You have entered less than {0} characters'
+                    empty: 'Por favor, insira no mínimo {0} caracteres',
+                    incorrect: 'Você inseriu menos de {0} caracteres'
                 },
                 maxlength: {
-                    empty: 'Please, enter at maximum {0} characters',
-                    incorrect: 'You have entered more than {0} characters'
+                    empty: 'Por favor, insira no máximo {0} caracteres',
+                    incorrect: 'Você inseriu mais de {0} caracteres'
                 },
                 maxfilesize: {
-                    empty: 'The size of one or more selected files larger than {0} {1}',
-                    incorrect: 'The size of one or more selected files larger than {0} {1}'
+                    empty: 'O tamanho de um ou mais arquivos selecionados maiores que {0} {1}',
+                    incorrect: 'O tamanho de um ou mais arquivos selecionados maiores que {0} {1}'
                 },
                 fileextension: {
-                    empty: 'Select file',
-                    incorrect: 'One or more files have an invalid type'
+                    empty: 'Selecione o arquivo',
+                    incorrect: 'Um ou mais arquivos têm um tipo inválido'
                 }
             }
         },

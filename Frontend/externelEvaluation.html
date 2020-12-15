@@ -8,8 +8,9 @@
 
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="global.css" type="text/css" />
-    <link rel="stylesheet" href="./css/externelEvaluation.css" type="text/css" />
+    <link rel="stylesheet" href="./css/global.css" type="text/css" />
+    <link rel="stylesheet" href="./css/externelReview.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Avaliação externa e do local</title>
 </head>
 
@@ -55,9 +56,20 @@
   <input type="file" id="myfile" name="myfile" multiple><br><br>
 </form>
 
+<div id="externalReviewBox">
+</div>
+
+
+<script>
+ 
+</script>
+
+
 <form id="testemunha" action="/action_page.php">
-<button type="button" id="addWitness" name="addWitness" class="addWitness" onclick= adicionarTestemunha()>+ Adicionar Testemunha</button>
+<button type="button" id="addWitness" name="addWitness" class="addWitness" >+ Adicionar Testemunha</button>
 </form>
+
+
 
 
  <div id="app-footer">
@@ -82,7 +94,6 @@
                         class="icon" alt="profile picture"></a></li>
         </ul>
     </div>
-    <script type="text/javascript" src="./controller/externelEvaluation.controller.js"></script>
+    <script type="text/javascript" src="./controller/externelReview.controller.js"></script>
 </body>
-
 </html>

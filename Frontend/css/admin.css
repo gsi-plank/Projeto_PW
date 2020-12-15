@@ -21,11 +21,7 @@ td, th {
   padding: 10px;
 }
 ^
-/*linhas da tabela a cinzento*/
-/*tr:nth-child(even) {*/
-/*  background-color: #dddddd;*/
-/*}*/
-  
+
 #auditoresTxt{
   position: absolute;
   top: 100px;

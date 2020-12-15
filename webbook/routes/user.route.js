@@ -3,15 +3,21 @@ const controllerUser = require('../controllers/user.controller');
 const bodyParser = require('body-parser');
 
 server.route('/users')
-    .get(controllerUser.listAdmin) //funcional
-    .get(controllerUser.listAudit) //não sabemos pq não conseguimos entrar na BD
-    .post(controllerUser.createAudit) //não dá
+    .get(controllerUser.listAdmin)
+    .get(controllerUser.listAudit)//não sabemos pq não conseguimos entrar na BD
+    
+server.route('/users/admins')
+    .get(controllerUser.listAdmin)
     .post(controllerUser.createAdmin)
 
-server.route('/users/:id_login')
-    .get(controllerUser.readAdmin)
-    .get(controllerUser.readAudit)
+server.route('/users/admins/:id_login')
     .delete(controllerUser.deleteAdmin)
-    .delete(controllerUser.deleteAudit)
     .put(controllerUser.updateAdmin)
-    .put(controllerUser.updateAudit)
+    
+server.route('/users/audits')
+    .get(controllerUser.listAudit)
+    .post(controllerUser.createAudit)
+
+server.route('/users/audits/:id_auditor')
+    .put(controllerUser.updateAudit) 
+    .delete(controllerUser.deleteAudit)
