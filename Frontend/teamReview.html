@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="horaChegada.css" type="text/css"/>
-  <link rel="stylesheet" href="global.css" type="text/css"/>
-  
-  <title>Hora de chegada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="global.css" type="text/css" />
+    <link rel="stylesheet" href="./css/teamReview.css" />
+    <title>Avaliação da equipa</title>
 </head>
 
 <body>
-<div id="app-header">
+    <div id="app-header">
         <div class="container">
             <ul>
                 <li><a href="occurrenceDate.html" class="button"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
@@ -23,27 +22,48 @@
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                     </svg></a></li>
                 <li>
-                    <p id="horaChegadaTxt" class="title textCenter">Chegada ao local</p>
+                    <p id="avaliacaoEquipaTxt" class="title textCenter">Avaliação da equipa</p>
                 </li>
-               
-                <li><a href="checkList.html" class="button"><svg id="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
+
+                <li><a href="equipaAvaliada.html" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
-                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                     </svg></a></li>
             </ul>
         </div>
     </div>
-    
- 
 
-<div class="container" id="content">  
-    <h5> 1.Chegada ao Local:</h5>
+    <div id="content" class="container">
+        <h2 id="equipaTxt">Avaliar a equipa:</h2>
+        
+            <div class="slidecontainer">
+                <h3> Interajuda </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review1">
+                <p>Avaliação: <span id="value1"></span></p>
+                <h3> Interação com as testemunhas </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review2">
+                <p>Avaliação: <span id="value2"></span></p>
+                <h3> Manuseamento do material </h3>
+                <input type="range" name="slider" min="0" max="5" value="0" class="slider" id="review3">
+                <p>Avaliação: <span id="value3"></span></p>
+                <h3> Rapidez </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review4">
+                <p>Avaliação: <span id="value4"></span></p>
+                <h3> Eficiência</h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review5">
+                <p>Avaliação: <span id="value5"></span></p>
+                <h3> Interação com as vítimas </h3>
+                <input type="range" min="0" max="5" value="0" class="slider" id="review6">
+                <p>Avaliação: <span id="value6"></span></p>
+            </div>
 
-    <label id="textConfirm" for="appt">Confirmar hora de chegada:</label>
-    <input id="horas" type="time" id="appt" name="appt">
+        <div id="observacoes">
+            <h4>Observações:</h4>
+            <input type="text" class="inputText" size="35">
+        </div>
+    </div>
 
-</div>
 
     <div id="app-footer">
         <ul>
@@ -65,5 +85,8 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
+
+    <script type="text/javascript" src="./controller/teamReview.controller.js"></script>
 </body>
+
 </html>

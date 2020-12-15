@@ -1,9 +1,35 @@
-window.onload = function () {
+let operationals = [
+    {
+        "name": "Borat",
+        "points": "1233"
+    },
+    {
+        "name": "Rocky",
+        "points": "3221"
+    },
+    {
+        "name": "Luffy",
+        "points": "4322"
+    },
+    {
+        "name": "Gypsy",
+        "points": "3342"
+    },
+    {
+        "name": "Pantufa",
+        "points": "2321"
+    }
+    
+]
 
-    async function fetchAsync() {
+
+window.onload = function () {
+    fillTable();
+    function fillTable() {
+        // async function fetchAsync() {
         const rankList = document.getElementById("tableList");
-        const response = await fetch('https://cc102f71a59f4b86b46f44cac1acf38f.vfs.cloud9.us-east-1.amazonaws.com/operationals');
-        const operationals = await response.json();
+        // const response = await fetch('https://cc102f71a59f4b86b46f44cac1acf38f.vfs.cloud9.us-east-1.amazonaws.com/operationals');
+        // const operationals = await response.json();
         let txt = "";
 
         //Adicionar a parte estatica do rank
@@ -27,9 +53,9 @@ window.onload = function () {
                 continue;
             }
             if (i === 1) {
-                 //confirmacao dos operacionais
-                 console.log(operationals[i].name);
-                 console.log(operationals[i].points);
+                //confirmacao dos operacionais
+                console.log(operationals[i].name);
+                console.log(operationals[i].points);
                 //Adicionar o segundo lugar
                 txt += `
             <div id="boxWinnerTwo" class="box"></div>
@@ -44,9 +70,9 @@ window.onload = function () {
                 continue;
             }
             if (i === 2) {
-                 //confirmacao dos operacionais
-                 console.log(operationals[i].name);
-                 console.log(operationals[i].points);
+                //confirmacao dos operacionais
+                console.log(operationals[i].name);
+                console.log(operationals[i].points);
                 //Adicionar o terceiro lugar
                 txt += `
             <div id="boxWinnerTree" class="box"></div>
@@ -61,12 +87,14 @@ window.onload = function () {
                 break;
             }
         }
-        if(operationals.length > 3) {
-            txt = `
+
+        // Parte Dinaminca do rank
+        if (operationals.length > 3) {
+            txt += `
             <div class="container">
                 <ul>
             `;
-            for (let i=3; i<operationals.length; i++) {
+            for (let i = 3; i < operationals.length; i++) {
                 //confirmacao dos operacionais
                 console.log(operationals[i].name);
                 console.log(operationals[i].points);
@@ -76,20 +104,19 @@ window.onload = function () {
                     <li>
                         <div class="box"><img class="profilePicture mx-auto rounded-circle" src="./images/profile.png" alt="">
                         </div>
-                        <span id="name" class="name">${operationals[i].name}</span>
-                        <span id="points" class="points">${operationals[i].points}</span>
+                        <span id="name" class="name"> ${operationals[i].name}</span>
+                        <span id="points" class="points"> ${operationals[i].points}</span>
                     </li>
-                  
                 `;
             }
         }
-        
-        txt = ` </ul>
+
+        txt += ` </ul>
             </div>
         `;
         //envia a tabela construida para a view e mostra no object com ID result
-    rankList.innerHTML = txt;
+        rankList.innerHTML = txt;
+        // }
+        // fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
     }
-    fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
-
 }

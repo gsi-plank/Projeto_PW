@@ -1,4 +1,4 @@
-window.onload = function() {
+// window.onload = function() {
     function calcularValor() {
 
         const preco_gasoleo = 1.2;
@@ -12,8 +12,8 @@ window.onload = function() {
         document.getElementById("preco").innerHTML = custoTotal.toFixed(2) + "€";
     }
 
-    new Validator(document.querySelector('form[name="form"]'), function(err, res) {
+//     new Validator(document.querySelector('form[name="form"]'), function(err, res) {
 
 
-    });
-};
+//     });
+// };

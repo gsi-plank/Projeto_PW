@@ -1,5 +1,5 @@
 let slider1 = document.getElementById("review1");
-var output1 = document.getElementById("value1");
+let output1 = document.getElementById("value1");
 output1.innerHTML = slider1.value;
 slider1.oninput = function() {
   output1.innerHTML = this.value;
@@ -38,4 +38,21 @@ let output6 = document.getElementById("value6");
 output6.innerHTML = slider6.value;
 slider6.oninput = function() {
   output6.innerHTML = this.value;
+}
+
+//Para atribuir os pontos 
+$(document).on("pagecreate", "#page1", function () {
+    $(".slider").on("change", function () {
+        addAll();
+    });
+    
+    addAll();
+});
+
+function addAll() {
+    let sum = 0
+    $('.slider').each(function (){        
+        sum += isNaN(this.value) || $.trim(this.value) === '' ? 0 : parseFloat(this.value);        
+    });
+    $('#totalPontos').html(sum);
 }

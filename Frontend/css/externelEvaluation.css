@@ -1,0 +1,80 @@
+.local{
+    position: absolute;
+    top: 116px;
+    left: 30px;
+    width: 356px;
+    height: 200px;
+}
+
+
+#localava{
+   position: absolute;
+    max-width: 140px;
+    height: 20px;
+    left: 31px;
+    top: 331px;
+}
+
+.ext{
+    position: absolute;
+    width: 356px;
+    height: 200px;
+    top: 470px;
+    left: 30px;
+}
+
+#titulo1{
+position: absolute;
+    left: 34px;
+    top: 72px;
+    font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 29px;
+
+text-align: center;
+
+color: #000000;
+}
+#titulo2{
+    position: absolute;
+    left: 34px;
+    top: 422px;
+    font-family: Inter;
+    font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 29px;
+
+text-align: center;
+
+color: #000000;
+}
+
+#externa {
+   position: absolute;
+    top: 680px;
+    left: 30px;
+    max-width: 356px;
+    height: 200px;
+}
+
+#testemunha {
+    position: absolute;
+    top: 760px;
+    left:70px;
+}
+#addWitness {
+    width: 300px;
+    top: 40px;
+    background: #AB0404;
+    font-family: Inter;
+    font-style: normal;
+    color: #FFFFFF;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+
+}

@@ -31,7 +31,7 @@ checkList.addEventListener("submit", async() => {
     const response = await fetch(`${urlBase}(...)`),
         {
             headers: {
-                "Content-Type": "application/x-www-form-urlendcoded"
+                "Content-Type": "application/x-www-for"
             },
             method: "POST",
             body: `checkList=${answer}`

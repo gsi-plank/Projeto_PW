@@ -1,12 +1,13 @@
 const connect = require('../assets/bd');
 
-// OCCURRENCE
+//OCCURRENCE
 function readOccurrence(req, res) {
+    //criar e executar a query de leitura na BD
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    connect.con.query('SELECT * from occurrence where id_occurrence = ?', [id_occurrence],
+    connect.con.query('SELECT * from occurrence where id_occurrence = ?', id_occurrence,
         function(err, rows, fields) {
             if (!err) {
-                //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
                 if (rows.length == 0) {
                     res.status(404).send({
                         "msg": "data not found"
@@ -25,7 +26,8 @@ function readOccurrence(req, res) {
 }
 
 function listOccurrence(req, res) {
-    connect.con.query ('SELECT * FROM occurrence order by id_occurrence', function (err, rows, fields) {
+    connect.con.query ('SELECT * FROM occurrence order by id_occurrence', 
+    function (err, rows, fields) {
         if (!err) {
             if (rows.length == 0) {
                 res.status(404).send("Data not found");
@@ -39,22 +41,14 @@ function listOccurrence(req, res) {
 
 function deleteOccurrence(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    const post = {
-        id_occurrence: id_occurrence
-    }
-    connect.con.query('DELETE from occurrence where id_occurrence=?', post, function (err, rows, fields) {
-        if (!err) {
-            if (rows.length == 0) {
-                res.status(404).send({
-                    "msg": "data not found"
-                });
-            }
-            else {
-                res.status(200).send({
-                    "msg": "success"
-                });
-            }
+    let query = "";
+    query = connect.con.query('DELETE from occurrence where id_occurrence=?', id_occurrence, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
         } else {
+            res.status(400).send({"msg" : err.code});
             console.log('Error while performing query', err);
         }
     });
@@ -65,114 +59,137 @@ function updateOccurrence(req, res) {
     const departure = req.sanitize('departure').escape();
     const cost = req.sanitize('cost').escape();
     const id_occurrence = req.sanitize('id_occurrence').escape();
+    let post = [
+        arrival,
+        departure,
+        cost,
+        id_occurrence
+    ]
     let query = "";
-    let post= {
-        arrival: arrival,
-        departure: departure,
-        cost: cost,
-        id_occurrence: id_occurrence
-    };
-    query = connect.con.query('UPDATE occurrence SET arrival=?, departure=?, cost=? WHERE id_occurrence=?', post, function(err, rows, fields) {
+    query = connect.con.query('UPDATE occurrence SET arrival=?, departure=?, cost=? WHERE id_occurrence=?', post, function (err, rows, fields){
         console.log(query.sql);
-        if(!err){
-            console.log("Number of records updated: " + rows.affectedRows);
-            res.status(200).send({ "msg": "updated with success" });
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
         } else {
-            res.status(400).send({ "msg": err.code});
+            res.status(400).send({"msg": err.code});
             console.log('Error while performing query', err);
         }
     });
 }
 
+
 //OPERATIONAL OCCURRENCE
-function addRow(req, res) {
-    let sql = 'INSERT INTO operational_occurrence (statute, points, arrival, departure, presence, id_operational, id_occurrence) VALUES (?,?,?,?,?,?,?)';
-    global.connection.query (sql, [
-        req.body.statute,
-        req.body.points,
-        req.body.arrival,
-        req.body.departure,
-        req.body.presence,
-        req.body.id_operational,
-        req.body.id_occurrence
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
-    });
-}
-
-
-//SELECTS
-function readOpOcurr(req, res) {
-    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence ';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+function listOpOcur(req, res) {
+    let query = "";
+    query = connect.con.query('SELECT * FROM operational_occurrence', function(err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+            }
+            else {
+                res.status(200).send(rows);
+            }
         }
-        return res.json(results);
+        else
+            console.log('Error while performing Query.', err);
     });
 }
 
-function readIdOccur(req, res) {
-    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence WHERE id_occurrence = ?';    
-    global.connection.query (sql, [
-        req.params.id_occurrence
-        ], function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+function readByOc(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let query = "";
+    query = connect.con.query('SELECT * from operational_occurrence where id_occurrence=?', id_occurrence, function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            } else {
+                res.status(200).send(rows);
+            }
+        } else
+            res.status(400).send({"msg": err.code});
+        console.log('Error while performing Query.', err);
+    });
+}
+
+function readBy2 (req, res) {
+    const id_operational = req.sanitize('id_operational').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let post = [
+        id_occurrence,
+        id_operational
+    ]
+    let query = "";
+    query = connect.con.query('SELECT * from operational_occurrence where id_occurrence=? and id_operational=?', post, function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            } else {
+                res.status(200).send(rows);
+            }
+        } else
+            res.status(400).send({"msg": err.code});
+        console.log('Error while performing Query.', err);
+    });
+}
+
+function deleteOpOccur(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    const id_operational = req.sanitize ('id_operational').escape();
+    let del = [
+        id_occurrence,
+        id_operational
+    ]
+    let query = "";
+    query = connect.con.query('DELETE from operational_occurrence where id_occurrence=? and id_operational=?', del, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
         }
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results);
     });
 }
 
-function readIdOp(req, res) {
-    let sql = 'SELECT (statute, points, arrival, departure, presence, id_operational, id_occurrence) FROM operational_occurrence WHERE id_operational = ?';    
-    global.connection.query (sql, [
-        req.params.id_operational
-        ], function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+function updateOpOccur(req, res) {
+    const checked = req.sanitize('checked').escape();
+    const id_operational = req.sanitize('id_operational').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let post = [
+        checked,
+        id_occurrence,
+        id_operational
+    ]
+    let query = "";
+    query = connect.con.query('UPDATE operational_occurrence SET checked=? WHERE id_occurrence=? and id_operational=?', post, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
         }
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results);
     });
 }
 
-function deleteRow(req, res) {
-    let sql = "DELETE from operational_occurrence where id_operational = ? and id_occurrence = ?";
-    global.connection.query(sql, [
-        req.params.id_operational,
-        req.params.id_occurrence
-        ], function(err, results){
-        if (err) return res.status(500).end();
-        res.status(204).end();
-    });
-}
-
-function updateRow(req, res) {
-    let sql = "UPDATE operational_occurrence SET statute=?, points=?, arrival=?, departure=?, presence=? WHERE id_operational= ? and id_occurrence= ?";
-    //(statute, points, arrival, departure, presence, id_operational, id_occurrence)
-    global.connection.query(sql, [
-        req.body.statute,
-        req.body.points,
-        req.body.arrival,
-        req.body.departure,
-        req.body.presence,
-        req.params.id_operational,
-        req.params.id_occurrence
-      ], function(err, results) {
-            if (err) return res.status(500).end();
-            res.json(results);
-    });
-}
+///FALTAM OCCURRENCE-MATERIAL E OCCURRENCE-COST
 
 module.exports = {
     listOccurrence: listOccurrence,
     readOccurrence: readOccurrence,
     updateOccurrence: updateOccurrence,
-    deleteOccurrence: deleteOccurrence
+    deleteOccurrence: deleteOccurrence,
+
+    listOpOccurrence : listOpOcur,
+    readByOccurrence : readByOc,
+    readByOperationalOcur : readBy2,
+    deleteOperationalOccurrence : deleteOpOccur,
+    updateOperationalOccurrence : updateOpOccur
 };

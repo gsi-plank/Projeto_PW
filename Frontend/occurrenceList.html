@@ -7,8 +7,9 @@
   <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="occurrenceList.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/occurrenceList.css" type="text/css"/>
   <link rel="stylesheet" href="global.css" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
   <title>Lista de ocorrências</title>
 </head>
@@ -32,82 +33,83 @@
     <div id="content">
         
     <div class="stv-radio-buttons-wrapper">
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="1" id="button1" checked />
+	<input id="button1" type="radio" class="stv-radio-button" name="radioButtonTest" value="1" checked />
 	<label for="button1">Esta semana</label>
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="2" id="button2" />
+	<input id="button2" type="radio" class="stv-radio-button" name="radioButtonTest" value="2"  />
 	<label for="button2">Este mês</label>
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="3" id="button3" />
+	<input id="button3" type="radio" class="stv-radio-button" name="radioButtonTest" value="3" />
 	<label for="button3">Este ano</label>
     </div>
     
     <h4 id="ocorrenceTxt">Ocorrências:</h4>  
     
-    <table>
-        <a href="#">
-        <tr id="diference">
-            <th style="width:60px">ID</th>
-            <th style="width:130px">Partida</th>
-            <th style="width:130px">Chegada</th>
-            <th class="diference2" style="width: 40px"></th>
-        </tr>  
-        </a>
+    <div id="tableList"></div>
+<!--    <table>-->
+<!--        <a href="#">-->
+<!--        <tr id="diference">-->
+<!--            <th style="width:60px">ID</th>-->
+<!--            <th style="width:130px">Partida</th>-->
+<!--            <th style="width:130px">Chegada</th>-->
+<!--            <th class="diference2" style="width: 40px"></th>-->
+<!--        </tr>  -->
+<!--        </a>-->
        
-        <tr>
+<!--        <tr>-->
             
-            <td>929</td>
-            <td>23/11/2020</td>
-            <td>23/11/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-        <tr class="naoAuditada">
-            <td>524</td>
-            <td>19/05/2020</td>
-            <td>20/05/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-        <tr>
-            <td>444</td>
-            <td>4/12/2020</td>
-            <td>4/12/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-        <tr class="naoAuditada">
-            <td>695</td>
-            <td>2/03/2020</td>
-            <td>2/03/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-        <tr>
-            <td>842</td>
-            <td>16/04/2020</td>
-            <td>18/04/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-        <tr>
-            <td>45</td>
-            <td>1/12/2020</td>
-            <td>1/12/2020</td>
-            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg></a>
-            </td>
-        </tr>
-    </table>
+<!--            <td>929</td>-->
+<!--            <td>23/11/2020</td>-->
+<!--            <td>23/11/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr class="naoAuditada">-->
+<!--            <td>524</td>-->
+<!--            <td>19/05/2020</td>-->
+<!--            <td>20/05/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>444</td>-->
+<!--            <td>4/12/2020</td>-->
+<!--            <td>4/12/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr class="naoAuditada">-->
+<!--            <td>695</td>-->
+<!--            <td>2/03/2020</td>-->
+<!--            <td>2/03/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>842</td>-->
+<!--            <td>16/04/2020</td>-->
+<!--            <td>18/04/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>45</td>-->
+<!--            <td>1/12/2020</td>-->
+<!--            <td>1/12/2020</td>-->
+<!--            <td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>-->
+<!--</svg></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
     
     
     <div id="app-footer">
@@ -130,7 +132,9 @@
                             alt="profile picture"></a></li>
         </ul>
     </div>
+    
         
+        <script type="text/javascript" src="./controller/occurrenceList.controller.js"></script>
     </body>
         
     </html>

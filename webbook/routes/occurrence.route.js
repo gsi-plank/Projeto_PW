@@ -6,25 +6,19 @@ server.route('/occurrences')
     .get(controllerOccurrence.listOccurrence)
 
 server.route('/occurrences/:id_occurrence')
-    .get(controllerOccurrence.readOccurrence) 
-    .put(controllerOccurrence.updateOccurrence) // updates de merda
-    .delete(controllerOccurrence.deleteOccurrence) //pqp
+    .get(controllerOccurrence.readOccurrence)
+    .put(controllerOccurrence.updateOccurrence)
+    .delete(controllerOccurrence.deleteOccurrence)
 
-/** Operational Occurrence
+// Operational Occurrence
 server.route('/occurrences/:id_occurrence/operationals')
-    .get(controllerOccurrence.readOperationalFromOccurrence) // certo
-    .post(controllerOccurrence.saveOperationalOccurrence)
+    .get(controllerOccurrence.readByOccurrence) // certo
 
 server.route('/occurrences/:id_occurrence/operationals/:id_operational')
-    .get(controllerOccurrence.readIDOperationalOccurrence) // supostamente certo
+    .get(controllerOccurrence.readByOperationalOcur) // supostamente certo
     .put(controllerOccurrence.updateOperationalOccurrence) // outros updates como points departure etc..
-    .delete(controllerOccurrence.deleteIDOperationalOccurrence)
-
-server.route('/occurrences/:id_occurrence/presences/:id_operational')
-    .put(controllerOccurrence.updateOperationalOccurrencePresence)
-
-server.route('/occurrences/:id_occurrence/arrivals/:id_operational')
-    .put(controllerOccurrence.updateOperationalOccurrenceArrival)
+    .delete(controllerOccurrence.deleteOperationalOccurrence)
+/*
 
 server.route('/occurrences/:id_occurrence/operationals/departures/:id_operational')
     .put(controllerOccurrence.updateOperationalOccurrenceDeparture)
