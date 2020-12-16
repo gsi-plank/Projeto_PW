@@ -38,10 +38,18 @@
 
     
     <div  id="content" class="container">
-        <form id="formNewUser" name="formNewUser" action="/myaction">
+        <form id="formNewUser" name="formNewUser"  action="" method="POST">
+            <div class="form-group">
+                <label for="name" class="control-label">ID auditor:</label>
+                <input type="text" class="form-control" id="id_auditor" name="idAuditor"/>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label">ID login:</label>
+                <input type="text" class="form-control" id="id_login" name="idLogin"/>
+            </div>
             <div class="form-group">
                 <label for="name" class="control-label">Nome:</label>
-                <input type="name" class="form-control" id="name" name="name" data-rule="required|name" />
+                <input type="text" class="form-control" id="name" name="name" data-rule="required|name" />
             </div>
             <div class="form-group">
                 <label for="email" class="control-label">Email:</label>
@@ -49,8 +57,7 @@
             </div>
             <div class="form-group">
                 <label for="date" class="control-label">Data de nascimento:</label>
-                <input type="text" class="form-control" name="email" id="date" />
-                <!--<input type="date" class="form-control" name="email" id="date" data-rule="required|date" />-->
+                <input type="date" class="form-control" name="email" id="date" data-rule="required|date" />
             </div>
             <div class="form-group">
                 <label for="pwd" class="control-label">Palavra-passe:</label>
@@ -90,8 +97,8 @@
                         class="icon" alt="profile picture"></a></li>
         </ul>
     </div>
+   
     <script type="text/javascript" src="./assets/js/js-form-validator.js"></script>
     <script type="text/javascript" src="./controller/newAuditor.js"></script>
 </body>
-
 </html>

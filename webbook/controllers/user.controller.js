@@ -1,5 +1,29 @@
 const connect = require ('../assets/bd');
 
+//login
+function login (req, res) {
+    const email = req.sanitize('email').escape();
+    let query = "";
+    query = connect.con.query('SELECT email, password FROM login where email=?', email, function (err, rows, fields){
+        if (!err) {
+            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            res.status(400).send({
+                "msg": err.code
+            });
+        console.log('Error while performing Query.', err);
+    }) ; 
+}
+
 //admins
 function addAdmin(req, res) {
     const id_login = req.sanitize('id_login').escape();
@@ -307,5 +331,6 @@ module.exports = {
     updateAudit : addAudit,
     deleteAudit : deleteAudit,
     
+    selectLogin : login,
     updateUser : updateUser
 }

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
     
 server.route('/user/:id_login')
     .put(controllerUser.updateUser)
+    .get(controllerUser.selectLogin)
     
 server.route('/users/admins')
     .get(controllerUser.listAdmin)
@@ -18,5 +19,5 @@ server.route('/users/audits')
     .post(controllerUser.createAudit)
 
 server.route('/users/audits/:id_auditor')
-    .put(controllerUser.updateAudit)
+    .put(controllerUser.updateAudit) 
     .delete(controllerUser.deleteAudit)

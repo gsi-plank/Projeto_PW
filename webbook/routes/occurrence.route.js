@@ -7,39 +7,73 @@ server.route('/occurrences')
 
 server.route('/occurrences/:id_occurrence')
     .get(controllerOccurrence.readOccurrence)
-    .put(controllerOccurrence.updateOccurrence)
     .delete(controllerOccurrence.deleteOccurrence)
+
+    server.route('/occurrences/:id_occurrence/arrival')
+    .put(controllerOccurrence.updateOccurrenceArrival)
+
+    server.route('/occurrences/:id_occurrence/cost')
+    .put(controllerOccurrence.updateOccurrenceCost)    
 
 // Operational Occurrence
 server.route('/occurrences/:id_occurrence/operationals')
-    .get(controllerOccurrence.readByOccurrence) // certo
+    .get(controllerOccurrence.listOpOccurrence) // certo
 
 server.route('/occurrences/:id_occurrence/operationals/:id_operational')
     .get(controllerOccurrence.readByOperationalOcur) // supostamente certo
     .put(controllerOccurrence.updateOperationalOccurrence) // outros updates como points departure etc..
     .delete(controllerOccurrence.deleteOperationalOccurrence)
-/*
 
-server.route('/occurrences/:id_occurrence/operationals/departures/:id_operational')
-    .put(controllerOccurrence.updateOperationalOccurrenceDeparture)
-
-server.route('/occurrences/:id_occurrence/evaluations/:id_operational')
-    .put(controllerOccurrence.updateOperationalOccurrencePoints)
-
-// Witness Ocurrence
+// Witness Occurrence
 server.route('/occurrences/:id_occurrence/witnesses')
-    .get(controllerOccurrence.readWitnessOccurrence) // preciso dados para testar
-    .post(controllerOccurrence.saveWitnessOccurrence)
+    .get(controllerOccurrence.listWitOccurrence) // certo
+    .post(controllerOccurrence.createWitOccur)
 
 server.route('/occurrences/:id_occurrence/witnesses/:id_witness')
-    .get(controllerOccurrence.readIDWitnessOccurrence) // preciso dados para testar
-    .put(controllerOccurrence.updateWitnessOccurrence)
-    .delete(controllerOccurrence.deleteIDWitnessOccurrence)
+    .get(controllerOccurrence.readWitOccurrence) // supostamente certo
+    .put(controllerOccurrence.updateWitOccur) // outros updates como points departure etc..
+    .delete(controllerOccurrence.deleteWitOccur)
 
-// Vehicle material occurrence
-server.route('occurrences/:id_occurrence/materials') // continuar esta
-    .get(controllerOccurrence.readVehicleMaterialFromOccurrence)
-    .post(controllerOccurrence.saveVehicleMaterialOccurrence)
-*/
+//material occurrence
+server.route('/occurrences/:id_occurrence/materials')
+    .get(controllerOccurrence.listMatOccurrence) // certo
+    .post(controllerOccurrence.createMatOccur)
+
+server.route('/occurrences/:id_occurrence/materials/:id_material')
+    .get(controllerOccurrence.readMatOccurrence) // supostamente certo
+    .put(controllerOccurrence.updateMatOccur) // outros updates como points departure etc..
+    .delete(controllerOccurrence.deleteMatOccur)
+
+//cost occurrence
+server.route('/occurrences/:id_occurrence/cost')
+    .get(controllerOccurrence.readCostOccurrence) // certo
+    .post(controllerOccurrence.createCostOccur)
+    .delete(controllerOccurrence.deleteCostOccur)
+
+server.route('/occurrences/:id_occurrence/cost/duration')
+    .put(controllerOccurrence.updateCostOccur)
+
+//group evaluation
+server.route('/occurrences/:id_occurrence/group_evaluation')
+    .get(controllerOccurrence.listGEvaluation) // certo
+    .post(controllerOccurrence.createGEvaluation)
+    .delete(controllerOccurrence.deleteGEvaluation)
+    .put(controllerOccurrence.updateGEvaluation)
+
+//checklist
+server.route('/occurrence/:id_occurrence/group_evaluation/checklist')
+    .get(controllerOccurrence.readChecklist) // certo
+    .post(controllerOccurrence.createChecklist)
+    .delete(controllerOccurrence.deleteChecklist)
+    .put(controllerOccurrence.updateGEvaluation)
+
+//individual evaluation
+server.route('/occurrences/:id_occurrence/individual_evaluation')
+    .get(controllerOccurrence.listOpPointsOccur) // certo
+    .post(controllerOccurrence.createIndEvaluation)
+
+server.route('/occurrence/:id_occurrence/individual_evaluation/:id_operational')
+    .delete(controllerOccurrence.deleteIndEvaluation)
+    .put(controllerOccurrence.updateIndEvaluation)
 
 module.exports = server;

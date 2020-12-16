@@ -1,5 +1,3 @@
-
-
  let externalReviewBox = document.getElementById("externalReviewBox");
 
 $("#addWitness").click(function(){

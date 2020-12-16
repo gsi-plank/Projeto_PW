@@ -50,3 +50,4 @@ module.exports = server;
 
 require('./routes/occurrence.route');
 require('./routes/user.route');
+require('./routes/operational.route');

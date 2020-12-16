@@ -11,6 +11,7 @@
   border-collapse: collapse;
   max-width:370px;
   top: 15px;
+  left: -12px;
   position: relative;
   margin-left: 24px;
 }
@@ -19,6 +20,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 10px;
+  font-size: 11px;
 }
 
 #auditoresTxt{
@@ -62,25 +64,20 @@ h4 {
 #diference {
   background: #AB0404;
   color: white;
-}
-#remAuditor{
-  position: absolute;
-  width: 270px;
-  height: 30px;
-  left: 63px;
-  top: 540px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 550;
-  font-size: 24px;
-  line-height: 23px;
-  margin-top: 2px;
-  border-radius: 50px;
-  background-color: white;
-  color: #AB0404;
-  border: none;
+  font-size: 10px;
 }
 
 #result {
   margin-top: 120px;
+}
+
+#diference2 {
+  background: white;
+  border: none;
+  text-align: left;
+}
+#btn {
+  border: none;
+  background-color: white;
+  padding: 0px;
 }
