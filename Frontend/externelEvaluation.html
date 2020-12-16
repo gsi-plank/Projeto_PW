@@ -25,7 +25,7 @@
                                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                         </svg></a></li>
                 <li>
-                    <p id="avalLocalExternalTxt" class="title textCenter">Avaliação Local/Externa</p>
+                    <p id="avaLocalExternalTxt" class="title textCenter">Avaliação local/externa</p>
                 </li>
 
                 <li><a href="occurrenceDate.html" id="btnRegister" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16"
@@ -36,8 +36,8 @@
             </ul>
         </div>
     </div>
-    
-     <b id="titulo1">Avaliação Local:</b>
+    <div class="grid-container">
+     <div class="item1"><b id="titulo1">Avaliação Local:</b>
     <input id="local" type="text" class="local"> </input>
     
     
@@ -45,9 +45,9 @@
   <label for="myfile">Escolha ficheiros:</label>
   <input type="file" id="myfile" name="myfile" multiple><br><br>
 </form>
-
-
- <b id="titulo2">Avaliação Externa:</b>
+</div>
+<div class="item2">
+ <b id="titulo2" class="titulo2">Avaliação Externa:</b>
     <input id="ext" type="text" class="ext"> </input>
     
     
@@ -55,11 +55,11 @@
   <label for="myfile">Escolha ficheiros:</label>
   <input type="file" id="myfile" name="myfile" multiple><br><br>
 </form>
-
+</div>
 <div id="externalReviewBox">
 </div>
 
-
+</div>
 <script>
  
 </script>

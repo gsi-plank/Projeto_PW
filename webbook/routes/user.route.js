@@ -1,10 +1,9 @@
 const server = require('../server.js');
 const controllerUser = require('../controllers/user.controller');
 const bodyParser = require('body-parser');
-
-server.route('/users')
-    .get(controllerUser.listAdmin)
-    .get(controllerUser.listAudit)//não sabemos pq não conseguimos entrar na BD
+    
+server.route('/user/:id_login')
+    .put(controllerUser.updateUser)
     
 server.route('/users/admins')
     .get(controllerUser.listAdmin)
@@ -19,5 +18,5 @@ server.route('/users/audits')
     .post(controllerUser.createAudit)
 
 server.route('/users/audits/:id_auditor')
-    .put(controllerUser.updateAudit) 
+    .put(controllerUser.updateAudit)
     .delete(controllerUser.deleteAudit)

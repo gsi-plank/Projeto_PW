@@ -5,7 +5,7 @@
 
 #content{
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 80px;
 }
 
@@ -43,4 +43,7 @@ h2{
     font-size: 14px;
 }
 
+.slidecontainer {
+    margin-top: 30px;
+}
 

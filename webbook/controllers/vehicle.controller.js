@@ -1,85 +1,122 @@
-const mysql = require('mysql');
+const connect = require('../assets/bd');
 
-const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host        : 'remotemysql.com',
-    user        : 'SKMj4aTpc9',
-    password    : 'djKHE1y1Pg',
-    database    : 'SKMj4aTpc9',
-    debug       :  false
-});
+//SELECT
+
+//Vehicle
+function readVehicle(req, res) {
+    //criar e executar a query de leitura na BD
+    const regist = req.sanitize('regist').escape();
+    connect.con.query('SELECT * from vehicle where regist = ?', regist,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
 
 
-// INSERTS
-
-function addRow(req, res) {
-    let sql = 'INSERT INTO vehicle (regist, capacity, fuel_average, brand, model, id_admin) VALUES (?,?,?,?,?,?)';
-    global.connection.query (sql, [
-        req.body.regist,
-        req.body.capacity,
-        req.body.fuel_average,
-        req.body.brand,
-        req.body.model,
-        req.body.id_admin
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
+function listVehicle(req, res) {
+    connect.con.query ('SELECT * FROM vehicle order by regist', 
+    function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(rows);
+                }
+        } else
+            console.log('Error while performing query', err);
     });
 }
 
 
-//SELECTS
-function readID(req, res) {
-    let sql = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM vehicle WHERE regist = ?';    
-    global.connection.query (sql, [
-        req.params.regist
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results[0]);
-    });
-}
 
-function readAll(req, res) {
-    let sql = 'SELECT (regist, capacity, fuel_average, brand, model, id_admin) FROM vehicle';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+//DELETE
+
+function deleteVehicle(req, res) {
+    const regist = req.sanitize('regist').escape();
+    let query = "";
+    query = connect.con.query('DELETE from vehicle where regist=?', regist, 
+    function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
         }
-        return res.json(results);
     });
 }
 
+//UPDATE
 
-// DELETE
-
-function deleteRow(req, res) {
-    let sql = "DELETE from vehicle where regist=?";
-    global.connection.query(sql, [
-        req.params.regist
-        ], function(err, results){
-        if (err) return res.status(500).end();
-        res.status(204).end();
+function updateVehicle(req, res) {
+    const capacity = req.sanitize('capacity').escape();
+    const fuel_average = req.sanitize('fuel_average').escape();
+    const brand = req.sanitize('brand').escape();
+    const model = req.sanitize('model').escape();
+    const regist = req.sanitize('regist').escape();
+    let post = [
+        capacity,
+        fuel_average,
+        brand,
+        model,
+        regist
+    ]
+    let query = "";
+    query = connect.con.query('UPDATE occurrence SET capacity=?, fuel_average=?, brand=?, model=? WHERE regist=?', post, 
+    function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
+        }
     });
 }
 
+//INSERT
 
-// UPDATES
-
-function updateRow(req, res) {
-    let sql = "UPDATE vehicle SET capacity=?, fuel_average=?, brand=?, model=? WHERE regist=?";
-    //(regist, capacity, fuel_average, brand, model, id_admin)
-    global.connection.query(sql, [
-        req.body.capacity,
-        req.body.fuel_average,
-        req.body.brand,
-        req.body.brand,
-        req.body.model,
-        req.params.regist
-      ], function(err, results) {
-            if (err) return res.status(500).end();
-            res.json(results);
+function addVehicle(req, res) {
+    const regist = req.sanitize('regist').escape();
+    const capacity = req.sanitize('capacity').escape();
+    const fuel_average = req.sanitize('fuel_average').escape();
+    const brand = req.sanitize('brand').escape();
+    const model = req.sanitize('model').escape();
+    const id_admin = req.sanitize('id_admin').escape();
+    let post = [
+        regist, capacity, fuel_average, brand, model, id_admin,
+    ]
+    let query = ""
+    query = connect.con.query('INSERT INTO Vehicle (regist, capacity, fuel_average, brand, model, id_admin) values (?,?,?,?,?,?)', post, 
+    function (err, rows, fields) {
+        console.log(query.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                res.status(409).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
+            } else
+                res.status(400).send({ "msg": err.code });
+        }
     });
 }
 

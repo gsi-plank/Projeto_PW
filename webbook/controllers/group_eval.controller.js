@@ -1,107 +1,160 @@
-const mysql = require('mysql');
-
-const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host        : 'remotemysql.com',
-    user        : 'SKMj4aTpc9',
-    password    : 'djKHE1y1Pg',
-    database    : 'SKMj4aTpc9',
-    debug       :  false
-});
+const connect = require('../assets/bd');
 
 
-// INSERTS
-
-function addRow(req, res) {
-    let sql = 'INSERT INTO group_evaluation (id_group, id_occurrence, id_auditor, score, invoices) VALUES (?,?,?,?,?)';
-    global.connection.query (sql, [
-        req.body.id_group,
-        req.body.id_occurrence,
-        req.body.id_auditor,
-        req.body.score,
-        req.body.invoices
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
-    });
-}
-
-
-//SELECTS
+//SELECT
 function readIdGroup(req, res) {
-    let sql = 'SELECT (id_group, id_occurrence, id_auditor, score, invoices) FROM group_evaluation WHERE id_group = ?';    
-    global.connection.query (sql, [
-        req.params.id_group,
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results[0]);
-    });
-}
-
-function readAll(req, res) {
-    let sql = 'SELECT (id_group, id_occurrence, id_auditor, score, invoices) FROM group_evaluation ';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
-        }
-        return res.json(results);
-    });
+    //criar e executar a query de leitura na BD
+    const id_group = req.sanitize('id_group').escape();
+    connect.con.query('SELECT * from group_evaluation where id_group = ?', id_group,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
 }
 
 function readIdOccur(req, res) {
-    let sql = 'SELECT (id_group, id_occurrence, id_auditor, score, invoices) FROM group_evaluation WHERE id_occurrence = ?';    
-    global.connection.query (sql, [
-        req.params.id_occurrence,
-        ], function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
-        }
-        return res.json(results);
-    });
+    //criar e executar a query de leitura na BD
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    connect.con.query('SELECT * from group_evaluation where id_occurrence = ?', id_occurrence,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
 }
 
 function readIdAudit(req, res) {
-    let sql = 'SELECT (id_group, id_occurrence, id_auditor, score, invoices) FROM group_evaluation WHERE id_auditor= ?';    
-    global.connection.query (sql, [
-        req.params.id_auditor
-        ], function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+    //criar e executar a query de leitura na BD
+    const id_auditor = req.sanitize('id_auditor').escape();
+    connect.con.query('SELECT * from group_evaluation where id_auditor = ?', id_auditor,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
+
+function listGroup_eval(req, res) {
+    connect.con.query ('SELECT * FROM group_evaluation order by id_group', 
+    function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(rows);
+                }
+        } else
+            console.log('Error while performing query', err);
+    });
+}
+
+
+//DELETE
+
+function deleteGroup_eval(req, res) {
+    const id_group = req.sanitize('id_group').escape();
+    let query = "";
+    query = connect.con.query('DELETE from group_evaluation where id_group=?', id_group, 
+    function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
         }
-        return res.json(results);
     });
 }
 
+//UPDATE
 
-// DELETE
-
-function deleteRow(req, res) {
-    let sql = "DELETE from group_evaluation where id_group= ?";
-    global.connection.query(sql, [
-        req.params.id_group
-        ], function(err, results){
-        if (err) return res.status(500).end();
-        res.status(204).end();
+function updateGroup_eval(req, res) {
+    const score = req.sanitize('score').escape();
+    const invoices= req.sanitize('invoices').escape();
+    const id_group = req.sanitize('id_group').escape();
+    let post = [
+        score,
+        invoices,
+        id_group
+    ]
+    let query = "";
+    query = connect.con.query('UPDATE group_evaluation SET score=?, invoices=?, id_group=? WHERE id_group=?', post, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
+        }
     });
 }
 
+//INSERT
 
-// UPDATES
-
-function updateRow(req, res) {
-    let sql = "UPDATE group_evaluation SET score=?, invoices=? WHERE id_group=?";
-    //(id_group, id_occurrence, id_auditor, score, invoices)
-    global.connection.query(sql, [
-        req.body.score,
-        req.body.invoices,
-        req.params.id_group
-      ], function(err, results) {
-            if (err) return res.status(500).end();
-            res.json(results);
+function addGroup_eval(req, res) {
+    const id_group = req.sanitize('id_group').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    const id_auditor = req.sanitize('id_auditor').escape();
+    const score = req.sanitize('score').escape();
+    const invoices = req.sanitize('invoices').escape();
+    let post = [
+        id_group, id_occurrence, id_auditor, score, invoices,     ]
+    let query = ""
+    query = connect.con.query('INSERT INTO group_evaluation (id_group, id_occurrence, id_auditor, score, invoices) values (?,?,?,?,?)', post, 
+    function (err, rows, fields) {
+        console.log(query.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                res.status(409).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
+            } else
+                res.status(400).send({ "msg": err.code });
+        }
     });
 }
 

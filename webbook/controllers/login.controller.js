@@ -1,81 +1,113 @@
-const mysql = require('mysql');
+const connect = require('../assets/bd');
 
-const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host        : 'remotemysql.com',
-    user        : 'SKMj4aTpc9',
-    password    : 'djKHE1y1Pg',
-    database    : 'SKMj4aTpc9',
-    debug       :  false
-});
+function readLogin(req, res) {
+    //criar e executar a query de leitura na BD
+    const id_login = req.sanitize('id_login').escape();
+    connect.con.query('SELECT * from login where id_login = ?', id_login,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
 
-
-// INSERTS
-
-function addRow(req, res) {
-    let sql = 'INSERT INTO login (id_login, email, password, profile) VALUES (?,?,?,?)';
-    global.connection.query (sql, [
-        req.body.id_login,
-        req.body.email,
-        req.body.password,
-        req.body.profile
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
+function listLogin(req, res) {
+    connect.con.query ('SELECT * FROM login order by id_login', 
+    function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(rows);
+                }
+        } else
+            console.log('Error while performing query', err);
     });
 }
 
+//DELETE
 
-//SELECTS
-function readID(req, res) {
-    let sql = 'SELECT (id_login, email) FROM login WHERE id_login = ?';    
-    global.connection.query (sql, [
-        req.params.id_login
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results[0]);
-    });
-}
-
-function readAll(req, res) {
-    let sql = 'SELECT (id_login, email) FROM login';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+function deleteLogin(req, res) {
+    const id_login = req.sanitize('id_login').escape();
+    let query = "";
+    query = connect.con.query('DELETE from login where id_login=?', id_login, 
+    function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
         }
-        return res.json(results);
+    });
+}
+
+//UPDATE
+
+function updateLogin(req, res) {
+    const email = req.sanitize('email').escape();
+    const password = req.sanitize('password').escape();
+    const id_login = req.sanitize('id_login').escape();
+    let post = [
+        email,
+        password,
+        id_login
+    ]
+    let query = "";
+    query = connect.con.query('UPDATE Login SET email=?, password=?, id_login=? WHERE id_login=?', post, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
+        }
     });
 }
 
 
-// DELETE
+//INSERT
 
-function deleteRow(req, res) {
-    let sql = "DELETE from login where id_login=?";
-    global.connection.query(sql, [
-        req.params.id_login
-        ], function(err, results){
-        if (err) return res.status(500).end();
-        res.status(204).end();
+function addLogin(req, res) {
+    const id_login = req.sanitize('id_login').escape();
+    const email = req.sanitize('email').escape();
+    const password = req.sanitize('password').escape();
+    const profile = req.sanitize('profile').escape();
+    let post = [
+        id_login, email, password, profile
+    ]
+    let query = ""
+    query = connect.con.query('INSERT INTO login (id_login, email, password, profile) values (?,?,?,?)', post, 
+    function (err, rows, fields) {
+        console.log(query.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                res.status(409).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
+            } else
+                res.status(400).send({ "msg": err.code });
+        }
     });
 }
 
-
-// UPDATES
-
-function updateRow(req, res) {
-    let sql = "UPDATE login SET email=?, password=? WHERE id_login=?";
-    global.connection.query(sql, [
-        req.body.email,
-        req.body.password,
-        req.params.id_login
-      ], function(err, results) {
-            if (err) return res.status(500).end();
-            res.json(results);
-    });
-}
 
 module.exports = {
     list: readAll,

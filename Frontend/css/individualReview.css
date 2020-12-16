@@ -5,10 +5,9 @@
 
 #content {
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 80px;
 }
-
 
 #observacoes {
     bottom: 50px;
@@ -59,4 +58,9 @@ h4{
     position: absolute;
     width: 100px;
     height: 50px;
+}
+#result{
+    position: relative;
+    width: 100px;
+    height: 100px;
 }

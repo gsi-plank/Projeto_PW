@@ -56,17 +56,17 @@ function deleteOccurrence(req, res) {
 
 function updateOccurrence(req, res) {
     const arrival = req.sanitize('arrival').escape();
-    const departure = req.sanitize('departure').escape();
-    const cost = req.sanitize('cost').escape();
+  /*  const departure = req.sanitize('departure').escape();
+    const cost = req.sanitize('cost').escape();*/
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let post = [
         arrival,
-        departure,
-        cost,
+   //     departure,
+     //   cost, , departure=?, cost=? 
         id_occurrence
     ]
     let query = "";
-    query = connect.con.query('UPDATE occurrence SET arrival=?, departure=?, cost=? WHERE id_occurrence=?', post, function (err, rows, fields){
+    query = connect.con.query('UPDATE occurrence SET arrival=? WHERE id_occurrence=?', post, function (err, rows, fields){
         console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);

@@ -1,23 +1,5 @@
 const connect = require ('../assets/bd');
 
-function listAll(req, res) {
-    let query = "";
-    query = connect.con.query('select login.id_login, administrator.name, login.email, login.password, auditor.name from ((login inner join administrator on administrator.id_login=login.id_login) left join auditor on auditor.id_login = login.id_login)', function(err, rows, fields) {
-        if (!err) {
-            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
-            if (rows.length == 0) {
-                res.status(404).send("Data not found");
-            }
-            else {
-                res.status(200).send(rows);
-            }
-        }
-        else
-            console.log('Error while performing Query.', err);
-    });
-}
-
-
 //admins
 function addAdmin(req, res) {
     const id_login = req.sanitize('id_login').escape();
@@ -92,7 +74,7 @@ function readAdmin(req, res) {
 
 function listAdmin(req, res) {
     let query = "";
-    query = connect.con.query('SELECT * FROM administrator', function(err, rows, fields) {
+    query = connect.con.query('select login.id_login, administrator.name, login.email, login.password from (login inner join administrator on administrator.id_login = login.id_login)', function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -110,7 +92,17 @@ function listAdmin(req, res) {
 function deleteAdmin(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = connect.con.query('DELETE from administrator where id_login = ?, DELETE from login where id_login=?', id_login, function (err, rows, fields){
+    query = connect.con.query('DELETE from administrator where id_login = ?', id_login, function (err, rows, fields){
+       console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
+        } 
+    });
+    query = connect.con.query('DELETE from login where id_login=?', id_login, function (err, rows, fields){
        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
@@ -221,7 +213,7 @@ function readAudit(req, res) {
 
 function listAudit(req, res) {
     let query = "";
-    query = connect.con.query('SELECT * FROM auditor', function(err, rows, fields) {
+    query = connect.con.query('select login.id_login, auditor.name, login.email, login.password from (login inner join auditor on auditor.id_login = login.id_login)', function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -239,7 +231,17 @@ function listAudit(req, res) {
 function deleteAudit(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = connect.con.query('DELETE from auditor where id_login = ?, DELETE from login where id_login=?', id_login, function (err, rows, fields){
+    query = connect.con.query('DELETE from auditor where id_login = ?', id_login, function (err, rows, fields){
+       console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
+        } 
+    });
+    query = connect.con.query('DELETE from login where id_login=?', id_login, function (err, rows, fields){
        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
@@ -272,11 +274,27 @@ function updateAudit(req, res) {
     });
 }
 
+function updateUser(req, res) {const name = req.sanitize('name').escape();
+    const email = req.sanitize('email').escape();
+    const password = req.sanitize('password').escape();
+    let query = "";
+    let post = [email, password];
+    query = connect.con.query('UPDATE auditor SET email=?, password=? WHERE id_login= ?', post, function(err, rows, fields) {
+       console.log(query.sql);
+        if (!err) {
+            console.log("Number of records updated: " + rows.affectedRows);
+            res.status(200).send({ "msg": "update with success" });
+        }
+        else {
+            res.status(400).send({ "msg": err.code });
+            console.log('Error while performing Query.', err);
+        } 
+    });
+    
+}
 
 
 module.exports = {
-    listAll : listAll,
-    
     listAdmin: listAdmin,
     readAdmin: readAdmin,
     createAdmin: addAdmin,
@@ -287,5 +305,7 @@ module.exports = {
     readAudit : readAudit,
     createAudit :  addAudit,
     updateAudit : addAudit,
-    deleteAudit : deleteAudit
+    deleteAudit : deleteAudit,
+    
+    updateUser : updateUser
 }

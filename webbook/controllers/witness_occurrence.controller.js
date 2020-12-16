@@ -1,105 +1,122 @@
-const mysql = require('mysql');
+const connect = require('../assets/bd');
 
-const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host        : 'remotemysql.com',
-    user        : 'SKMj4aTpc9',
-    password    : 'djKHE1y1Pg',
-    database    : 'SKMj4aTpc9',
-    debug       :  false
-});
+//SELECT
 
+function readWitness_Occurrence(req, res) {
+    //criar e executar a query de leitura na BD
+    const id_witness = req.sanitize('id_witness').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape(); 
+    let post = [
+        id_witness,
+        id_occurrence
+    ]
+    connect.con.query('SELECT * from witness_occurrence where id_witness = ? and id_occurrence =?', post,
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
 
-// INSERTS
-
-function addRow(req, res) {
-    let sql = 'INSERT INTO witness_occurrence (id_witness, id_occurrence, testimony, date, group_nr, justification) VALUES (?,?,?,?,?,?)';
-    global.connection.query (sql, [
-        req.body.id_witness,
-        req.body.id_occurrence,
-        req.body.testimony,
-        req.body.date,
-        req.body.group_nr,
-        req.body.justification
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        res.json(results);
+function listWitness_occurrence(req, res) {
+    connect.con.query ('SELECT * FROM witness_occurrence order by id_witness', 
+    function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(rows);
+                }
+        } else
+            console.log('Error while performing query', err);
     });
 }
 
+//DELETE
 
-//SELECTS
-function readID(req, res) {
-    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence WHERE id_witness= ?';    
-    global.connection.query (sql, [
-        req.params.id_witness
-        ], function (err, results) {
-        if (err) return res.status(500).end();
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results[0]);
-    });
-}
-
-function readAll(req, res) {
-    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence ';
-    global.connection.query (sql, function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+function deleteWitness_occurrence(req, res) {
+    const id_witness = req.sanitize('id_witness').escape();
+    let query = "";
+    query = connect.con.query('DELETE from witness_occurrence where id_witness=?', id_witness, 
+    function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log("Number of records affected: " + rows.affectedRows);
+            res.status(200).send({"msg" : "deleted with success"});
+        } else {
+            res.status(400).send({"msg" : err.code});
+            console.log('Error while performing query', err);
         }
-        return res.json(results);
     });
 }
 
-function readIdOccur(req, res) {
-    let sql = 'SELECT (id_witness, id_occurrence, testimony, date, group_nr, justification) FROM witness_occurrence WHERE id_occurrence = ?';    
-    global.connection.query (sql, [
-        req.params.id_occurrence
-        ], function (err, results) {
-        if (err) {
-            console.log(err);
-            return res.status(500).end();
+//UPDATE
+
+function updateWitness_occurrence(req, res) {
+    const testimony = req.sanitize('testimony').escape();
+    const date = req.sanitize('date').escape();
+    const group_nr = req.sanitize('group_nr').escape();
+    const justification = req.sanitize('justification').escape();
+    const id_witness = req.sanitize('id_witness').escape();
+    let post = [
+        testimony,
+        date,
+        group_nr,
+        justification,
+        id_witness
+    ]
+    let query = "";
+    query = connect.con.query('UPDATE witness_occurrence SET testimony=?, date=?, group_nr=?, justification=? WHERE id_witness=?', post, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
         }
-        if (results.length == 0) return res.status(404).end();
-        return res.json(results);
     });
 }
 
 
-// DELETE
+//INSERT
 
-function deleteRow(req, res) {
-    let sql = "DELETE from witness_occurrence where id_witness=?";
-    global.connection.query(sql, [
-        req.params.id_witness
-        ], function(err, results){
-        if (err) return res.status(500).end();
-        res.status(204).end();
+function addWitness_Occurrence(req, res) {
+    const id_witness = req.sanitize('id_witness').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    const testimony = req.sanitize('testimony').escape();
+    const date = req.sanitize('date').escape();
+    const group_nr = req.sanitize('group_nr').escape();
+    const justification = req.sanitize('justification').escape();
+    let post = [
+        id_witness, id_occurrence, testimony, date, group_nr, justification
+    ]
+    let query = ""
+    query = connect.con.query('INSERT INTO witness_occurrence (id_witness, id_occurrence, testimony, date, group_nr, justification) values (?,?,?,?,?,?)', post, 
+    function (err, rows, fields) {
+        console.log(query.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                res.status(409).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
+            } else
+                res.status(400).send({ "msg": err.code });
+        }
     });
 }
-
-
-// UPDATES
-
-function updateRow(req, res) {
-    let sql = "UPDATE witness_occurrence SET testimony=?, date=?, group_nr=?, justification=? WHERE id_witness=?";
-    //(id_witness, id_occurrence, testimony, date, group_nr, justification)
-    global.connection.query(sql, [
-        req.body.testimony,
-        req.body.date,
-        req.body.group_nr,
-        req.body.justification,
-        req.params.id_witness
-      ], function(err, results) {
-            if (err) return res.status(500).end();
-            res.json(results);
-    });
-}
-
-module.exports = {
-    list: readAll,
-    read: readID,
-    create: addRow,
-    update: updateRow,
-    delete: deleteRow
-};

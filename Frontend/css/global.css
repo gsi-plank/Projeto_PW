@@ -22,11 +22,11 @@
 }
 
 /*:root{*/
-/*    --primary-color: white;*/
-/*    --secondary-color: #AB0404;*/
-/*    --shadow-color: white;*/
-/*    --font-color: white;*/
-/*    --background-color:#3D3D3D;*/
+    /*--primary-color: white;*/
+    /*--secondary-color: #AB0404;*/
+    /*--shadow-color: white;*/
+    /*--font-color: white;*/
+    /*--background-color:#3D3D3D;*/
 /*    --input-color: rgb()*/
 /*}*/
 
@@ -160,6 +160,8 @@ body{
   cursor: pointer;
 }
 
-.error {
-  color: red;
-}
+/*.error {*/
+/*  font-color: red;*/
+  
+
+/*}*/

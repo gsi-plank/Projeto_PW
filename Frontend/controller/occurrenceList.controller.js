@@ -44,15 +44,15 @@ window.onload = function () {
         const occurrences = filtrator(type);
         //criação de uma tabela para demonstração dos resultados recebidos
         txt += "<table class='table' style='padding:10px; width:70%; margin:0% 15% 0% 15%'>";
-        txt += "<thead style='background-color:#607d8b; color:white '>";
-        txt += "<tr><th>Name</th><th>Email</th><th>Reg. Date</th></tr></thead><tbody>";
+        txt += "<thead style='background-color: #E0E6ED; color: black '>";
+        txt += "<tr><th>ID</th><th>Partida</th><th>Chegada</th></tr></thead><tbody>";
         //percorrer a variável users e por cada user cria a linha da tabela com os dados presentes
         for (const occurrence of occurrences) {
             //confirmar os dados de ocorrencia
             console.log(occurrence.id_occurrence);
             console.log(occurrence.arrival);
             console.log(occurrence.departure);
-            txt += "<tr><td style='text-align: right'>" + occurrence.id_occurrence + "</td><td>" + occurrence.arrival + "</td><td>" + occurrence.departure +
+            txt += "<tr><td>" + occurrence.id_occurrence + "</td><td>" + occurrence.arrival + "</td><td>" + occurrence.departure +
                 "</td></tr>";
         }
         txt += "</tbody></table>";

@@ -15,6 +15,10 @@
     top: 331px;
 }
 
+#avaLocalExternalTxt {
+    position: relative;
+    right: 42px;
+}
 .ext{
     position: absolute;
     width: 356px;
@@ -24,32 +28,30 @@
 }
 
 #titulo1{
-position: absolute;
+position: relative;
     left: 34px;
     top: 72px;
     font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 29px;
-
-text-align: center;
-
-color: #000000;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
 }
 #titulo2{
-    position: absolute;
+    position: relative;
     left: 34px;
     top: 422px;
     font-family: Inter;
     font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 29px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 29px;
 
-text-align: center;
+    text-align: center;
 
-color: #000000;
+    color: #000000;
 }
 
 #externa {
@@ -77,4 +79,25 @@ color: #000000;
     font-size: 24px;
     line-height: 29px;
 
+}
+.grid-container {
+    display: grid;
+    grid-gap: 0px;
+    background-color: #2196F3;
+    padding: 0px;
+}
+
+.item1 {
+    position: absolute;
+    font-family: Inter;
+    color: #000000;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item2 {
+    position: absolute;
+    color: #000000;
+    grid-column: 1;
+    grid-row: 2;
 }

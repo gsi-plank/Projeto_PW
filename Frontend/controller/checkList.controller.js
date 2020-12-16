@@ -1,8 +1,5 @@
 let listQueries = JSON.parse();
 
-
-
-
 function changeQueryName() {
     let query = document.getElementsByTagName("span");
 
@@ -31,7 +28,7 @@ checkList.addEventListener("submit", async() => {
     const response = await fetch(`${urlBase}(...)`),
         {
             headers: {
-                "Content-Type": "application/x-www-for"
+                "Content-Type": "application/json"
             },
             method: "POST",
             body: `checkList=${answer}`

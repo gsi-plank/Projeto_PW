@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <link rel="stylesheet" href="./css/individualReview.css" />
     <script type="text/javascript" href="avaliacaoIndividual.js"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Avaliação individual</title>
 </head>
 
 <body>
-    <div data-role="page" id="page1">
     <div id="app-header">
         <div class="container">
             <ul>
@@ -39,14 +36,14 @@
     </div>
     
     <div id="content" class="container">
-        <!--<div id="rectangle">-->
-        <!--    <div class="item" id="marginPicture">-->
-        <!--        <ul>-->
-        <!--        <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>-->
-        <!--        <li><h4>Pedro Cardoso</h4></li>-->
-        <!--        </ul>-->
-        <!--    </div>-->
-        <!--</div>-->
+        <div id="rectangle">
+            <div class="item" id="marginPicture">
+                <ul>
+                <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
+                <li><h4>Pedro Cardoso</h4></li>
+                </ul>
+            </div>
+        </div>
             <div class="slidecontainer">
                 <h3> Interajuda </h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review1">
@@ -68,7 +65,7 @@
                 <p>Avaliação: <span id="value6"></span></p>
             </div>
         <div>
-            <h3>Total de pontos atribuídos: <span id="totalPontos" ></span></h3>
+            <h3>Total de pontos atribuídos: <span id="totalPontos"></div></h3>
         </div>
     </div>
 
@@ -92,8 +89,9 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
-    </div>
 
-    <script type="text/javascript" src="./controller/individualReview.controller.js"></script>
+
+    <script type="text/javascript" src="./controller/individualReview.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
