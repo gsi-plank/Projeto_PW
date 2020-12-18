@@ -11,10 +11,26 @@ let occurrences = [
         "departure": "2019-07-08"
     },
     {
-        "id_occurrence": "432",
+        "id_occurrence": "422",
         "arrival": "2020-12-01 05:45:10",
         "departure": "2019-07-08"
-    }];
+    },
+    {
+        "id_occurrence": "42",
+        "arrival": "2020-11-23 05:45:10",
+        "departure": "2019-07-08"
+    },
+    {
+        "id_occurrence": "4222",
+        "arrival": "2020-07-01 05:45:10",
+        "departure": "2019-07-08"
+    },
+    {
+        "id_occurrence": "4322",
+        "arrival": "2020-12-12 05:45:10",
+        "departure": "2019-07-08"
+    }
+    ];
 
 
 window.onload = function () {
@@ -43,7 +59,7 @@ window.onload = function () {
         let txt = "";
         const occurrences = filtrator(type);
         //criação de uma tabela para demonstração dos resultados recebidos
-        txt += "<table class='table' style='padding:10px; width:70%; margin:0% 15% 0% 15%'>";
+        txt += "<table class='table table-hover' style='padding:10px; width:100%; margin:5px;'>";
         txt += "<thead style='background-color: #E0E6ED; color: black '>";
         txt += "<tr><th>ID</th><th>Partida</th><th>Chegada</th></tr></thead><tbody>";
         //percorrer a variável users e por cada user cria a linha da tabela com os dados presentes
@@ -53,7 +69,12 @@ window.onload = function () {
             console.log(occurrence.arrival);
             console.log(occurrence.departure);
             txt += "<tr><td>" + occurrence.id_occurrence + "</td><td>" + occurrence.arrival + "</td><td>" + occurrence.departure +
-                "</td></tr>";
+                "</td>"+ `<td class="diference2"><a href="./occurrenceDate.html"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg></a>
+            </td>` + "</tr>";
+            
+        
         }
         txt += "</tbody></table>";
         //envia a tabela construida para a view e mostra no object com ID result

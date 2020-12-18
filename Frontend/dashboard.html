@@ -22,21 +22,34 @@
         
         
         
-          <div class="container">
-              <div class="stv-radio-buttons-wrapper">
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="1" id="button1" checked />
-	<label for="button1">Esta semana</label>
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="2" id="button2" />
-	<label for="button2">Este mês</label>
-	<input type="radio" class="stv-radio-button" name="radioButtonTest" value="3" id="button3" />
-	<label for="button3">Este ano</label>
+    <div class="container">
+        <div class="stv-radio-buttons-wrapper">
+	        <input type="radio" class="stv-radio-button" name="radioButtonTest" value="1" id="button1" checked />
+	        <label for="button1">Esta semana</label>
+	        <input type="radio" class="stv-radio-button" name="radioButtonTest" value="2" id="button2" />
+	        <label for="button2">Este mês</label>
+	        <input type="radio" class="stv-radio-button" name="radioButtonTest" value="3" id="button3" />
+	        <label for="button3">Este ano</label>
+        </div>
+        <canvas id="lineChart"></canvas>
     </div>
-    <canvas id="lineChart"></canvas>
-  </div>
+    
+    <div class="container">
+        <div class="boxThree">
+            <ul id="escolha">
+                <li>Selecionar ocorrência:</li>
+                <li><img src="images/down.png"></img></li>
+            </ul>
+            <span id= "valor" class="dot">20</span>
+            <h6>Pessoas entrevistadas</h6>
+            
+        </div>
         
-        <div class="container">
+    </div>
+        
+    <div class="container">
     <canvas id="barChart"></canvas>
-  </div>
+    </div>
 
         <div id="app-footer">
         <ul>
@@ -59,10 +72,6 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
-    
-  
-
-
     
    <script type="text/javascript" src="./controller/dashboard.js"></script>
 

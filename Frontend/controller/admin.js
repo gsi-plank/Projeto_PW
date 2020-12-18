@@ -1,20 +1,3 @@
-// let users = [{
-//     "id": "342",
-//     "name": "Gypsy",
-//     "country": "Portugal"
-// },
-// {
-//     "id": "342",
-//     "name": "Gypsy",
-//     "country": "Portugal"
-// },
-// {
-//     "id": "342",
-//     "name": "Gypsy",
-//     "country": "Portugal"
-// }
-// ];
-
 window.onload = function() {
     const urlBase = "https://58717807e0f449edb5fcb157313592f1.vfs.cloud9.us-east-1.amazonaws.com"
     
@@ -27,12 +10,12 @@ window.onload = function() {
             const users = await response.json();
             //criação de uma tabela para demonstração dos resultados recebidos
 
-            txt += "<table>";
+            txt += "<table class='table-responsive col-md-10'>";
             txt += "<tr id='diference'>";
-            txt += "<th>ID</th>"
-            txt += "<th>Nome</th>";
-            txt += "<th>Email</th>";
-            txt += "<th>Password</th>";
+            txt += "<th class='text-center'>ID</th>"
+            txt += "<th class='text-center'>Nome</th>";
+            txt += "<th class='text-center'>Email</th>";
+            txt += "<th class='text-center'>Password</th>";
             txt += "<th id='diference2'></th>"
             txt += "</tr><tr>";
             //percorrer a variável users e por cada user cria a linha da tabela com os dados presentes

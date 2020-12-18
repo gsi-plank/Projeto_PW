@@ -247,7 +247,6 @@ function updateWitness_occurrence(req, res) {
     let post = [
         testimony,
         date,
-        group_nr,
         justification,
         id_witness
     ]
@@ -272,7 +271,7 @@ function addWitness_Occurrence(req, res) {
     const justification = req.sanitize('justification').escape();
     const name = null;
     const email = null;
-    const place = null;
+    const place = req.sanitize('place').escape();
     const profession = null;
     let post = [
         id_witness, id_occurrence, testimony, date, justification, name, email, place, profession

@@ -4,8 +4,12 @@
      let view = document.getElementById("viewTxt");
      view.onclick = viewButton;
 
-
-
+    let login = document.getElementById("submitInput");
+    login.onclick = mainPage;
+    
+    function mainPage() {
+        window.location.href = "mainPage.html";
+    }
      //Fuction of the "view" button
      function viewButton() {
          let view = document.getElementById("passInput");
