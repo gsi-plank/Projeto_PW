@@ -1,13 +1,14 @@
+"use strict";
+import * as fetch from "./functions/fetch.js";
+
 window.onload = function() {
-    const urlBase = "https://58717807e0f449edb5fcb157313592f1.vfs.cloud9.us-east-1.amazonaws.com"
     
-    fillTable()
-    function fillTable() {
-        async function fetchAsync() {
-            const renderUsers = document.getElementById("result");
+    async function fillTable() {
+        const renderUsers = document.getElementById("result");
             let txt = "";
-            const response = await fetch(`${urlBase}/users/audits`);
-            const users = await response.json();
+            const route = "users/audits"
+            const users = await fetch.getData(route);
+            console.log(users);
             //criação de uma tabela para demonstração dos resultados recebidos
 
             txt += "<table class='table-responsive col-md-10'>";
@@ -27,10 +28,9 @@ window.onload = function() {
             txt += "</tbody></table>";
             //envia a tabela construida para a view e mostra no object com ID result
             renderUsers.innerHTML = txt;
-        }
-        //chama a função fetchAsync()
-        fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
     }
+    fillTable()
+    
     
     // function deleteAuditorId() {
     //     let btnEliminar = document.getElementById('btn');

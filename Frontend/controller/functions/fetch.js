@@ -1,11 +1,12 @@
-
+"use strict";
+export { getData, putData, postData, deleteData };
 
 // https://dmitripavlutin.com/javascript-fetch-async-await/
 
 const urlBase = "https://58717807e0f449edb5fcb157313592f1.vfs.cloud9.us-east-1.amazonaws.com/"
 // const urlBase = "http://localhost:8080/"
 
-export async function getData(route) {
+async function getData(route) {
     const response = await fetch(urlBase + route);
 
     if (!response.ok) {
@@ -17,7 +18,7 @@ export async function getData(route) {
 }
 
 
-export function postData(route, data) {
+function postData(route, data) {
     fetch(urlBase + route, {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
@@ -46,7 +47,7 @@ export function postData(route, data) {
     });
 }
 
-export function deleteData(route) {
+function deleteData(route) {
     fetch(urlBase + route, {
             method: 'DELETE',
         })
@@ -54,7 +55,7 @@ export function deleteData(route) {
         .then(res => console.log(res))
 }
 
-export function putData(route, data) {
+function putData(route, data) {
     fetch(urlBase + route, {
         headers: { 'Content-Type': 'application/json' },
         method: 'PUT',
@@ -76,7 +77,6 @@ export function putData(route, data) {
         console.error(err);
     });
 }
-
 
 
 
