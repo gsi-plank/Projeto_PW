@@ -1,27 +1,25 @@
-/* 
 /* PlaceHolders */
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #BDBDBD;
-    opacity: 1; /* Firefox */
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #BDBDBD;
-  }
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #BDBDBD;
-  }
+  color: #BDBDBD;
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #BDBDBD;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #BDBDBD;
+}
   
-  
- /*Estilo Padrão*/
+/*Estilo Padrão*/
 :root{
-    --primary-color: #E7E7E7;
-    --secondary-color: #AB0404;
-    --shadow-color: #777;
-    --font-color: black;
-    --background-color: white;
+  --primary-color: #E7E7E7;
+  --secondary-color: #AB0404;
+  --shadow-color: #777;
+  --font-color: black;
+  --background-color: white;
 }
 
-/*:root{*/
+  /*:root{*/
     /*--primary-color: white;*/
     /*--secondary-color: #AB0404;*/
     /*--shadow-color: white;*/
@@ -30,6 +28,8 @@
 /*    --input-color: rgb()*/
 /*}*/
 
+
+/* Títulos das páginas */
 .title {
   font-size: 20px;
 }
@@ -46,82 +46,80 @@
 /*    max-height: 736px;*/
 /*}*/
 
-html, body {
-    width: 414px;
-    height: 736px;
-}
+/*html, body {*/
+/*    width: 414px;*/
+/*    height: 736px;*/
+/*}*/
 
 
-
+/* Estilo da letra */
 body{
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
-    color: var(--font-color);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  align-items: center;
 }
 
-/* Alteracao do estilo do cabecalho */
+
+/* Alteração do estilo do cabeçalho */
 #app-header {
-    box-shadow: 0 5px 5px -5px var(--shadow-color);
-    position: fixed;
-    align-items: center;
-    width:  414px;
-    z-index: 3;
-    background: var(--background-color);
+  box-shadow: 0 5px 5px -5px var(--shadow-color);
+  position: fixed;
+  align-items: center;
+  z-index: 3;
+  background: var(--background-color);
+  width: 100%;
 }
-
-
 
 #app-header .container ul {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
 }
 
 
-
-
-/* Alteracao do estilo de footer */
-
+/* Alteração do estilo de footer */
 #app-footer {
-    position:absolute; 
-    overflow:hidden;
-    box-shadow: 0 -5px 5px -5px var(--shadow-color);
-    position: fixed;
-    bottom: 0;
-    width: 414px;
-    background: var(--background-color);
+  position:absolute; 
+  overflow:hidden;
+  box-shadow: 0 -5px 5px -5px var(--shadow-color);
+  position: fixed;
+  bottom: 0;
+  background: var(--background-color);
+  width: 100%;
 }
 
 #app-footer ul {
-    padding: 0px;
-    margin:7px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
+  padding: 0px;
+  margin:7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
 }
 
-/*padroes de ferramentas*/
 
+/* Padrões de ferramentas */
+/* Butões */
 .button svg {
-    color: var(--font-color);
+  color: var(--font-color);
 }
 
+/* Links */
 .link{
-    color: var(--secondary-color);
-    text-decoration:none;
+  color: var(--secondary-color);
+  text-decoration:none;
 }
 
 #check{
   color: var(--secondary-color);
 }
 
-
-/*Estilo de input tipo range*/
+/*Estilo do input type range*/
 .slidecontainer {
   width: 100%;
 }
@@ -160,8 +158,7 @@ body{
   cursor: pointer;
 }
 
-/*.error {*/
-/*  font-color: red;*/
-  
-
-/*}*/
+/* Estilo dos inputs */
+.input{
+  height:50px; 
+}
