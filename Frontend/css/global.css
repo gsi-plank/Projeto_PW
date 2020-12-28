@@ -9,16 +9,17 @@
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #BDBDBD;
 }
-  
-/*Estilo Padrão*/
+
+/* Estilo Padrão */
 :root{
   --primary-color: #E7E7E7;
   --secondary-color: #AB0404;
   --shadow-color: #777;
-  --font-color: black;
-  --background-color: white;
+  --font-color: #000000;
+  --background-color: #FFFFFF;
 }
 
+/* Estilo padrão para dark mode */
   /*:root{*/
     /*--primary-color: white;*/
     /*--secondary-color: #AB0404;*/
@@ -28,6 +29,17 @@
 /*    --input-color: rgb()*/
 /*}*/
 
+html {
+    background: var(--background-color);
+}
+
+/* Estilo da letra */
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  align-items: center;
+}
 
 /* Títulos das páginas */
 .title {
@@ -39,27 +51,6 @@
   text-align: center;
   margin-bottom: 0px;
 }
-
-/*html, body {*/
-/*    height: 100%;*/
-/*    max-width: 414px;*/
-/*    max-height: 736px;*/
-/*}*/
-
-/*html, body {*/
-/*    width: 414px;*/
-/*    height: 736px;*/
-/*}*/
-
-
-/* Estilo da letra */
-body{
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--background-color);
-  color: var(--font-color);
-  align-items: center;
-}
-
 
 /* Alteração do estilo do cabeçalho */
 #app-header {
@@ -81,8 +72,11 @@ body{
   list-style: none;
 }
 
+#app-header ul a {
+    color: var(--font-color);
+}
 
-/* Alteração do estilo de footer */
+/* Alteração do estilo do footer */
 #app-footer {
   position:absolute; 
   overflow:hidden;
@@ -102,26 +96,67 @@ body{
   list-style: none;
 }
 
-
-/* Padrões de ferramentas */
-/* Butões */
-.button svg {
+#app-footer ul a {
   color: var(--font-color);
 }
 
-/* Links */
-.link{
+/* Padrões de ferramentas */
+a{
   color: var(--secondary-color);
   text-decoration:none;
 }
 
-#check{
+a ul {
   color: var(--secondary-color);
+  text-decoration:none;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  line-height: 30px;
+  padding: 3px;
+}
+
+button {
+  width: 230px;
+  height: 35px;
+  border-radius: 15px;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  border:none;
+}
+
+/* Muda a cor do "certo" e da seta */
+.check{
+  color: var(--secondary-color);
+}
+
+ .rightArrow{
+ color: var(--secondary-color);
+ transform: rotate(180deg);
 }
 
 /*Estilo do input type range*/
 .slidecontainer {
   width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slidecontainer p{
+  color: var(--shadow-color);
+  font-size: 14px;
 }
 
 .slider {
@@ -158,7 +193,164 @@ body{
   cursor: pointer;
 }
 
-/* Estilo dos inputs */
-.input{
-  height:50px; 
+/* Estilo dos inputs*/
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"] {
+  max-height: 45px;
+  max-width: 350px;
+  width: 250px;
+  padding: 10px;
+}
+
+/* Checkbox */
+.form{
+  margin-top: 25px;
+}
+
+.checkbox-container {
+  display: flex;
+  padding: 3px;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  display: flex;
+}
+
+.checkbox-container input[type='checkbox'] {
+  cursor: pointer;
+  opacity: 0;
+}
+
+.checkbox-container label::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin-right: 7px;
+  border: 1px solid black;
+}
+
+.checkbox-container input[type='checkbox']:checked + label::before {
+  content: '\002714';
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Estilo dos títulos */
+h1 {
+  color: #5A5A5A;
+  font-size: 18px;
+}
+
+h2{
+  font-size: 20px;
+  font-weight: Bold;
+  margin-left: -142px;
+  margin-top: 50px;
+}
+
+h3{
+  font-size: 16px;
+  margin-left: -40px;
+}
+
+h4{
+  margin-top: 10px;
+  color: #777;
+  font-size: 15px;
+}
+
+h5 {
+ font-weight: 600;
+ color: black;
+ font-size: 20px;
+}
+
+h6 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 18px;
+}
+
+/* Diferentes containers */
+.container-2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logotipo */
+.logoImg {
+  max-width: 146.37px;
+  max-height:143.01px;
+  margin-top: 80px;
+}
+
+/*tablas*/
+table {
+    font-family: 'Arial';
+    margin: 25px auto;
+    width: 90% !important;
+    border-collapse: collapse;
+    border: none !important;
+    /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.10), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05); */
+}
+table tr:hover {
+    background: #f4f4f4;
+}
+table tr:hover td {
+    color: #555;
+}
+table th, table td {
+    color: #999;
+    border: 1px solid #eee;
+    border-bottom: none !important;
+    border-top: none !important;
+    padding: 12px 35px;
+    border-collapse: collapse;
+    
+}
+table th {
+    background: rgba(151, 8, 8, 0.733);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+table th.last {
+    border-right: none;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child,
+table.Info tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child,
+table.Info tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table td:first-child, th:first-child{
+    border: none !important;
+}
+
+table td:last-child, th:last-child{
+    border: none !important;
 }

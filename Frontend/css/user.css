@@ -1,0 +1,55 @@
+/* Janela do perfil e editar perfil */
+.marginPicture {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.marginPicture ul{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#editProfile {
+    margin-top: 10px;
+}
+
+/* Janela novo Auditor */
+#formNewUser{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+/* Janela Login */
+#secure4allTxt {
+  font-weight: Bold;
+  font-size: 25px;
+}
+
+#mailInput {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#submitInput {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.container-2 i {
+    margin-left: 200px;
+    cursor: pointer;
+    margin-top: -26px;
+}
+
+/* Janela recuperar password */
+#mensagem {
+    margin-top: 150px;
+}
+#mensagem1, #continuar {
+    margin-top: 30px;
+}
+#confirmacao {
+    margin-top: 15px;
+}

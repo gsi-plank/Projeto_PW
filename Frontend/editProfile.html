@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
-    <link rel="stylesheet" href="./css/editProfile.css" />
+    <link rel="stylesheet" href="./css/user.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
     <title>Editar Perfil</title>
@@ -39,31 +39,31 @@
     </div>
  
 
-        <div id= "content" class="container">
-            <div class="item" id="marginPicture">
-                <ul>
+    <div class="container-3">
+        <div class="marginPicture">
+            <ul>
                 <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
                 <li><button id="editProfile" type="button">Editar foto de perfil</button></li>
-                </ul>
-            </div>
-            <div class="item">
+            </ul>
+        </div>
+        <form>
+            <div class="form-group">
                 <h4>Nova palavra-passe</h4>
-                <input id="newPassword" type="password" class="password">
+                <input id="newPassword" type="password" class="form-control">
             </div>
-            <div class="item">
+            <div class="form-group">
                 <h4>Confirmar palavra-passe</h4>
-                <input id="cofirmNewPassword" type="password" class="password">
+                <input id="cofirmNewPassword" type="password" class="form-control">
             </div>
-            <div class="item">
+            <div class="form-group">
                 <h4>Data de nascimento</h4>
-                <input type="date" class="date" value="1997-02-09">
+                <input type="date" class="form-control" value="1997-02-09">
             </div>
+        </form>
         </div>
     </div>
     
     
-    
-
     <div id="app-footer">
         <ul>
             <li><a href="mainPage.html" class="button"><svg width="30px" height="30px" viewBox="0 0 16 16"

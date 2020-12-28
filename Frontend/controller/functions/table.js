@@ -1,29 +1,32 @@
-let data = [];
+"use strict";
+export { fillTable, editable };
+// let data = [];
 
-data.head = [
-    "Full Name",
-    "WebSite",
-    "Contact No"
-]
+// data.head = [
+//     "Full Name",
+//     "WebSite",
+//     "Contact No"
+// ]
 
 
-data.body = [
-    {   "name": "John M",
-    "website": "http://john-m.com",
-    "contact": "9876543210"},
-    {   "name": "Ariana Smith",
-    "website": "https://araiana-smith.com",
-    "contact": "1234567890"},
-    {   "name": "Silver Bourne",
-    "website": "https://silver-bourne.com",
-    "contact": "988889888"},
-]
+// data.body = [
+//     {   "name": "John M",
+//     "website": "http://john-m.com",
+//     "contact": "9876543210"},
+//     {   "name": "Ariana Smith",
+//     "website": "https://araiana-smith.com",
+//     "contact": "1234567890"},
+//     {   "name": "Silver Bourne",
+//     "website": "https://silver-bourne.com",
+//     "contact": "988889888"},
+// ]
+
 
 function fillTable(data) {
+    addButton()
     let txt = "",
      head = data.head,
      body = data.body;
-
     // console.log(head);
     // console.log(body);
     txt +=`
@@ -50,11 +53,10 @@ function fillTable(data) {
     txt +=`
     </tbody></table>
     `
-    return txt
+    console.log(txt);
+    return txt;
 }
 
-let table = document.getElementById("dyanmicTable");
-table.innerHTML = fillTable(data, null)
 
 function editable (route) {
         $('#dyanmicTable').SetEditable({ $addButton: $('#addNewRow')});
@@ -79,45 +81,53 @@ function editable (route) {
             rowElim(this, route)
 }
 
+
+function addButton(){
+    
 let $tab_en_edic = null,
-    params = null,
-    colsEdi = null,
+params = null,
+colsEdi = null;
 
-    //editar o estilo dos butoes para darkMode
-    newColHtml = `
-    <div class="btn-group pull-right">
-	<button id="bEdit" type="button" class="btn btn-sm btn-default" onclick="rowEdit(this);">
-		<span class="glyphicon glyphicon-pencil" ></span>
-	</button>
-	<button id="bElim" type="button" class="btn btn-sm btn-default bElim">
-		<span class="glyphicon glyphicon-trash" ></span>
-	</button>
-	<button id="bAcep" type="button" class="btn btn-sm btn-default bAcep" style="display:none;" >
-		<span class="glyphicon glyphicon-ok" ></span>
-	</button>
-	<button id="bCanc" type="button" class="btn btn-sm btn-default" style="display:none;" onclick="rowCancel(this);">
-		<span class="glyphicon glyphicon-remove" ></span>
-	</button>
-    </div>
-    `,
-    colEdicHtml = '<td name="buttons">' + newColHtml + '</td>';
+//editar o estilo dos butoes para darkMode
+const newColHtml = `
+<div class="btn-group pull-right">
+<button id="bEdit" type="button" class="btn btn-sm btn-default" onclick="rowEdit(this);">
+    <span class="glyphicon glyphicon-pencil" ></span>
+</button>
+<button id="bElim" type="button" class="btn btn-sm btn-default bElim">
+    <span class="glyphicon glyphicon-trash" ></span>
+</button>
+<button id="bAcep" type="button" class="btn btn-sm btn-default bAcep" style="display:none;" >
+    <span class="glyphicon glyphicon-ok" ></span>
+</button>
+<button id="bCanc" type="button" class="btn btn-sm btn-default" style="display:none;" onclick="rowCancel(this);">
+    <span class="glyphicon glyphicon-remove" ></span>
+</button>
+</div>
+`,
 
-    $.fn.SetEditable = function (t) {
-        let n = {
-            columnsEd: null,
-            $addButton: null,
-            onEdit: function () { },
-            onDelete: function () { }
-        };
-        
-        params = $.extend(n, t), 
-        this.find("thead tr").append('<th name="buttons">Editar/Eleminar</th>'), 
-        this.find("tbody tr").append(colEdicHtml), 
-        $tab_en_edic = this,  params.$addButton != null && params.$addButton.click(function () {
-            rowAgreg()
-        }), 
-        params.columnsEd && (colsEdi = params.columnsEd.split(",")) != null
+colEdicHtml = '<td name="buttons">' + newColHtml + '</td>';
+
+$.fn.SetEditable = function (t) {
+    let n = {
+        columnsEd: null,
+        $addButton: null,
+        onEdit: function () { },
+        onDelete: function () { }
     };
+    
+    params = $.extend(n, t), 
+    this.find("thead tr").append('<th name="buttons"></th>'), 
+    this.find("tbody tr").append(colEdicHtml), 
+    $tab_en_edic = this,  params.$addButton != null && params.$addButton.click(function () {
+        rowAgreg()
+    }), 
+    params.columnsEd && (colsEdi = params.columnsEd.split(",")) != null
+};
+}
+
+
+ 
 
 function iterateFieldEdit(t, n) {
     function i(t) {
@@ -212,4 +222,4 @@ function tableToCSV(t) {
 }
 
 
-editable()
+

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="./css/checkList.css" type="text/css" />-->
+    <link rel="stylesheet" href="./css/occurrence.css" type="text/css" />
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
 
     <title>Registo de trabalho</title>
@@ -26,7 +26,7 @@
                     <p id="checklistTxt" class="title textCenter">Checklist</p>
                 </li>
 
-                <li><a href="occurrenceCost.html" class="button"><svg id="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
+                <li><a href="occurrenceCost.html" class="button"><svg class="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -34,23 +34,33 @@
             </ul>
         </div>
     </div>
-    <h5 id="registoTrabalho">2. Registo de trabalho:</h5>
-    <div id="content" class="container">
-        <div id="ckeckListForm" class="form">
+    
+    <div class="container-3">
+        <h5 id="registoTrabalho">2. Registo de trabalho:</h5>
+        <div class="form">
             <form action="/action_page.php">
-                <input type="checkbox" class="chb" id="action1" name="action1" value="Presente">
-                <span for="action1">Incêndio controlado</span><br>
-                <input type="checkbox" class="chb" id="action2" name="action2" value="Presente">
-                <span for="action2">Feridos assistidos</span><br>
-                <input type="checkbox" class="chb" id="action3" name="action3" value="Presente">
-                <span for="action3">Fonte de ignição encontrada</span><br>
-                <input type="checkbox" class="chb" id="action4" name="action4" value="Presente">
-                <span for="action4">Testemunhas entrevistadas</span><br>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="chb" id="action1" name="action1" value="Presente">
+                    <label for="action1">Incêndio controlado</label><br>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="chb" id="action2" name="action2" value="Presente">
+                    <label for="action2">Feridos assistidos</label><br>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="chb" id="action3" name="action3" value="Presente">
+                    <label for="action3">Fonte de ignição encontrada</label><br>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="chb" id="action4" name="action4" value="Presente">
+                    <label for="action4">Testemunhas entrevistadas</label><br>
+                </div>
+                <div class="checkbox-container">
                     <input type="checkbox" class="chb" id="action5" name="action5" value="Presente">
-                    <span for="action5">Incêndio extinto</span><br><br>
+                    <label for="action5">Incêndio extinto</label><br><br>
+                 </div>
             </form>
         </div>
-
     </div>
 
     <div id="app-footer">

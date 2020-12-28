@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/arrivalTime.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/occurrence.css" type="text/css"/>
   <link rel="stylesheet" href="./css/global.css" type="text/css"/>
   
   <title>Hora de chegada</title>
@@ -27,7 +27,7 @@
                     <p id="horaChegadaTxt" class="title textCenter">Chegada ao local</p>
                 </li>
                
-                <li><a href="checkList.html" class="button"><svg id="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
+                <li><a href="checkList.html" class="button"><svg class="rightArrow" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -38,11 +38,11 @@
     
  
 
-<div class="container" id="content">  
-    <h5> 1.Chegada ao Local:</h5>
+<div class="container-2">  
 
-    <label id="textConfirm" for="appt">Confirmar hora de chegada:</label>
-    <input id="horas" type="time" id="appt" name="appt">
+    <h5 id="chegadaTxt"> 1.Chegada ao Local:</h5>
+    <h4 for="horas">Confirmar hora de chegada:</h4>
+    <input id="horas" type="time" value='now'>
 
 </div>
 
@@ -66,5 +66,8 @@
                         alt="profile picture"></a></li>
         </ul>
     </div>
+    
+    <script type="text/javascript" src="./controller/arrivalTime.js"></script>
+    
 </body>
 </html>

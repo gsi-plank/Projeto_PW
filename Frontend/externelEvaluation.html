@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css" />
-    <link rel="stylesheet" href="./css/externelReview.css" type="text/css" />
+    <link rel="stylesheet" href="./css/occurrence.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Avaliação externa e do local</title>
 </head>
@@ -28,7 +28,7 @@
                     <p id="avaLocalExternalTxt" class="title textCenter">Avaliação local/externa</p>
                 </li>
 
-                <li><a href="occurrenceDate.html" id="btnRegister" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16"
+                <li><a href="occurrenceDate.html" id="btnRegister" class="button"><svg class="check" width="2em" height="2em" viewBox="0 0 16 16"
                             class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -36,41 +36,31 @@
             </ul>
         </div>
     </div>
+    
+    
+<div class="container-3">
     <div class="grid-container">
-     <div class="item1"><b id="titulo1">Avaliação Local:</b>
-    <input id="local" type="text" class="local"> </input>
-    
-    
-<form id="localava" action="/action_page.php">
-  <label for="myfile">Escolha ficheiros:</label>
-  <input type="file" id="myfile" name="myfile" multiple><br><br>
-</form>
+        <div class="item1">
+            <h4>Avaliação do local:</h4>
+            <input id="local" type="text" class="form-control"> </input>
+            <!--<form id="localava" action="/action_page.php">-->
+            <!--    <input type="file" id="myfile" name="myfile" multiple><br><br>-->
+            <!--</form>-->
+        </div>
+        <div class="item2">
+            <h4>Avaliação externa:</h4>
+            <input id="ext" type="text" class="form-control"> </input>
+            <!--<form id="externa" action="/action_page.php">-->
+            <!--    <input type="file" id="myfile1" name="myfile" title=" " multiple><br><br>-->
+            <!--</form>-->
+        </div>
+        <div id="externalReviewBox"></div>
+    </div>
+
+    <form id="testemunha" action="/action_page.php">
+        <button type="button" id="addWitness" name="addWitness" class="addWitness" >Adicionar Testemunha</button>
+    </form>
 </div>
-<div class="item2">
- <b id="titulo2" class="titulo2">Avaliação Externa:</b>
-    <input id="ext" type="text" class="ext"> </input>
-    
-    
-<form id="externa" action="/action_page.php">
-  <label for="myfile">Escolha ficheiros:</label>
-  <input type="file" id="myfile" name="myfile" multiple><br><br>
-</form>
-</div>
-<div id="externalReviewBox">
-</div>
-
-</div>
-<script>
- 
-</script>
-
-
-<form id="testemunha" action="/action_page.php">
-<button type="button" id="addWitness" name="addWitness" class="addWitness" >+ Adicionar Testemunha</button>
-</form>
-
-
-
 
  <div id="app-footer">
         <ul>
@@ -94,6 +84,8 @@
                         class="icon" alt="profile picture"></a></li>
         </ul>
     </div>
-    <script type="text/javascript" src="./controller/externelReview.controller.js"></script>
+    
+    <script type="text/javascript" src="./controller/externelReview.js"></script>
+    
 </body>
 </html>

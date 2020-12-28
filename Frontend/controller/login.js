@@ -1,7 +1,8 @@
+ alert("ferf")
+ 
  window.onload = function() {
-
-     //"view" Button
-     let view = document.getElementById("viewTxt");
+     
+     let view = document.getElementById("togglePassword");
      view.onclick = viewButton;
 
     let login = document.getElementById("submitInput");

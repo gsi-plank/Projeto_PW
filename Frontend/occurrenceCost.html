@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
-    <link rel="stylesheet" href="./css/occurrenceCost.css" />
+    <link rel="stylesheet" href="./css/occurrence.css" />
     <title>Custo da ocorrência</title>
     </head>
 
@@ -27,7 +27,7 @@
                     <p id="custoOcorrenciaTxt" class="title textCenter">Custo da ocorrência</p>
                 </li>
 
-                <li><a href="evaluatedOperation.html" class="button"><svg id="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
+                <li><a href="evaluatedOperation.html" class="button"><svg class="check" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check2"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -36,30 +36,32 @@
         </div>
     </div>
     
+    <div class="container-3">
     <h5 id="custoOcorrencia">3. Custo da ocorrência:</h5>
-    <div id= "content" class="container">
-            <div class="item">
+        <form id="formOccurrenceCost">
+            <div class="form-group">
                 <h4>Distância percorrida</h4>
-                <input id="newDistance" type="text" class="distance">
+                <input id="newDistance" type="text" class="form-control">
             </div>
-            <div class="item">
-                <h4>Combustível Gasto Pelo Veículo (100km)</h4>
-                <input id="newFuel" type="text" class="fuel">
+            <div class="form-group">
+                <h4>Combustível gasto pelo veículo (100km)</h4>
+                <input id="newFuel" type="text" class="form-control">
             </div>
-            <div class="item">  
+            <div class="form-group">  
                 <h4>Duração da operação</h4>
-                <input id="newDuration" type="text" class="duration">
+                <input id="newDuration" type="text" class="form-control">
             </div>
-            <div class="item">
+            <div class="form-group">
                 <h4>Nº de operacionais</h4>
-                <input id="newNumber"type="number" class="numberofPeople">
+                <input id="newNumber" type="number" class="form-control">
             </div>
-            <button id="submit" type="button" class="btn btn-primary" onclick="calcularValor()">Calcular total</button>
+        </form>
+            <button id="submit" type="button"  onclick="calcularValor()">Calcular total</button>
 
-    <h6 id="custoTotal">
-        Custo Total: <span id="preco"></span>
-    </h6>
-        </div>
+        <h6 id="custoTotal">
+            Custo Total: <span id="preco"></span>
+        </h6>
+    </div>
     
     <div id="app-footer">
         <ul>

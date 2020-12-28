@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
-    <link rel="stylesheet" href="./css/teamReview.css" />
+    <link rel="stylesheet" href="./css/occurrence.css" />
     <title>Avaliação da equipa</title>
 </head>
 
@@ -34,33 +34,45 @@
         </div>
     </div>
 
-    <div id="content" class="container">
+    <div class="container-3">
         <h2 id="equipaTxt">Avaliar a equipa:</h2>
         
             <div class="slidecontainer">
+                <div>
                 <h3> Interajuda </h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review1">
                 <p>Avaliação: <span id="value1"></span></p>
+                </div>
+                <div>
                 <h3> Interação com as testemunhas </h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review2">
                 <p>Avaliação: <span id="value2"></span></p>
+                </div>
+                <div>
                 <h3> Manuseamento do material </h3>
                 <input type="range" name="slider" min="0" max="5" value="0" class="slider" id="review3">
                 <p>Avaliação: <span id="value3"></span></p>
+                </div>
+                <div>
                 <h3> Rapidez </h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review4">
                 <p>Avaliação: <span id="value4"></span></p>
+                </div>
+                <div>
                 <h3> Eficiência</h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review5">
                 <p>Avaliação: <span id="value5"></span></p>
+                </div>
+                <div>
                 <h3> Interação com as vítimas </h3>
                 <input type="range" min="0" max="5" value="0" class="slider" id="review6">
                 <p>Avaliação: <span id="value6"></span></p>
+                </div>
             </div>
 
-        <div id="observacoes">
-            <h4>Observações:</h4>
-            <input type="text" class="inputText" size="35">
+        <div>
+            <h3 id="obserTxt">Observações:</h3>
+            <input id="observacoes" type="text" class="inputText" size="35">
         </div>
     </div>
 
@@ -86,7 +98,7 @@
         </ul>
     </div>
 
-    <script type="text/javascript" src="./controller/teamReview.controller.js"></script>
+    <script type="text/javascript" src="./controller/teamReview.js"></script>
 </body>
 
 </html>
