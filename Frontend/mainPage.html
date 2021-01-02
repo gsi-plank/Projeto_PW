@@ -4,12 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/mainPage.css" type="text/css" />
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
     <title>SECURE4ALL</title>
 </head>
 
@@ -18,9 +18,18 @@
         <p id="rankingTxt" class="title textCenter">SECURE4ALL</p>
     </div>
     
-    <div id="content">
-        <img src="images/vizela.png"></img>
-    </div>
+
+  <div id="map"></div>
+  <div id="msg"></div>
+  <script src="./controller/mainPage.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM&callback=initMap">
+  </script>
+    
+    
+    
+    
+    
     <a href="./occurrenceList.html"><button id="editProfile" type="button" class="title textCenter">Ocorrências</button></a>
 
 

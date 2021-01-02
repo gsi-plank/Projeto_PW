@@ -9,21 +9,20 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/occurrence.css" type="text/css">
   <link rel="stylesheet" href="./css/global.css" type="text/css" />
   
   <title>Dashboard</title>
 </head>
 
 <body>
-        <div id="app-header">
-             <p id="rankingTxt" class="title textCenter">Estatísticas</p>
-        </div>
-        
-        
-        
-    <div class="container">
-        <div class="stv-radio-buttons-wrapper">
+    
+    <div id="app-header">
+        <p id="rankingTxt" class="title textCenter">Estatísticas</p>
+    </div>
+    
+    <div class="container-3">
+        <div class= "radioButtons" class="stv-radio-buttons-wrapper">
 	        <input type="radio" class="stv-radio-button" name="radioButtonTest" value="1" id="button1" checked />
 	        <label for="button1">Esta semana</label>
 	        <input type="radio" class="stv-radio-button" name="radioButtonTest" value="2" id="button2" />
@@ -34,18 +33,18 @@
         <canvas id="lineChart"></canvas>
     </div>
     
-    <div class="container">
-        <div class="boxThree">
-            <ul id="escolha">
-                <li>Selecionar ocorrência:</li>
-                <li><img src="images/down.png"></img></li>
-            </ul>
-            <span id= "valor" class="dot">20</span>
-            <h6>Pessoas entrevistadas</h6>
+    <!--<div class="container">-->
+    <!--    <div class="boxThree">-->
+    <!--        <ul id="escolha">-->
+    <!--            <li>Selecionar ocorrência:</li>-->
+    <!--            <li><img src="images/down.png"></img></li>-->
+    <!--        </ul>-->
+    <!--        <span id= "valor" class="dot">20</span>-->
+    <!--        <h6>Pessoas entrevistadas</h6>-->
             
-        </div>
+    <!--    </div>-->
         
-    </div>
+    <!--</div>-->
         
     <div class="container">
     <canvas id="barChart"></canvas>

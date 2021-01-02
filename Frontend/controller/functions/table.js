@@ -25,12 +25,11 @@ export { fillTable, editable };
 function fillTable(data) {
     addButton()
     let txt = "",
-     head = data.head,
-     body = data.body;
-    // console.log(head);
-    // console.log(body);
+    head = data.head,
+    body = data.body;
+    let keys = Object.keys(data.body[0]);
     txt +=`
-    <table class="table table-bordered table-striped  table-condensed  text-center" id="DyanmicTable">
+    <table class="table table-bordered table-striped  table-condensed  text-center" id="dyanmicTable">
 	<thead><tr>
     `
 
@@ -46,8 +45,12 @@ function fillTable(data) {
     `
 
     for(let i=0;i< body.length; i++) {
-        txt +=`<tr><td>${body[i].name}</td><td>${body[i].website}</td><td>${body[i].contact}</td></tr>
-        `
+        txt += "<tr>";
+        for(let j = 0; j < keys.length; j++) {
+            txt +=`<td>${body[i][keys[j]]}</td>
+            `
+        }
+        txt+= "</tr>";
     }
 
     txt +=`

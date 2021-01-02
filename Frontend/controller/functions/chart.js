@@ -1,9 +1,6 @@
- 
- 
+"use strict"; 
 // Link for setUps Chart
 // https://www.chartjs.org/docs/latest/configuration/title.html#position
-
-
 
 //Get root color
 let docStyle = getComputedStyle(document.documentElement);

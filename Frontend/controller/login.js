@@ -1,5 +1,3 @@
- alert("ferf")
- 
  window.onload = function() {
      
      let view = document.getElementById("togglePassword");
@@ -21,10 +19,6 @@
              view.type = "password";
          }
      }
-     new Validator(document.querySelector('form[name="form"]'), function(err, res) {
-
-
-     });
  };
 
 //   SPLASH

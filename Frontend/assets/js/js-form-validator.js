@@ -2,6 +2,8 @@
 * Simple Encapsulation Class template
 */
 
+// https://github.com/Via-profit/js-form-validator
+
 (function (root) {
 
     "use strict";

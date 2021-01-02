@@ -2,9 +2,6 @@
 import * as fetch from "./functions/fetch.js";
 import * as table from "./functions/table.js";
 
-
-
-
 window.onload = function() {
 
       ( function fill() {
@@ -16,26 +13,26 @@ window.onload = function() {
         let data = [];
 
         data.head = [
-            "Full Name",
-            "WebSite",
-            "Contact No"
+            "ID",
+            "Nome",
+            "Email"
         ]
 
 
         data.body = [{
-                "name": "John M",
-                "website": "http://john-m.com",
-                "contact": "9876543210"
+                "name": "64359",
+                "website": "Pedro Teixeira",
+                "contact": "teixeira@gmail.com"
             },
             {
-                "name": "Ariana Smith",
-                "website": "https://araiana-smith.com",
-                "contact": "1234567890"
+                "name": "42510",
+                "website": "Dong Xuyong",
+                "contact": "dong@gmail.com"
             },
             {
-                "name": "Silver Bourne",
-                "website": "https://silver-bourne.com",
-                "contact": "988889888"
+                "name": "49782",
+                "website": "Beatriz Fernandes",
+                "contact": "coelhinha@live.com.pt"
             },
         ]
 

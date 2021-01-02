@@ -4,7 +4,7 @@ export { filtrator };
 function filtrator(occurrences, type) {
         //confirmar o tipo
         console.log(type);
-
+        console.log(occurrences)
         let occurrencesFil = [];
 
         // Get the current date
@@ -14,9 +14,10 @@ function filtrator(occurrences, type) {
 
         if (type === 0) {
             for (const occurrence of occurrences) {
-                if (DateDiff.inWeeks(today, new Date(occurrence.arrival)) == 0){
+                
+                if (DateDiff.inDays(new Date(occurrence.arrival), today) <= 7){
                     //cofirmar a ocorrencia
-                    console.log(DateDiff.inWeeks(today, new Date(occurrence.arrival)));
+                    console.log(occurrence)
                 occurrencesFil.push(occurrence);
                 }
             }
@@ -25,7 +26,7 @@ function filtrator(occurrences, type) {
         else
             if (type === 1) {
                 for (const occurrence of occurrences) {
-                    if (DateDiff.inMonths(today, new Date(occurrence.arrival)) == 0) {
+                    if (DateDiff.inMonths( new Date(occurrence.arrival), today) == 1) {
                         //cofirmar a ocorrencia
                         console.log(occurrence);
                     occurrencesFil.push(occurrence);
@@ -36,7 +37,8 @@ function filtrator(occurrences, type) {
             else
                 if (type === 2) {
                     for (const occurrence of occurrences) {
-                        if (DateDiff.inYears(today, new Date(occurrence.arrival)) == 0) {
+                        console.log(DateDiff.inYears(new Date(occurrence.arrival), today))
+                        if (DateDiff.inYears(new Date(occurrence.arrival), today) == 1) {
                             //cofirmar a ocorrencia
                             console.log(occurrence);
                         occurrencesFil.push(occurrence);
