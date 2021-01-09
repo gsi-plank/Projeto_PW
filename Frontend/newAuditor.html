@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <link rel="stylesheet" href="./css/user.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/forms.css">
     <title>Novo Auditor</title>
 </head>
 
@@ -38,38 +39,53 @@
 
     
     <div class="container-3">
-        <form id="formNewUser" name="formNewUser"  action="" method="POST">
-            <div class="form-group">
-                <h4 class="control-label">ID auditor:</h4>
-                <input type="text" class="form-control" id="id_auditor" name="idAuditor"/>
+        <form name="demo-form-1" id="formNewUser" action="" method="POST">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">ID auditor:</h4>
+                    <input type="text" id="id_auditor" name="idAuditor" data-rule="required|integer" autocomplete="off"/>
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">ID login:</h4>
-                <input type="text" class="form-control" id="id_login" name="idLogin"/>
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">ID login:</h4>
+                    <input type="text" id="id_login" name="idLogin" data-rule="required|integer" autocomplete="off"/>
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">Nome:</h4>
-                <input type="text" class="form-control" id="name" name="name" data-rule="required|name" />
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Nome:</h4>
+                    <input type="text" id="name" name="name" data-rule="required|name" autocomplete="off" />
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">Email:</h4>
-                <input type="text" class="form-control" name="email" id="email" data-rule="required|email" />
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Email:</h4>
+                    <input type="text" name="email" id="email" data-rule="required|email" autocomplete="off"/>
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">Data de nascimento:</h4>
-                <input type="date" class="form-control" name="date" id="date" data-rule="required|date" />
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Data de nascimento:</h4>
+                    <input type="date"  name="date" id="date" data-rule="required|date" autocomplete="off" />
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">Palavra-passe:</h4>
-                <input type="password" class="form-control" name="password" id="pwd" data-rule="required|minlength-6"
-                    autocomplete="off">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Palavra-passe:</h4>
+                    <input type="password" name="password" id="pwd" data-rule="required|minlength-6" autocomplete="off">
+                </div>
             </div>
-            <div class="form-group">
-                <h4 class="control-label">Confirmação da palavra-passe:</h4>
-                <input type="password" class="form-control" name="rep_pwd" id="rep_pwd"  data-rule="required|password">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Confirmação da palavra-passe:</h4>
+                    <input type="password" name="rep_pwd" id="rep_pwd"  data-rule="required|password" autocomplete="off">
+                </div>
             </div>
-            <div class="form-group">
-                <input id="createbutton" type="submit" value="Submeter" class="btn btn-default"></input>
+            <div class="field">
+                <div class="input-wrapper">
+                    <input id="createbutton" type="submit" value="Submeter" class="btn btn-default"></input>
+                </div>
             </div>
         </form>
     </div>
@@ -98,7 +114,8 @@
         </ul>
     </div>
    
-    <script type="text/javascript" src="./assets/js/js-form-validator.js"></script>
-    <script type="text/javascript" src="./controller/newAuditor.js"></script>
+    <script src="./assets/js/js-form-validator.js"></script>
+	<script src="./controller/form.js"></script>
+	
 </body>
 </html>

@@ -38,13 +38,15 @@
 #submitInput {
     margin-top: 25px;
     margin-bottom: 20px;
+    width: 250px;
 }
 
 .container-2 i {
     position: absolute;
-    margin-left: 200px;
+    margin-left: 210px;
     cursor: pointer;
-    margin-top: -26px;
+    margin-top: -33px;
+    color: #3D3D3D;
 }
 
 /* Janela recuperar password */

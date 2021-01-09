@@ -11,26 +11,28 @@
 }
 
 /* Estilo Padrão */
-:root{
-  --primary-color: #E7E7E7;
-  --secondary-color: #AB0404;
-  --shadow-color: #777;
-  --font-color: #000000;
-  --background-color: #FFFFFF;
-  --white: #FFFFFF; 
-  --links-color: #AB0404;
-}
+/*:root{*/
+/*  --primary-color: #E7E7E7;*/
+/*  --secondary-color: #AB0404;*/
+/*  --shadow-color: #777;*/
+/*  --font-color: #000000;*/
+/*  --background-color: #FFFFFF;*/
+/*  --white: #FFFFFF; */
+/*  --links-color: #AB0404;*/
+/*  --table-color: #f4f4f4*/
+/*}*/
 
 /* Estilo padrão para dark mode */
-/*  :root{*/
-/*    --primary-color: #FFFFFF;*/
-/*    --secondary-color: #AB0404;*/
-/*    --shadow-color:  #777;*/
-/*    --font-color: #FFFFFF;*/
-/*    --background-color:#3D3D3D;*/
-/*    --white: #FFFFFF;*/
-/*    --links-color: #FFFFFF;*/
-/*}*/
+:root{
+  --primary-color: #FFFFFF;
+  --secondary-color: #AB0404;
+  --shadow-color:  #777;
+  --font-color: #FFFFFF;
+  --background-color:#3D3D3D;
+  --white: #FFFFFF;
+  --links-color: #FFFFFF;
+  --table-color: #363535;
+}
 
 html {
   background: var(--background-color);
@@ -340,11 +342,11 @@ table {
 }
 
 table tr:hover {
-  background: #f4f4f4;
+  background: var(--table-color);
 }
 
 table tr:hover td {
-  color: #555;
+  color: var(--font-color);
 }
 
 table th, table td {
@@ -366,6 +368,11 @@ table th {
 
 table th.last {
   border-right: none;
+}
+
+/* Zebra Striped Table */
+tr:nth-child(even) {
+  background-color: var(--background-color);
 }
 
 /* top-left border-radius */
@@ -407,21 +414,17 @@ table td:last-child, th:last-child{
   color: var(--background-color);
 }
 
-
-
-
-
 /*GPS*/
 #map{ 
-      position:absolute;
-      margin-top: 100px;
-      height:50%;
-      width:70%;
-      text-align:center;
-      justify-content:center;
-    }
+  position:absolute;
+  margin-top: 100px;
+  height:50%;
+  width:90%;
+  text-align:center;
+  justify-content:center;
+}
 
-    /* Optional: Makes the sample page fill the window. */
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;

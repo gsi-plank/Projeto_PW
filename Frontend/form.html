@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<title>Js Form Validator | Javascript validator without dependencies</title>
+	
+
+	<link rel="stylesheet" href="./css/forms.css">
+
+</head>
+<body>
+						<form name="demo-form-1">
+							<div class="field">
+								<div class="input-wrapper">
+									<input type="text" name="name" id="example-1-name" data-rule="required|name" autocomplete="off">
+									<label class="placeholder" for="example-1-name">Your name</label>
+								</div>
+							</div>
+
+							<div class="field">
+								<div class="input-wrapper">
+									<input type="text" name="email" id="example-1-email" placeholder="Email" data-rule="required|email" autocomplete="off">
+									<!--<label class="placeholder" for="example-1-email">E-mail</label>-->
+								</div>
+							</div>
+
+							<div class="field">
+								<div class="input-wrapper">
+									<input type="password" name="password" id="example-1-password" data-rule="required|minlength-6" autocomplete="off">
+									<label class="placeholder" for="example-1-password">Password</label>
+								</div>
+							</div>
+
+							<div class="field">
+								<input type="submit" value="Create account">
+							</div>
+						</form>
+
+	<script src="./assets/js/js-form-validator.js"></script>
+	<script src="./controller/form.js"></script>
+
+</body>
+</html>

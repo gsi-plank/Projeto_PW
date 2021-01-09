@@ -30,11 +30,11 @@
 }
 
 .points {
-    color: var(--secondary-color);
+    color: var(--links-color);
 }
 
 .box{
-    background: var(--primary-color);
+    background: var(--table-color);
     box-shadow: 0 0 5px var(--shadow-color);
     border-radius: 8px;
 }

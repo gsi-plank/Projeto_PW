@@ -36,48 +36,48 @@ async function initMap() {
         map = new google.maps.Map(document.getElementById('map'), options);
 
         infoWindow = new google.maps.InfoWindow();
-        // let currentPosition
-        const locationButton = document.createElement("button");
-        locationButton.textContent = "Clica para a sua posição atual";
-        locationButton.classList.add("custom-map-control-button");
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+        // // let currentPosition
+        // const locationButton = document.createElement("button");
+        // locationButton.textContent = "Clica para a sua posição atual";
+        // locationButton.classList.add("custom-map-control-button");
+        // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
-        // let currentPosition = 
-        locationButton.addEventListener("click", () => {
-            // Try HTML5 geolocaiton
+        // // let currentPosition = 
+        // locationButton.addEventListener("click", () => {
+        //     // Try HTML5 geolocaiton
             
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                        };
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent("Location found.");
-                        infoWindow.open(map);
-                        map.setCenter(pos);
-                        CurrentPosition(pos);
-                    },
-                    () => {
+        //     if (navigator.geolocation) {
+        //         navigator.geolocation.getCurrentPosition(
+        //             (position) => {
+        //                 const pos = {
+        //                     lat: position.coords.latitude,
+        //                     lng: position.coords.longitude,
+        //                 };
+        //                 infoWindow.setPosition(pos);
+        //                 infoWindow.setContent("Location found.");
+        //                 infoWindow.open(map);
+        //                 map.setCenter(pos);
+        //                 CurrentPosition(pos);
+        //             },
+        //             () => {
                         
-                        handleLocationError(true, infoWIndow, map.getCenter())
-                    }
+        //                 handleLocationError(true, infoWIndow, map.getCenter())
+        //             }
                    
-                );
-            } else {
-                //Browser dosn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter())
+        //         );
+        //     } else {
+        //         //Browser dosn't support Geolocation
+        //         handleLocationError(false, infoWindow, map.getCenter())
 
-            }
-        }
-        )
+        //     }
+        // }
+        // )
 
 
-        let currentPosition;
-        function CurrentPosition(a){
-            currentPosition = a;
-        }
+        // let currentPosition;
+        // function CurrentPosition(a){
+        //     currentPosition = a;
+        // }
 
         
         let markers = await createMarkers(locations)
