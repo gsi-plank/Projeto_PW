@@ -89,19 +89,18 @@ let massOcuChart = new Chart(chart, {
 
 
 // bar Chart
-// let barChart = document.getElementById('barChart').getContext('2d');
-function createBarChart(chart, label, data) {
+let barChart = document.getElementById('barChart').getContext('2d');
+function createBarChart(chart, label, data, colors) {
 
 
 let EquipeReviewChart = new Chart(chart, {
-  type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+  type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data:{
     labels: label,
     datasets:[{
-      label:'Nota',
+      label:'Avaliação',
       data: data,
-      //backgroundColor:'green',
-      backgroundColor:[secondaryColor, shadowColor, primaryColor],
+      backgroundColor:colors,
       borderWidth:1,
       hoverBorderWidth:3,
       hoverBorderColor:'#000',
@@ -111,22 +110,21 @@ let EquipeReviewChart = new Chart(chart, {
     title:{
       display:true,
       text:'Avaliação média por equipa',
-      fontSize:20
+      fontSize:18
     },
     legend:{
       display:false,
       position:'right',
       labels:{
         fontColor:fontColor
-    // enabled: false
       }
     },
     layout:{
       padding:{
-        left:50,
-        right:0,
+        left:30,
+        right:30,
         bottom:0,
-        top:0
+        top:20
       }
     },
     tooltips:{
@@ -143,11 +141,76 @@ let EquipeReviewChart = new Chart(chart, {
         }],
         yAxes: [{
             stacked: true,
-            // gridLines: {
-            //     display: false
-            // }
+            gridLines: {
+                display: false
+            }
         }]
     }
   }
+});
+}
+
+//  Line Chart
+function createLineChart2(chart, label, data) {
+
+let witnessesChart = new Chart(chart, {
+  type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+  data:{
+    labels:label,
+    datasets:[{
+      label:'Testemunhas',
+      data:data,
+      backgroundColor: shadowColor,
+      borderWidth:1,
+      hoverBorderWidth:3,
+      hoverBorderColor:'#000'
+    }]
+  },
+  options:{
+    title:{
+      display:true,
+      text:'Número de testemunhas por ocorrência',
+      fontSize:18
+    },
+    legend:{
+      display:false,
+      position:'right',
+      labels:{
+        fontColor:fontColor
+      }
+    },
+    layout:{
+      padding:{
+        left:30,
+        right:30,
+        bottom:0,
+        top:30
+      }
+    },
+    tooltips:{
+      enabled:true
+    },
+    scales: {
+        xAxes: [{
+            ticks: {
+                min: 0 // Edit the value according to what you need
+            },
+            gridLines: {
+                display: false
+            }
+        }],
+        yAxes: [{
+            stacked: true,
+            gridLines: {
+                display: false
+            },
+            ticks: {
+                min: 0,
+                stepSize: 1
+            }
+        }]
+    }
+  }
+  
 });
 }

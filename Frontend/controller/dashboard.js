@@ -39,20 +39,20 @@ let occurrences = [
 
 let today = new Date();
 
-fillChart(0);
+fillLineChart(0);
 $("#button1").click(function () {
-  fillChart(0);
+  fillLineChart(0);
 });
 $("#button2").click(function () {
-  fillChart(1);
+  fillLineChart(1);
 });
 $("#button3").click(function () {
-  fillChart(2);
+  fillLineChart(2);
 });
 
 
 
-function fillChart(type) {
+function fillLineChart(type) {
   //Confirmar o tipo
   console.log(type);
   
@@ -61,15 +61,47 @@ function fillChart(type) {
   let occurrenceSel = selector.filtrator(occurrences, type);
 
   let lineChart = document.getElementById('lineChart').getContext('2d');
-  let labelChart = getLabelChart(type);
-  let dataChart = getOccurrencesArryChart(occurrenceSel, type);
-  chart.createLineChart(lineChart, labelChart, dataChart);
-  
-  
-
+  let labelLineChart = getLabelChart(type);
+  let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
+  chart.createLineChart(lineChart, labelLineChart, dataLineChart);
 }
 
+// (function(){
+  
+//   let lineChart2 = document.getElementById('lineChart2').getContext('2d');
+//   let labelLineChart = getLabelChart(type);
+//   let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
+//   chart.createLineChart(lineChart, labelLineChart, dataLineChart);
+// })
 
+(function(){
+  
+  let barChart = document.getElementById("barChart").getContext('2d');
+  let labelBarChart = ["Equipa 1", "Equipa 2", "Equipa 8", "Equipa 3", "Equipa 5"];
+  let dataBarChart = [5,2,1,4,3];
+  let colors = getColorsNeed(dataBarChart);
+  chart.createBarChart(barChart, labelBarChart, dataBarChart, colors)
+})()
+
+function getColorsNeed(data){
+  //Get root color
+let docStyle = getComputedStyle(document.documentElement);
+//get variable
+
+let secondaryColor = docStyle.getPropertyValue('--secondary-color');
+let shadowColor = docStyle.getPropertyValue('--shadow-color');
+let fontColor = docStyle.getPropertyValue('--font-color');
+
+let colors = [];
+
+for(let i=0; i< data.length; i++){
+  if(i%2==0){
+    colors.push(secondaryColor)
+  } else
+  colors.push(shadowColor)
+}
+return colors;
+}
 // +++++++++++++++++++gerador de legendas++++++++++++++++++++++++++++++++++
 function getLabelChart(key) {
   switch (key) {
