@@ -4,8 +4,7 @@ import * as selector from "./functions/selectorWeekMonthYear.js"
 
 
 
-let occurrences = [
-  {
+let occurrences = [{
     "id_occurrence": "534",
     "arrival": "2020-12-29",
     "departure": "2020-12-12"
@@ -40,13 +39,13 @@ let occurrences = [
 let today = new Date();
 
 fillLineChart(0);
-$("#button1").click(function () {
+$("#button1").click(function() {
   fillLineChart(0);
 });
-$("#button2").click(function () {
+$("#button2").click(function() {
   fillLineChart(1);
 });
-$("#button3").click(function () {
+$("#button3").click(function() {
   fillLineChart(2);
 });
 
@@ -55,52 +54,61 @@ $("#button3").click(function () {
 function fillLineChart(type) {
   //Confirmar o tipo
   console.log(type);
-  
+
   // Filtrar a lista de ocorrencias
 
   let occurrenceSel = selector.filtrator(occurrences, type);
-
+  
   let lineChart = document.getElementById('lineChart').getContext('2d');
-  let labelLineChart = getLabelChart(type);
-  let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
+  
+  // se nao existir ocorrencias nesse periodo de tempo 
+  if (occurrenceSel.length == 0) {
+    let labelLineChart = getLabelChart(type);
+    let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
+    chart.createLineChart(lineChart, labelLineChart, dataLineChart);
+    return;
+  }
+  
+  let labelLineChart = [];
+  let dataLineChart = [];
   chart.createLineChart(lineChart, labelLineChart, dataLineChart);
 }
 
-// (function(){
-  
-//   let lineChart2 = document.getElementById('lineChart2').getContext('2d');
-//   let labelLineChart = getLabelChart(type);
-//   let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
-//   chart.createLineChart(lineChart, labelLineChart, dataLineChart);
-// })
+(function() {
 
-(function(){
-  
+  //Avaliação equipa
   let barChart = document.getElementById("barChart").getContext('2d');
   let labelBarChart = ["Equipa 1", "Equipa 2", "Equipa 8", "Equipa 3", "Equipa 5"];
-  let dataBarChart = [5,2,1,4,3];
+  let dataBarChart = [5, 2, 1, 4, 3];
   let colors = getColorsNeed(dataBarChart);
-  chart.createBarChart(barChart, labelBarChart, dataBarChart, colors)
-})()
+  chart.createBarChart(barChart, labelBarChart, dataBarChart, colors);
 
-function getColorsNeed(data){
+  //Testemunhas
+  let lineChart2 = document.getElementById("lineChart2").getContext('2d');
+  let labelLineChart2 = ["Oc 251", "Oc 444", "Oc 120", "Oc 005", "Oc 200"];
+  let dataLineChart2 = [3, 0, 1, 4, 2];
+  chart.createLineChart2(lineChart2, labelLineChart2, dataLineChart2);
+
+})();
+
+function getColorsNeed(data) {
   //Get root color
-let docStyle = getComputedStyle(document.documentElement);
-//get variable
+  let docStyle = getComputedStyle(document.documentElement);
+  //get variable
 
-let secondaryColor = docStyle.getPropertyValue('--secondary-color');
-let shadowColor = docStyle.getPropertyValue('--shadow-color');
-let fontColor = docStyle.getPropertyValue('--font-color');
+  let secondaryColor = docStyle.getPropertyValue('--secondary-color');
+  let graficColor = docStyle.getPropertyValue('--grafic-color');
 
-let colors = [];
+  let colors = [];
 
-for(let i=0; i< data.length; i++){
-  if(i%2==0){
-    colors.push(secondaryColor)
-  } else
-  colors.push(shadowColor)
-}
-return colors;
+  for (let i = 0; i < data.length; i++) {
+    if (i % 2 == 0) {
+      colors.push(secondaryColor);
+    }
+    else
+      colors.push(graficColor);
+  }
+  return colors;
 }
 // +++++++++++++++++++gerador de legendas++++++++++++++++++++++++++++++++++
 function getLabelChart(key) {
@@ -114,7 +122,8 @@ function getLabelChart(key) {
   }
 
 }
- function getDayOfWeekLabels() {
+
+function getDayOfWeekLabels() {
   let array = [];
   //  obter o dia da semana de hoje
   let numDay = today.getDay();
@@ -122,11 +131,11 @@ function getLabelChart(key) {
   // obter os ultimos 6 dias
   let aux = numDay;
   for (let i = 0; i < 7; i++) {
-    array.push(getDayOfWeek(aux))
+    array.push(getDayOfWeek(aux));
     aux++;
     aux = aux % 7;
-  } 
-  console.log(array)
+  }
+  console.log(array);
   return array;
 }
 
@@ -160,7 +169,7 @@ function getMonthOfYearLabels() {
     aux = aux % 12;
   }
 
-  console.log(array)
+  console.log(array);
   return array;
 }
 
@@ -202,7 +211,7 @@ function getThirtyDaysLabel() {
   let endDay = today.getDate();
   let endMonth = getMonthsOfYear(today.getMonth());
   array[0] = startDay + " " + startMonth;
-  
+
   array[29] = endDay + " " + endMonth;
 
   return array;
@@ -219,7 +228,7 @@ function getOccurrencesArryChart(occurrences, type) {
     let sameOccuDaysInWeek = new Array(7).fill(0);
 
     for (const occurrence of occurrences) {
-      index = getIndexWeek(occurrence.arrival)
+      index = getIndexWeek(occurrence.arrival);
       // somar 1 ao posicao do array do dia da semana
       sameOccuDaysInWeek[index]++;
     }
@@ -241,7 +250,7 @@ function getOccurrencesArryChart(occurrences, type) {
     // o ultimo elemento da array eh o mes de hoje
     let occuInMonths = new Array(12).fill(0);
     for (const occurrence of occurrences) {
-      index = getIndexMonthInYear(occurrence.arrival)
+      index = getIndexMonthInYear(occurrence.arrival);
       occuInMonths[index]++;
     }
     array = occuInMonths;
@@ -258,7 +267,7 @@ function getIndexWeek(date) {
 
 function getIndexThirtyDays(date) {
   // Obter o tempo em milisegundos desde meia noite de 1970/01/01 
-  let occuDate = new Date(date).getTime(); 
+  let occuDate = new Date(date).getTime();
 
   // Um dia em milisegundos
   let oneDay = 24 * 60 * 60 * 1000;

@@ -19,7 +19,8 @@
   --background-color: #FFFFFF;
   --white: #FFFFFF; 
   --links-color: #AB0404;
-  --table-color: #f4f4f4
+  --table-color: #f4f4f4;
+  --grafic-color: #DEDEDE;
 }
 
 /* Estilo padrão para dark mode */
@@ -32,6 +33,7 @@
 /*  --white: #FFFFFF;*/
 /*  --links-color: #FFFFFF;*/
 /*  --table-color: #363535;*/
+  /*--grafic-color: #DEDEDE;*/
 /*}*/
 
 html {

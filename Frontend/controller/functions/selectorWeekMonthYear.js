@@ -18,11 +18,7 @@ function filtrator(occurrences, type) {
         
                 if (DateDiff.inDays(arrivalOccu, today) < 7){
 
-                    //Obter os dia da semana
-                    occurrence.dayInWeek = arrivalOccu.getDay();
-                    //Obter os dias do mes 
-                    // occurrence.daysInMonth = getDaysInMonth(arrivalOccu.getMonth(), arrivalOccu.getFullYear())
-
+            
                     //cofirmar a ocorrencia
                     console.log(occurrence)
                     occurrencesFil.push(occurrence);
@@ -38,12 +34,6 @@ function filtrator(occurrences, type) {
     
                     if (DateDiff.inDays(arrivalOccu, today) <= 30) {
                         
-
-                        // Obter os dias de diferenca entre hoje e os 30 dia atras
-
-
-                        //Obter os dia da semana
-                        occurrence.dayInWeek = arrivalOccu.getDay();
                         
                         //cofirmar a ocorrencia
                         console.log(occurrence);
@@ -58,9 +48,6 @@ function filtrator(occurrences, type) {
                         let arrivalOccu = new Date(occurrence.arrival);
                         
                         if (DateDiff.inMonths(arrivalOccu, today) < 12) {
-        
-                            // 0 = Janeiro
-                            occurrence.month = arrivalOccu.getMonth();
                             //cofirmar a ocorrencia
                             console.log(occurrence);
                         occurrencesFil.push(occurrence);

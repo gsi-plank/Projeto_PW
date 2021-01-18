@@ -38,10 +38,6 @@ let occurrences = [
 
 window.onload = function () {
 
-    const btnWeek = document.getElementById("button1");
-    const btnMonth = document.getElementById("button2");
-    const btnYear = document.getElementById("button3");
-    
     fillTable(0);
     $("#button1").click(function(){
         fillTable(0);
@@ -62,6 +58,14 @@ window.onload = function () {
         // Filtrar a lista de ocorrencias
         
         let occurrenceSel = selector.filtrator(occurrences, type);
+        
+        // se nao existir correncias
+        if(occurrenceSel.length == 0){
+            let tab = document.getElementById("tableList");
+            tab.innerHTML =  "";
+            return;
+        }
+        
         let data = []
         
         data.head = [

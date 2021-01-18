@@ -1,5 +1,5 @@
 "use strict";
-export { createLineChart, createBarChart};
+export { createLineChart, createBarChart, createLineChart2};
 // Link for setUps Chart
 // https://www.chartjs.org/docs/latest/configuration/title.html#position
 
@@ -11,6 +11,7 @@ let secondaryColor = docStyle.getPropertyValue('--secondary-color');
 let shadowColor = docStyle.getPropertyValue('--shadow-color');
 let fontColor = docStyle.getPropertyValue('--font-color');
 let backgroundColor = docStyle.getPropertyValue('--background-color');
+let graficColor = docStyle.getPropertyValue('--grafic-color');
 
 
 
@@ -41,8 +42,8 @@ let massOcuChart = new Chart(chart, {
   options:{
     title:{
       display:true,
-      text:'Ocorrências Semanais',
-      fontSize:18
+      text:'Número de ocorrências',
+      fontSize:16
     },
     legend:{
       display:false,
@@ -110,7 +111,7 @@ let EquipeReviewChart = new Chart(chart, {
     title:{
       display:true,
       text:'Avaliação média por equipa',
-      fontSize:18
+      fontSize:16
     },
     legend:{
       display:false,
@@ -150,7 +151,7 @@ let EquipeReviewChart = new Chart(chart, {
 });
 }
 
-//  Line Chart
+//  Line Chart2 - Testemunhas 
 function createLineChart2(chart, label, data) {
 
 let witnessesChart = new Chart(chart, {
@@ -160,7 +161,7 @@ let witnessesChart = new Chart(chart, {
     datasets:[{
       label:'Testemunhas',
       data:data,
-      backgroundColor: shadowColor,
+      backgroundColor: graficColor,
       borderWidth:1,
       hoverBorderWidth:3,
       hoverBorderColor:'#000'
@@ -170,7 +171,7 @@ let witnessesChart = new Chart(chart, {
     title:{
       display:true,
       text:'Número de testemunhas por ocorrência',
-      fontSize:18
+      fontSize:16
     },
     legend:{
       display:false,
