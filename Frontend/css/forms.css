@@ -31,7 +31,7 @@ form input:focus + .placeholder {
     color: #8933f0;
 }
 
-form input[type='text'], form input[type='password'] {
+form input[type='text'], form input[type='password'],form input[type='date'] {
     font-size: 14px;
     position: relative;
     display: block;
@@ -86,7 +86,6 @@ form input[type='text'], form input[type='date'], form input[type='password'], f
     width: 250px;
     height: 40px;
     border-radius: 5px;
-    border: none;
 }
 
 form input[type='text'][disabled], form input[type='password'][disabled], form textarea[disabled] {

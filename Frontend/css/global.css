@@ -263,6 +263,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
   border: none;
   margin-right: -1px;
   color: black;
+  font-size: 14px;
   background-color: var(--background-color);
 }
 
@@ -281,7 +282,6 @@ h1 {
 h2{
   font-size: 20px;
   font-weight: Bold;
-  margin-left: -142px;
   margin-top: 50px;
 }
 
@@ -300,6 +300,8 @@ h5 {
  font-weight: 600;
  color: var(--font-color);
  font-size: 20px;
+  margin-right: auto;
+  margin-left: 30px;
 }
 
 h6 {

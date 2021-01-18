@@ -6,6 +6,8 @@
 //     window.history.back();
 // }
 
+ window.onload = function() {
+
 //MENU
 function toggle() {
   // Declare variable menu
@@ -21,6 +23,7 @@ function toggle() {
 }
 
 document.getElementById("ham-button").addEventListener("click",toggle);
+}
 
 // GPS
 let map, infoWindow;
