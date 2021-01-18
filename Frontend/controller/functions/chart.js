@@ -32,7 +32,6 @@ let massOcuChart = new Chart(chart, {
     datasets:[{
       label:'Ocorrências',
       data:data,
-      //backgroundColor:'green',
       backgroundColor:secondaryColor,
       borderWidth:1,
       hoverBorderWidth:3,
@@ -40,23 +39,22 @@ let massOcuChart = new Chart(chart, {
     }]
   },
   options:{
-    // title:{
-    //   display:true,
-    //   text:'Ocorrências Semanais',
-    //   fontSize:25
-    // },
+    title:{
+      display:true,
+      text:'Ocorrências Semanais',
+      fontSize:18
+    },
     legend:{
       display:false,
       position:'right',
       labels:{
         fontColor:fontColor
-    // enabled: false
       }
     },
     layout:{
       padding:{
-        left:50,
-        right:0,
+        left:30,
+        right:30,
         bottom:0,
         top:0
       }
@@ -77,6 +75,10 @@ let massOcuChart = new Chart(chart, {
             stacked: true,
             gridLines: {
                 display: false
+            },
+            ticks: {
+                min: 0,
+                stepSize: 1
             }
         }]
     }

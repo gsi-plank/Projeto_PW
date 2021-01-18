@@ -2,7 +2,7 @@ window.onload = function() {
     const picture = document.getElementById("picture");
     let fotoAuditor = "";
     fotoAuditor += `
-    <img id="profilePicture" class="mx-auto rounded-circle" src="./images/profile.png" alt="">
+    <img id="profilePicture" height="100px" width="100px" class="mx-auto rounded-circle" src="./images/Gypsy.jpg" alt="">
     `
     picture.innerHTML = fotoAuditor;
 
@@ -32,4 +32,3 @@ window.onload = function() {
 //     email = auditor.email;
 //     date = auditor.date;
 // }
-

@@ -55,7 +55,7 @@ $("#button3").click(function () {
 function fillChart(type) {
   //Confirmar o tipo
   console.log(type);
-
+  
   // Filtrar a lista de ocorrencias
 
   let occurrenceSel = selector.filtrator(occurrences, type);
@@ -64,7 +64,7 @@ function fillChart(type) {
   let labelChart = getLabelChart(type);
   let dataChart = getOccurrencesArryChart(occurrenceSel, type);
   chart.createLineChart(lineChart, labelChart, dataChart);
-
+  
   
 
 }

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/occurrence.css" type="text/css" />
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script type="text/javascript" src="./controller/mainPage.js"></script>
   
     <title>SECURE4ALL</title>
 </head>
@@ -17,54 +19,25 @@
     
 <div id="app-header">
     <p id="rankingTxt" class="title textCenter">SECURE4ALL</p>
-<style>
-.container {
-  display: inline-block;
-  cursor: pointer;
-}
-
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #333;
-  margin: 6px 0;
-  transition: 0.4s;
-  position: relative;
-  left: 352px;
-  top: -29px;
-}
-
-.change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
-}
-
-.change .bar2 {opacity: 0;}
-
-.change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
-  
-}   
-</style>
-
-<div class="container" onclick="myFunction(this)">
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
 </div>
- 
-    </div>
-    
+
 <div class="container-3">
-  <div id="map"></div>
-  <div id="msg"></div>
-    <script src="./controller/mainPage.js"></script>
-    <script async defer
+    <button onclick="toggle()" id="ham-button" class="ham-button"><i class="fas fa-bars"></i></button>
+    <div class="side-menu" id="side-menu">
+        <h3>Menu</h3>
+        <a target = 'blank' href='#' ><i class="fas fa-user-shield"></i> Administrador</a>
+        <a target = 'blank' href='#'><i class="fas fa-adjust"></i> Darkmode</a>
+        <a target = 'blank' href = '#'><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
+    </div>
+   
+    <div id="map"></div>
+    <div id="msg"></div>
+        <script src="./controller/mainPage.js"></script>
+        <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM&callback=initMap">
-    </script>
-    <a href="./occurrenceList.html"><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
-</div>
+        </script>
+        <a href="./occurrenceList.html"><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
+    </div>
 
 <div id="app-footer">
     <ul>
@@ -86,14 +59,5 @@
 </div>
 
 
-
-
 </body>
-
-<script>
-function myFunction(x) {
-  x.classList.toggle("change");
-}
-</script>
-
 </html>
