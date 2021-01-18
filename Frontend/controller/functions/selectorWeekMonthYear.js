@@ -10,15 +10,22 @@ function filtrator(occurrences, type) {
         // Get the current date
         let today = new Date();
 
-
+        //Os valores 0, 1 e 2 estao associados aos butoes
 
         if (type === 0) {
             for (const occurrence of occurrences) {
-                
-                if (DateDiff.inDays(new Date(occurrence.arrival), today) <= 7){
+                let arrivalOccu = new Date(occurrence.arrival);
+        
+                if (DateDiff.inDays(arrivalOccu, today) < 7){
+
+                    //Obter os dia da semana
+                    occurrence.dayInWeek = arrivalOccu.getDay();
+                    //Obter os dias do mes 
+                    // occurrence.daysInMonth = getDaysInMonth(arrivalOccu.getMonth(), arrivalOccu.getFullYear())
+
                     //cofirmar a ocorrencia
                     console.log(occurrence)
-                occurrencesFil.push(occurrence);
+                    occurrencesFil.push(occurrence);
                 }
             }
 
@@ -26,10 +33,21 @@ function filtrator(occurrences, type) {
         else
             if (type === 1) {
                 for (const occurrence of occurrences) {
-                    if (DateDiff.inMonths( new Date(occurrence.arrival), today) == 1) {
+
+                    let arrivalOccu = new Date(occurrence.arrival);
+    
+                    if (DateDiff.inDays(arrivalOccu, today) <= 30) {
+                        
+
+                        // Obter os dias de diferenca entre hoje e os 30 dia atras
+
+
+                        //Obter os dia da semana
+                        occurrence.dayInWeek = arrivalOccu.getDay();
+                        
                         //cofirmar a ocorrencia
                         console.log(occurrence);
-                    occurrencesFil.push(occurrence);
+                        occurrencesFil.push(occurrence);
                     }
                 }
 
@@ -37,8 +55,12 @@ function filtrator(occurrences, type) {
             else
                 if (type === 2) {
                     for (const occurrence of occurrences) {
-                        console.log(DateDiff.inYears(new Date(occurrence.arrival), today))
-                        if (DateDiff.inYears(new Date(occurrence.arrival), today) == 1) {
+                        let arrivalOccu = new Date(occurrence.arrival);
+                        
+                        if (DateDiff.inMonths(arrivalOccu, today) < 12) {
+        
+                            // 0 = Janeiro
+                            occurrence.month = arrivalOccu.getMonth();
                             //cofirmar a ocorrencia
                             console.log(occurrence);
                         occurrencesFil.push(occurrence);

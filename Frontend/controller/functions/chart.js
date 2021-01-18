@@ -1,4 +1,5 @@
-"use strict"; 
+"use strict";
+export { createLineChart, createBarChart};
 // Link for setUps Chart
 // https://www.chartjs.org/docs/latest/configuration/title.html#position
 
@@ -14,21 +15,14 @@ let backgroundColor = docStyle.getPropertyValue('--background-color');
 
 
 // Global Options
-Chart.defaults.global.defaultFontFamily = 'Roboto';
+Chart.defaults.global.defaultFontFamily = 'Roboto, sans-serif';
 Chart.defaults.global.defaultFontSize = 12;
 Chart.defaults.global.defaultFontColor = '#777';
 Chart.defaults.global.tooltips.backgroundColor = '#777';
 
 
-let week=['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom']
-let data=[3,2,0,2,4,1,6]
 
 //  Line Chart
- 
-let lineChart = document.getElementById('lineChart').getContext('2d');
-
-createLineChart(lineChart, week, data)
-
 function createLineChart(chart, label, data) {
 
 let massOcuChart = new Chart(chart, {
@@ -93,9 +87,7 @@ let massOcuChart = new Chart(chart, {
 
 
 // bar Chart
-let barChart = document.getElementById('barChart').getContext('2d');
-
-createBarChart(barChart, week, data)
+// let barChart = document.getElementById('barChart').getContext('2d');
 function createBarChart(chart, label, data) {
 
 

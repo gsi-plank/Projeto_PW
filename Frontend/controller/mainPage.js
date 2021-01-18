@@ -6,16 +6,23 @@
 //     window.history.back();
 // }
 
+//MENU
+function toggle() {
+  // Declare variable menu
+  let menu = document.getElementById("side-menu");
 
+  // toggle code
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  }
+  else {
+    menu.style.display = "block";
+  }
+}
 
-
-// ta tudo mal
-
-
+document.getElementById("ham-button").addEventListener("click",toggle);
 
 // GPS
-
-
 let map, infoWindow;
 let locations = [
     "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela",
