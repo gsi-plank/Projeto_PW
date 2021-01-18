@@ -1,0 +1,60 @@
+#content{
+    position: absolute;
+    top: 140px;
+    left: 80px;
+}
+
+#custoOcorrencia{
+ position: absolute;
+ top: 80px;
+ left: 15px;
+}
+
+h5 {
+ /*font-family: roboto;*/
+ font-weight: bold;
+ color: black;
+ font-size: 22px;
+}
+
+
+h4{
+    margin-top: 10px;
+    color: #777;
+    font-size: 15px;
+}
+
+h6 {
+    margin-top: 25.5px;
+}
+
+#custoOcorrenciaTxt{
+ position: relative;
+ right: 60px;
+}
+
+#submit {
+  width: 205px;
+  height: 30px;
+  margin-top: 30px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border:none;
+}
+
+#preco{
+    position: absolute;
+    width: 196px;
+    height: 53px;
+    left: 120px;
+    top: 350px;
+}
+
+#custoTotal {
+    top: 450px;
+}
+
+
+
+

@@ -1,0 +1,64 @@
+#operacionaisTxt {
+    position: relative;
+    right: 230px;
+}
+
+#content{
+    position: absolute;
+    top: 80px;
+    left: 40px;
+}
+
+#list {
+    padding: 10px;
+    list-style-type: none;
+}
+
+#list2 {
+    padding: 10px;
+    list-style-type: none;
+    margin-top:40px;
+}
+
+ #barraLista{
+  position: absolute;
+  width: 417px;
+  height: 0px;
+  left: -40px;
+  top: 310px;
+  border: 1px solid #777;
+  }
+  
+h4{
+    position: relative;
+    font-size: 20px;
+    font-weight: Bold;
+    font-family: roboto;
+    left: -30px;
+}
+
+h5{
+    position: relative;
+    font-size: 20px;
+    font-weight: Bold;
+    font-family: roboto;
+    left: -30px;
+    top: 45px;
+}
+
+.naoAvaliado {
+    color: #AB0404;
+}
+
+.item {
+    padding: 5px;
+}
+
+a { 
+    color: inherit; 
+}
+
+/* mouse over */
+a:hover {
+    color: inherit;
+}

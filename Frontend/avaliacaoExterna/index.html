@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	<title>Js Form Validator | Javascript validator without dependencies</title>
+	
+	<link rel="stylesheet" href="layout.css">
+	<link rel="stylesheet" href="forms.css">
+	<link rel="stylesheet" href="font-awesome.css">
+</head>
+<body>
+	
+
+						<form name="demo-form-2">
+
+							<div class="fields-list">
+								<div class="field-header">
+									<div class="field-title">Interests</div>
+									<div class="field-subtitle">A few words about what you love</div>
+								</div>
+
+								<div class="field">
+									<div class="input-wrapper">
+										<input type="text" name="interests[1]" id="example-2-interests-1" data-rule="required|minlength-3" autocomplete="off">
+										<label class="placeholder" for="example-2-interests-1">Minimum 3 characters</label>
+									</div>
+									<a href="#" class="example-2-remove-input fa fa-times" title="Remove field"></a>
+								</div>
+
+								
+							</div>
+
+							<a href="#" class="example-2-create-field">
+								<span class="fa fa-plus"></span> <span class="name">Create new field</span>
+							</a>
+
+							<div class="field">
+								<input type="submit" value="Submit it">
+							</div>
+						</form>
+
+
+	<script src="../assets/js/js-form-validator.js"></script>
+	<script src="scripts.js"></script>
+
+</body>
+</html>
