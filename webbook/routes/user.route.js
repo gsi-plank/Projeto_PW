@@ -2,8 +2,10 @@ const server = require('../server.js');
 const controllerUser = require('../controllers/user.controller');
 const bodyParser = require('body-parser');
     
-server.route('/user/:id_login')
+server.route('/users/:id_login')
     .put(controllerUser.updateUser)
+
+server.route('/users/:email')
     .get(controllerUser.selectLogin)
     
 server.route('/users/admins')

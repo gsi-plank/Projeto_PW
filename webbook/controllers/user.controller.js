@@ -178,7 +178,7 @@ function addAudit(req, res) {
     ]
     let post2 = [
         id_auditor, name, age, cc, date_birth, phone_nr, id_login
-        ]
+    ]
     let query = ""
     query = connect.con.query('INSERT INTO login (id_login, email, password, profile) values (?,?,?,?);', post1, 
     function (err, rows, fields) {
@@ -282,10 +282,10 @@ function updateAudit(req, res) {
     const age = req.sanitize('age').escape();
     const cc = req.sanitize('cc').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
-    const id_login = req.sanitize('id_login').escape();
+    const id_auditor = req.sanitize('id_auditor').escape();
     let query = "";
-    let post = [name, age, cc, phone_nr, id_login];
-    query = connect.con.query('UPDATE auditor SET name=?, age=?, cc=?, phone_nr=? WHERE id_login = ?', post, function(err, rows, fields) {
+    let post = [name, age, cc, phone_nr, id_auditor];
+    query = connect.con.query('UPDATE auditor SET name=?, age=?, cc=?, phone_nr=? WHERE id_auditor = ?', post, function(err, rows, fields) {
        console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
