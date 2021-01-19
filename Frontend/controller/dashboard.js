@@ -63,14 +63,14 @@ function fillLineChart(type) {
   
   // se nao existir ocorrencias nesse periodo de tempo 
   if (occurrenceSel.length == 0) {
-    let labelLineChart = getLabelChart(type);
-    let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
+    let labelLineChart = [];
+    let dataLineChart = [];
     chart.createLineChart(lineChart, labelLineChart, dataLineChart);
     return;
   }
   
-  let labelLineChart = [];
-  let dataLineChart = [];
+  let labelLineChart = getLabelChart(type);
+  let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
   chart.createLineChart(lineChart, labelLineChart, dataLineChart);
 }
 
