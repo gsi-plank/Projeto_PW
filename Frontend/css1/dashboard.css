@@ -1,0 +1,92 @@
+/*Radio Button*/
+.stv-radio-buttons-wrapper {
+  position:relative;
+  top: 60px;
+  left: 80px;
+  clear: both;
+  display: inline-block;
+}
+.stv-radio-buttons-wrapper input {
+  width: 1000px;
+}
+.stv-radio-button {
+  position: absolute;
+  left: -9999em;
+  top: -9999em;
+}
+.stv-radio-button + label {
+  float: left;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: none;
+  margin-right: -1px;
+  color: black;
+  background-color: var(--background-color);
+}
+.stv-radio-button:checked + label {
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 2em;
+}
+
+/*Line chart position*/
+#lineChart{
+  position: relative;
+  top: 60px;
+  right: 40px;
+}
+
+#barChart{
+  position: relative;
+  top: 20px;
+  right: 40px;
+}
+
+
+.dot{
+  position: absolute;
+  margin-left: 20px;
+  margin-top: -8px;
+  border-radius: 100px;
+  width: 53px;
+  height: 52px;
+  background: #FFFFFF;
+}
+
+.boxThree {
+  background-color: #AB0404;
+  margin-top: 80px;
+  width: 129px;
+  height: 122px;
+  padding: 20px;
+  border-radius: 20px;
+  left: 117px;
+    position: relative;
+}
+
+#valor {
+  font-size: 36px;
+  text-align: center;
+}
+
+h6 {
+  font-weight: 600;
+  font-size: 11px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 57px ;
+}
+
+#escolha {
+  display: flex;
+  list-style-type: none;
+  margin-top: -15px;
+  margin-left: -40px;
+  font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+color: #B1B0B0;
+
+}
