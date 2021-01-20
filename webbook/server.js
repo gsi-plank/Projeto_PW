@@ -13,9 +13,10 @@ server.use(express.static("../Frontend/"));
 server.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 server.use(expressSanitizer());
 server.use(expressValidator());
-server.listen(8080, function(err) {
+let port = process.env.PORT || 8080 ;
+server.listen(port, function(err) {
     if (!err) {
-        console.log('Your app is listening on port 8080');
+        console.log('Your app is listening on port ' +port);
     }
     else { console.log(err); }
 });
@@ -27,3 +28,4 @@ module.exports = server;
 
 require('./routes/occurrence.route');
 require('./routes/user.route');
+require('./routes/operational.route')
