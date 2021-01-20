@@ -13,9 +13,9 @@ server.use(express.static("../Frontend/"));
 server.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 server.use(expressSanitizer());
 server.use(expressValidator());
-server.listen(3000, function(err) {
+server.listen(8080, function(err) {
     if (!err) {
-        console.log('Your app is listening on port 3000');
+        console.log('Your app is listening on port 8080');
     }
     else { console.log(err); }
 });
