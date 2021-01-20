@@ -91,9 +91,9 @@ server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational'
     .put(controllerIEvaluation .updateIndEvaluation)
 
 server.route('occurrences/:id_occurrence/evaluation/finished')
-    .post(controllerCostOccur.evalDone)
+    .get(controllerCostOccur.evalDone)
 
 server.route('occurrences/:id_occurrence/evaluation/not_finished')
-    .post(controllerCostOccur.evalNotDone)
+    .get(controllerCostOccur.evalNotDone)
 
 module.exports = server;
