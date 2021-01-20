@@ -349,7 +349,7 @@ module.exports = {
     listAudit : listAudit,
     readAudit : readAudit,
     createAudit :  addAudit,
-    updateAudit : addAudit,
+    updateAudit : updateAudit,
     deleteAudit : deleteAudit,
     
     selectLogin : login,

@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 
 server.route('/occurrences')
     .get(controllerOccurrence.listOccurrence)
+    .get(controllerCostOccur.evalDone)
 
 server.route('/occurrences/:id_occurrence')
     .get(controllerOccurrence.readOccurrence)
@@ -74,7 +75,7 @@ server.route('/occurrences/:id_occurrence/group_evaluation')
     .put(controllerGEvaluation.updateGEvaluation)
 
 //checklist
-server.route('/occurrence/:id_occurrence/group_evaluation/checklist')
+server.route('/occurrences/:id_occurrence/group_evaluation/checklist')
     .get(controllerChecklist.readChecklist) // certo
     .post(controllerChecklist.createChecklist)
     .delete(controllerChecklist.deleteChecklist)
@@ -85,8 +86,14 @@ server.route('/occurrences/:id_occurrence/individual_evaluation')
     .get(controllerIEvaluation.listOpPointsOccur) // certo
     .post(controllerIEvaluation.createIndEvaluation)
 
-server.route('/occurrence/:id_occurrence/individual_evaluation/:id_operational')
+server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation .updateIndEvaluation)
+
+server.route('occurrences/:id_occurrence/evaluation/finished')
+    .post(controllerCostOccur.evalDone)
+
+server.route('occurrences/:id_occurrence/evaluation/not_finished')
+    .post(controllerCostOccur.evalNotDone)
 
 module.exports = server;
