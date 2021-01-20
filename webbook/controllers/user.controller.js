@@ -317,6 +317,27 @@ function updateUser(req, res) {const name = req.sanitize('name').escape();
     
 }
 
+function readUsers(req, res) {
+    let query = "";
+    query = ('select id_login, email, profile from login where profile="Administrador" or profile="Auditor"', function (err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            res.status(400).send({
+                "msg": err.code
+            });
+        console.log('Error while performing Query.', err);
+    }) ;   
+}
 
 module.exports = {
     listAdmin: listAdmin,
@@ -332,5 +353,6 @@ module.exports = {
     deleteAudit : deleteAudit,
     
     selectLogin : login,
-    updateUser : updateUser
+    updateUser : updateUser,
+    allUsers : readUsers
 }
