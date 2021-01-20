@@ -1,10 +1,11 @@
 import * as fetch from "./functions/fetch.js";
 
 
-    window.onload = function(){
+    // window.onload = function(){
     validator();
     
-    //submit
+
+    // submit
     // document.getElementById("formNewUser").onsubmit = function(e) {
     //     //validação do formulário ao submeter
     //     validator();
@@ -39,7 +40,6 @@ import * as fetch from "./functions/fetch.js";
 function saveUsers() {
         var data = {};
         let route = "users/audits";
-        data.id_auditor = document.getElementById("id_auditor").value;
         data.id_login = document.getElementById("id_login").value;
         data.name = document.getElementById("name").value;
         data.email = document.getElementById("email").value;
@@ -51,4 +51,4 @@ function saveUsers() {
         fetch.postData(route, data);
     }
 
-}
+// }
