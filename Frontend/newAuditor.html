@@ -29,29 +29,23 @@
                 </li>
 
                 <li>
-                    <input type="submit" form="formNewUser"><svg class="check" width="2em" height="2em" viewBox="0 0 16 16"
+                    <label>
+                    <input type="submit" name="image" form="formNewUser" style="display:none">
+                        <svg class="check" width="2em" height="2em" viewBox="0 0 16 16"
                             class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                         </svg>
+                    </label>
                 </li>
-                <!--<li>-->
-                <!--    <input type="image" src="./images/certo.png" form="formNewUser" width="30px">-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--    <div class="submit">-->
-                <!--    <svg class="check" width="2em" height="2em" viewBox="0 0 16 16"-->
-                <!--            class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
-                <!--            <path fill-rule="evenodd"-->
-                <!--                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />-->
-                <!--        </svg></div></li>-->
+                
             </ul>
         </div>
     </div>
 
     
     <div class="container-3">
-        <form name="demo-form-1" id="formNewUser" action="" method="POST">
+        <form name="formNewUser" id="formNewUser" action="" method="POST">
             <!--<div class="field">-->
             <!--    <div class="input-wrapper">-->
             <!--        <h4 class="control-label">ID auditor:</h4>-->
@@ -94,11 +88,6 @@
                     <input type="password" name="rep_pwd" id="rep_pwd"  data-rule="required|password" autocomplete="off">
                 </div>
             </div>
-            <div class="field">
-                <div class="input-wrapper">
-                    <input id="createbutton" type="submit" value="Submeter" class="btn btn-default"></input>
-                </div>
-            </div>
         </form>
         
         
@@ -129,7 +118,9 @@
     </div>
    
     <script src="./assets/js/js-form-validator.js"></script>
+    <script type="module" src="./controller/newAuditor.js"></script>
 	<script src="./controller/form.js"></script>
+	
 	
 </body>
 </html>
