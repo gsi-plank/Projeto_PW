@@ -3,11 +3,11 @@ const controllerIndiv = require('../controllers/individual_evaluation.controller
 const controllerOperational = require('../controllers/operational.controller')
 const bodyParser = require('body-parser');
 
-server.route('/operational/totalpoints')
+server.route('/operationals/totalpoints')
     .get(controllerIndiv.listOpPointsTotal)
 
-server.route('/operational')
+server.route('/operationals')
     .get(controllerOperational.listOperational)
 
-server.route('/operational/:id_operational')
+server.route('/operationals/:id_operational')
     .get(controllerOperational.readOperational)
