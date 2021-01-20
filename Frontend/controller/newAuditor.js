@@ -1,11 +1,22 @@
 window.onload = function() {
     const urlBase = "https://58717807e0f449edb5fcb157313592f1.vfs.cloud9.us-east-1.amazonaws.com";
 
-validator();
-    document.getElementById("formNewUser").onsubmit = function(e) {
-        //validação do formulário ao submeter
-        validator();
-    };
+// validator();
+//     document.getElementById("formNewUser").onsubmit = function(e) {
+//         //validação do formulário ao submeter
+//         validator();
+//     };
+    
+    //submit
+    document.getElementById("formNewUser").submit();
+    
+    const formNewUser = document.getElementById("formNewUser");
+    document.querySelector(".submit").addEventListener("click", function(){
+
+  formNewUser.submit();
+
+});
+    
     
     
     //função de validação

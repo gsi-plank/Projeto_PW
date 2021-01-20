@@ -83,6 +83,12 @@ body{
     color: var(--font-color);
 }
 
+#app-header ul li {
+  position: relative;
+  top:50%;
+  bottom:50%;
+}
+
 /* Alteração do estilo do footer */
 #app-footer {
   position:absolute; 
@@ -92,6 +98,7 @@ body{
   bottom: 0;
   background: var(--background-color);
   width: 100%;
+  z-index:5;
 }
 
 #app-footer ul {
