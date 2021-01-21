@@ -1,3 +1,5 @@
+
+
 // let newPassword = document.getElementById("newPassword").value;
 // let confirmPassword = document.getElementById("confirmPassword").value;
 // let checked = document.getElementById("check");

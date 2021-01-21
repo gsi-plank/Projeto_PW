@@ -23,17 +23,17 @@
 /*  --grafic-color: #DEDEDE;*/
 /*}*/
  /*Estilo padrão para dark mode */
-:root{
-  --primary-color: #FFFFFF;
-  --secondary-color: #AB0404;
-  --shadow-color:  #777;
-  --font-color: #FFFFFF;
-  --background-color:#3D3D3D;
-  --white: #FFFFFF;
-  --links-color: #FFFFFF;
-  --table-color: #363535;
-  --grafic-color: #DEDEDE;
-}
+/*:root{*/
+/*  --primary-color: #FFFFFF;*/
+/*  --secondary-color: #AB0404;*/
+/*  --shadow-color:  #777;*/
+/*  --font-color: #FFFFFF;*/
+/*  --background-color:#3D3D3D;*/
+/*  --white: #FFFFFF;*/
+/*  --links-color: #FFFFFF;*/
+/*  --table-color: #363535;*/
+/*  --grafic-color: #DEDEDE;*/
+/*}*/
 
 html {
   background: var(--background-color);

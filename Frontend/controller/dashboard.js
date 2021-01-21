@@ -3,7 +3,6 @@ import * as chart from "./functions/chart.js";
 import * as selector from "./functions/selectorWeekMonthYear.js"
 
 
-
 let occurrences = [{
     "id_occurrence": "534",
     "arrival": "2020-12-29",

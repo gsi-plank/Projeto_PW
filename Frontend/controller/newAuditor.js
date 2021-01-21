@@ -1,6 +1,7 @@
 import * as fetch from "./functions/fetch.js";
 
 
+
     // window.onload = function(){
     validator();
     

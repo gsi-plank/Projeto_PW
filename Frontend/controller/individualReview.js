@@ -1,3 +1,5 @@
+
+
 let slider1 = document.getElementById("review1");
 let output1 = document.getElementById("value1");
 output1.innerHTML = slider1.value;

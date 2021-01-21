@@ -1,3 +1,5 @@
+
+
 window.onload = function() {
     const picture = document.getElementById("picture");
     let fotoAuditor = "";

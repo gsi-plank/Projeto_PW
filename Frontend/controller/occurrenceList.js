@@ -1,6 +1,8 @@
 "use strict";
+import * as fetch from "./functions/fetch.js";
 import * as table from "./functions/table.js";
-import * as selector from "./functions/selectorWeekMonthYear.js"
+import * as selector from "./functions/selectorWeekMonthYear.js";
+
 
 let occurrences = [
     {

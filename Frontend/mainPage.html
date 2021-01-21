@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script type="text/javascript" src="./controller/mainPage.js"></script>
+    
   
     <title>SECURE4ALL</title>
 </head>
@@ -26,16 +26,12 @@
     <div class="side-menu" id="side-menu" style="display:none;">
         <h3>Menu</h3>
         <a target = 'blank' href='#' ><i class="fas fa-user-shield"></i> Administrador</a>
-        <a target = 'blank' href='#'><i class="fas fa-adjust"></i> Darkmode</a>
+        <a id="btnMode" target = 'blank'><i class="fas fa-adjust"></i> Darkmode</a>
         <a target = 'blank' href = '#'><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
     </div>
    
     <div id="map"></div>
     <div id="msg"></div>
-        <script src="./controller/mainPage.js"></script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM&callback=initMap">
-        </script>
         <a href="./occurrenceList.html"><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
     </div>
 
@@ -57,7 +53,12 @@
             alt="profile picture"></a></li>
     </ul>
 </div>
-
+<script type="module" src="./controller/mainPage.js"></script>
+<script type="text/javascript" src="./controller/gps.js"></script>
+<script src="./controller/mainPage.js"></script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM&callback=initMap">
+        </script>
 
 </body>
 </html>

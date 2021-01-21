@@ -4,6 +4,8 @@ import * as table from "./functions/table.js";
 
 
 
+
+
     //Global variables
     var params = null;  		//Parameters
     var colsEdi = null;
@@ -51,8 +53,7 @@ import * as table from "./functions/table.js";
     };
 
 window.onload = function() {
-
-
+  
       ( function fill() {
         // const route = "users/audits"
         // const users = await fetch.getData(route);
