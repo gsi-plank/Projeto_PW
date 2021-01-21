@@ -49,9 +49,9 @@ import * as fetch from "./functions/fetch.js";
     return age;
 }
     
-function saveUsers() {
+ function saveUsers() {
         var data = {};
-        let route = "/audits";
+        let route = "audits";
         data.id_login = document.getElementById("id_login").value;
         data.name = document.getElementById("name").value;
         data.email = document.getElementById("email").value;
