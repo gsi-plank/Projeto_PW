@@ -26,6 +26,7 @@ server.route('/occurrences/:id_occurrence/address')
     .get(controllerOccurrence.readAddress)
 
 server.route('/occurrences/:id_occurrence/arrival')
+    .get(controllerOccurrence.readArrival)
     .put(controllerOccurrence.updateOccurrenceArrival)
 
 server.route('/occurrences/:id_occurrence/cost')

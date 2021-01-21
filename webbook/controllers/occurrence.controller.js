@@ -51,7 +51,31 @@ function readOcTypeOp(req, res) {
 function readAddress(req, res) {
     //criar e executar a query de leitura na BD
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    connect.con.query('SELECT id_occurrence, address from occurrence where id_occurrence = ?', [id_occurrence],
+    connect.con.query('SELECT address from occurrence where id_occurrence = ?', [id_occurrence],
+        function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o n�mero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
+
+function readArrival(req, res) {
+    //criar e executar a query de leitura na BD
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    connect.con.query('SELECT arrival from occurrence where id_occurrence = ?', [id_occurrence],
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o n�mero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -102,12 +126,8 @@ function deleteOccurrence(req, res) {
 
 function updateOccurrenceArrival(req, res) {
     const arrival = req.sanitize('arrival').escape();
-    const cost = req.sanitize('cost').escape();
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    let post = [
-        arrival,
-        id_occurrence
-    ]
+    let post = [ arrival, id_occurrence ]
     let query = "";
     query = connect.con.query('UPDATE occurrence SET arrival=? WHERE id_occurrence=?', post, function (err, rows, fields){
         console.log(query.sql);
@@ -124,10 +144,7 @@ function updateOccurrenceArrival(req, res) {
 function updateOccurrenceCost(req, res) {
     const cost = req.sanitize('cost').escape();
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    let post = [
-        cost,
-        id_occurrence
-    ]
+    let post = [ cost, id_occurrence ]
     let query = "";
     query = connect.con.query('UPDATE occurrence SET cost=? WHERE id_occurrence=?', post, function (err, rows, fields){
         console.log(query.sql);
@@ -145,6 +162,7 @@ module.exports = {
     listOccurrence: listOccurrence,
     readOccurrence: readOccurrence,
     readAddress: readAddress,
+    readArrival: readArrival,
     updateOccurrenceArrival: updateOccurrenceArrival,
     updateOccurrenceCost : updateOccurrenceCost,
     deleteOccurrence: deleteOccurrence,
