@@ -30,25 +30,39 @@ import * as fetch from "./functions/fetch.js";
             messages: {
                 en: {
                     password: {
-                        incorrect: "A palavra-passe não coicidem"
+                        incorrect: "As palavras-passe não coicidem"
                     }
                 }
             }
         });
     }
     
+    function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
     
 function saveUsers() {
         var data = {};
-        let route = "users/audits";
+        let route = "/audits";
         data.id_login = document.getElementById("id_login").value;
         data.name = document.getElementById("name").value;
         data.email = document.getElementById("email").value;
         data.date_birth = document.getElementById("date").value;
+        data.age = getAge(data.date_birth);
+        data.phone_nr = document.getElementById("n_tel").value;
+        data.cc = document.getElementById("cc").value;
         data.password = document.getElementById("pwd").value;
         console.log(data); //debugging para ver os dados que foram enviados
-        //chamada fetch para envio dos dados para o servior via POST
         
+        //chamada fetch para envio dos dados para o servior via POST
         fetch.postData(route, data);
     }
 

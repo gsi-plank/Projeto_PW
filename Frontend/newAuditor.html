@@ -46,12 +46,6 @@
     
     <div class="container-3">
         <form name="formNewUser" id="formNewUser" action="" method="POST">
-            <!--<div class="field">-->
-            <!--    <div class="input-wrapper">-->
-            <!--        <h4 class="control-label">ID auditor:</h4>-->
-            <!--        <input type="text" id="id_auditor" name="idAuditor" data-rule="required|integer" autocomplete="off"/>-->
-            <!--    </div>-->
-            <!--</div>-->
             <div class="field">
                 <div class="input-wrapper">
                     <h4 class="control-label">ID login:</h4>
@@ -74,6 +68,18 @@
                 <div class="input-wrapper">
                     <h4 class="control-label">Data de nascimento:</h4>
                     <input type="date"  name="date" id="date" data-rule="required|date" autocomplete="off" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Número de telemóvel:</h4>
+                    <input type="text"  name="n_tel" id="n_tel" data-rule="required|integer|maxlength-9" autocomplete="off" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4 class="control-label">Número de identificação civil:</h4>
+                    <input type="text"  name="cc" id="cc" data-rule="required|integer|maxlength-8" autocomplete="off" />
                 </div>
             </div>
             <div class="field">
