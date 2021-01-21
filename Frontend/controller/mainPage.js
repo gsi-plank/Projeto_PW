@@ -27,8 +27,12 @@ window.onload = function () {
 
         btnTypeMode.addEventListener("click", function () {
             if (typeMode) {
+                // btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
+                btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
                 typeMode--;
             } else {
+                // btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
+                btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
                 typeMode++;
             }
             root.getTypeMode(typeMode);
