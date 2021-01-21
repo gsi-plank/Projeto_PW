@@ -26,7 +26,6 @@ server.route('/occurrences/:id_occurrence/address')
     .get(controllerOccurrence.readAddress)
 
 server.route('/occurrences/:id_occurrence/arrival')
-    .get(controllerOccurrence.readArrival)
     .put(controllerOccurrence.updateOccurrenceArrival)
 
 server.route('/occurrences/:id_occurrence/cost')
@@ -95,9 +94,5 @@ server.route('/occurrences/:id_occurrence/individual_evaluation')
 server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation.updateIndEvaluation)
-
-//questions
-server.route('/questions')
-    .get(controllerChecklist.readQuestions)
 
 module.exports = server;
