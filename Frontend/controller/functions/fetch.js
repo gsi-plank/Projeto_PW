@@ -19,6 +19,7 @@ async function getData(route) {
 
 
 function postData(route, data) {
+    console.log(urlBase + route)
     fetch(urlBase + route, {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
