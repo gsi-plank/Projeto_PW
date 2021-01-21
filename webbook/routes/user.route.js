@@ -11,7 +11,7 @@ server.route('/users/:id_login')
     .get(controllerMode.readMode)
     .delete(controllerMode.deleteMode)
 
-server.route('/users/:email')
+server.route('/users/password/:email')
     .get(controllerUser.selectLogin)
     
 server.route('/admins')
