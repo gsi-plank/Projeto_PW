@@ -12,6 +12,12 @@ const bodyParser = require('body-parser');
 server.route('/occurrences')
     .get(controllerOccurrence.listOccurrence)
 
+server.route('/occurrences/evaluations/done')
+    .get(controllerCostOccur.evalDone)
+
+server.route('/occurrences/evaluations/not')
+    .get(controllerCostOccur.evalNotDone)
+
 server.route('/occurrences/:id_occurrence')
     .get(controllerOccurrence.readOccurrence)
     .delete(controllerOccurrence.deleteOccurrence)
@@ -68,13 +74,13 @@ server.route('/occurrences/:id_occurrence/cost/duration')
 
 //group evaluation
 server.route('/occurrences/:id_occurrence/group_evaluation')
-    .get(controllerGEvaluation.listGEvaluation) // certo
+    .get(controllerGEvaluation.readOccurEval) // certo
     .post(controllerGEvaluation.createGEvaluation)
     .delete(controllerGEvaluation.deleteGEvaluation)
     .put(controllerGEvaluation.updateGEvaluation)
 
 //checklist
-server.route('/occurrence/:id_occurrence/group_evaluation/checklist')
+server.route('/occurrences/:id_occurrence/group_evaluation/checklist')
     .get(controllerChecklist.readChecklist) // certo
     .post(controllerChecklist.createChecklist)
     .delete(controllerChecklist.deleteChecklist)
@@ -85,8 +91,8 @@ server.route('/occurrences/:id_occurrence/individual_evaluation')
     .get(controllerIEvaluation.listOpPointsOccur) // certo
     .post(controllerIEvaluation.createIndEvaluation)
 
-server.route('/occurrence/:id_occurrence/individual_evaluation/:id_operational')
+server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
     .delete(controllerIEvaluation.deleteIndEvaluation)
-    .put(controllerIEvaluation .updateIndEvaluation)
+    .put(controllerIEvaluation.updateIndEvaluation)
 
 module.exports = server;

@@ -6,8 +6,7 @@ function addMaterial(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
     let post = [material_name, id_occurrence ]
-    query = connect.con.query('INSERT INTO material_occurrence VALUES (?,?)', post, function(err, rows, fields) {
-        console.log(query.sql);
+    query = connect.con.query('INSERT INTO material_occurrence (material_name, id_occurrence) VALUES (?,?)', post, function(err, rows, fields) {
         if (!err) {
             res.status(200).location(rows.insertId).send({
                 "msg": "inserted with success"
@@ -26,8 +25,7 @@ function addMaterial(req, res) {
 
 function readMatOccur(req, res) {
     const id_material = req.sanitize('id_material').escape();
-    
-    connect.con.query('SELECT id_material, material_name, id_occurrence from material_occurrence_occurrence where id_material = ?', id_material,
+    connect.con.query('SELECT id_material, material_name, id_occurrence from material_occurrence where id_material = ?', [id_material],
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -49,9 +47,11 @@ function readMatOccur(req, res) {
 }
 
 function listMatByOccur(req, res) {
-    const id_occurrence = req.sanitize('id_occurence').escape();
-    connect.con.query('SELECT (id_material, material_name, id_occurrence) FROM material_occurrence where id_occurrence=?', id_occurrence,
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let query="";
+    query=connect.con.query('SELECT id_material, material_name, id_occurrence FROM material_occurrence where id_occurrence=?', [id_occurrence],
         function(err, rows, fields) {
+            console.log(query.sql);
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
                 if (rows.length == 0) {
@@ -73,7 +73,7 @@ function listMatByOccur(req, res) {
 
 function deleteMatOccur(req, res) {
     const id_material = req.sanitize('id_material').escape();
-    connect.con.query('DELETE from material_occurrence where id_material=?', id_material, function(err, rows, fields) {
+    connect.con.query('DELETE from material_occurrence where id_material=?', [id_material], function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {

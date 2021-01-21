@@ -2,7 +2,7 @@ const connect = require('../assets/bd');
 
 //INDIVIDUAL EVALUATION
 function listOpPointsTotal(req, res) {
-    connect.con.query('Select name , speciality ,SUM(individual_evaluation.score) as points from operational left join individual_evaluation on operational.id_operational=individual_evaluation.id_operational group by individual_evaluation.id_operational',
+    connect.con.query('select name , speciality ,SUM(individual_evaluation.score) as points from operational left join individual_evaluation on operational.id_operational=individual_evaluation.id_operational group by operational.id_operational',
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -25,7 +25,7 @@ function listOpPointsTotal(req, res) {
 
 function listOpPointsOccur(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    connect.con.query('Select id_operational, name, individual_evaluation.score from (operational right join individual_evaluation on operational.id_operational=individual_evaluation.id_operational) where individual_evaluation.id_occurrence=?', id_occurrence,
+    connect.con.query('Select operational.id_operational, name, individual_evaluation.score from (operational right join individual_evaluation on operational.id_operational=individual_evaluation.id_operational) where individual_evaluation.id_occurrence=?', id_occurrence,
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -76,7 +76,7 @@ function updateIndividual_eval(req, res) {
         id_operational
     ]
     let query = "";
-    query = connect.con.query('UPDATE individual_evaluation SET score=?, invoices? WHERE id_occurrence=? and id_operational=?', post, function (err, rows, fields){
+    query = connect.con.query('UPDATE individual_evaluation SET score=?, invoices=? WHERE id_occurrence=? and id_operational=?', post, function (err, rows, fields){
         console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
@@ -93,8 +93,7 @@ function addIndividual_eval(req, res) {
     const id_operational = req.sanitize('id_operational').escape();
     const score = req.sanitize('score').escape();
     const invoices = req.sanitize('invoices').escape();
-      let post = [
-        id_occurrence, id_operational, score, invoices,   ]
+      let post = [id_occurrence, id_operational, score, invoices]
     let query = ""
     query = connect.con.query('INSERT INTO individual_evaluation (id_occurrence, id_operational, score, invoices) values (?,?,?,?)', post, 
     function (err, rows, fields) {

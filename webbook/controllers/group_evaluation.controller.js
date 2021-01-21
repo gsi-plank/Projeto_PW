@@ -3,7 +3,7 @@ const connect = require('../assets/bd');
 //GROUP EVALUATION
 function readOccur(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    connect.con.query('SELECT * from group_evaluation where id_occurrrence = ?', id_occurrence,
+    connect.con.query('SELECT * from group_evaluation where id_occurrence = ?', [id_occurrence],
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).

@@ -1,3 +1,4 @@
+const { con } = require('../assets/bd');
 const connect = require ('../assets/bd');
 
 //login
@@ -26,11 +27,9 @@ function login (req, res) {
 
 //admins
 function addAdmin(req, res) {
-    const id_login = req.sanitize('id_login').escape();
     const email = req.sanitize('email').escape();
     const password = req.sanitize('password').escape();
     const profile = "Administrador";
-    const id_admin = req.sanitize('id_admin').escape();
     const name = req.sanitize('name').escape();
     const age = req.sanitize('age').escape();
     const nationality = req.sanitize('nationality').escape();
@@ -38,13 +37,11 @@ function addAdmin(req, res) {
     const date_birth = req.sanitize('date_birth').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
     const address = req.sanitize('address').escape();
-    let post1 = [
-        id_login, email, password, profile
-    ]
-    let post2 = [id_admin, name, age, nationality, cc, date_birth, phone_nr, address, id_login]
+    const education = req.sanitize('education').escape();
+    let post = [email, password, profile, name, age, nationality, cc, date_birth, phone_nr, address, education, email]
     let query = ""
-    query = connect.con.query('INSERT INTO login (id_login, email, password, profile) values (?,?,?,?)', post1, 
-    function (err, rows, fields) {
+    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?); insert into administrator (name, age, nationality, cc, date_birth, phone_nr, address, education, id_login) VALUES (?,?,?,?,?,?,?,?,(select id_login from login where email=?))',
+    post, function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
@@ -57,26 +54,12 @@ function addAdmin(req, res) {
                 res.status(400).send({ "msg": err.code });
         }
     });
-    query = connect.con.query('insert into administrator (id_admin, name, age, nationality, cc, date_birth, phone_nr, address, id_login) VALUES (?,?,?,?,?,?,?,?,?)', post2, 
-    function (err, rows, fields) {
-        console.log(query.sql);
-        if (!err) {
-            res.status(200).location(rows.insertId).send({"msg": "2 - inserted with success"});
-            console.log("2- Number of records inserted: " + rows.affectedRows);
-        } else {
-            if (err.code == "ER_DUP_ENTRY") {
-                res.status(409).send({"msg": err.code});
-                console.log('2 - Error while performing Query.', err);
-            } else
-                res.status(400).send({ "msg": err.code });
-        }
-    });
 }
 
 function readAdmin(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = ('select login.id_login, administrator.name, login.email, login.password from (login inner join administrator on administrator.id_login = login.id_login) where login.id_login = ?', id_login, function (err, rows, fields) {
+    query = connect.con.query('select login.id_login, administrator.name, login.email, login.password from (login inner join administrator on administrator.id_login = login.id_login) where login.id_login = ?', id_login, function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -98,7 +81,7 @@ function readAdmin(req, res) {
 
 function listAdmin(req, res) {
     let query = "";
-    query = connect.con.query('select login.id_login, administrator.name, login.email, login.password from (login inner join administrator on administrator.id_login = login.id_login)', function(err, rows, fields) {
+    query = connect.con.query('select name, id_login, age, phone_nr from administrator', function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -139,16 +122,13 @@ function deleteAdmin(req, res) {
 }
 
 function updateAdmin(req, res) {
-    const name = req.sanitize('name').escape();
     const age = req.sanitize('age').escape();
-    const nationality = req.sanitize('nationality').escape();
-    const cc = req.sanitize('cc').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
     const address = req.sanitize('address').escape();
-    const id_admin = req.sanitize('id_admin').escape();
+    const id_login = req.sanitize('id_login').escape();
     let query = "";
-    let post = [name, age, nationality, cc, phone_nr, address, id_admin];
-    query = connect.con.query('UPDATE administrador SET name=?, age=?, nationality=?, cc=?, phone_nr=?, address=? WHERE id_admin = ?', post, function(err, rows, fields) {
+    let post = [age, phone_nr, address, id_login];
+    query = connect.con.query('UPDATE administrator SET age=?, phone_nr=?, address=? WHERE id_login = ?', post, function(err, rows, fields) {
        console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
@@ -163,25 +143,18 @@ function updateAdmin(req, res) {
 
 // auditor
 function addAudit(req, res) {
-    const id_login = req.sanitize('id_login').escape();
     const email = req.sanitize('email').escape();
     const password = req.sanitize('password').escape();
     const profile = "Auditor";
-    const id_auditor = req.sanitize('id_auditor').escape();
     const name = req.sanitize('name').escape();
     const age = req.sanitize('age').escape();
     const cc = req.sanitize('cc').escape();
     const date_birth = req.sanitize('date_birth').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
-    let post1 = [
-        id_login, email, password, profile
-    ]
-    let post2 = [
-        id_auditor, name, age, cc, date_birth, phone_nr, id_login
-    ]
+    let post1 = [email, password, profile, name, age, cc, date_birth, phone_nr, email]
     let query = ""
-    query = connect.con.query('INSERT INTO login (id_login, email, password, profile) values (?,?,?,?);', post1, 
-    function (err, rows, fields) {
+    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?); insert into auditor (name, age, cc, date_birth, phone_nr, id_login) VALUES (?,?,?,?,?,(select id_login from login where email=?))', 
+    post1, function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
@@ -195,27 +168,12 @@ function addAudit(req, res) {
                 console.log('1 - Error while performing Query.', err);
         }
     });
-    query = connect.con.query('insert into auditor (id_auditor, name, age, cc, date_birth, phone_nr, id_login) VALUES (?,?,?,?,?,?,?)', post2, 
-    function (err, rows, fields) {
-        console.log(query.sql);
-        if (!err) {
-            res.status(200).location(rows.insertId).send({"msg": "2 - inserted with success"});
-            console.log("2 - Number of records inserted: " + rows.affectedRows);
-        } else {
-            if (err.code == "ER_DUP_ENTRY") {
-                res.status(409).send({"msg": err.code});
-                console.log('2 - Error while performing Query.', err);
-            } else
-                res.status(400).send({ "msg": err.code });
-                console.log('2 - Error while performing Query.', err);
-        }
-    });
 }
 
 function readAudit(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = ('select login.id_login, auditor.name, login.email, login.password from (login inner join auditor on auditor.id_login = login.id_login) where login.id_login = ?', id_login, function (err, rows, fields) {
+    query = connect.con.query('select login.id_login, auditor.name, login.email, login.password from (login inner join auditor on auditor.id_login = login.id_login) where login.id_login = ?', [id_login], function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -237,7 +195,7 @@ function readAudit(req, res) {
 
 function listAudit(req, res) {
     let query = "";
-    query = connect.con.query('select login.id_login, auditor.name, login.email, login.password from (login inner join auditor on auditor.id_login = login.id_login)', function(err, rows, fields) {
+    query = connect.con.query('select id_login, name, age, phone_nr from auditor', function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -278,14 +236,12 @@ function deleteAudit(req, res) {
 }
 
 function updateAudit(req, res) {
-    const name = req.sanitize('name').escape();
     const age = req.sanitize('age').escape();
-    const cc = req.sanitize('cc').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
-    const id_auditor = req.sanitize('id_auditor').escape();
+    const id_login = req.sanitize('id_login').escape();
     let query = "";
-    let post = [name, age, cc, phone_nr, id_auditor];
-    query = connect.con.query('UPDATE auditor SET name=?, age=?, cc=?, phone_nr=? WHERE id_auditor = ?', post, function(err, rows, fields) {
+    let post = [age, phone_nr, id_login];
+    query = connect.con.query('UPDATE auditor SET age=?, phone_nr=? WHERE id_login = ?', post, function(err, rows, fields) {
        console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
@@ -298,12 +254,13 @@ function updateAudit(req, res) {
     });
 }
 
-function updateUser(req, res) {const name = req.sanitize('name').escape();
+function updateUser(req, res) {
+    const id_login = req.sanitize('id_login').escape();
     const email = req.sanitize('email').escape();
     const password = req.sanitize('password').escape();
     let query = "";
-    let post = [email, password];
-    query = connect.con.query('UPDATE auditor SET email=?, password=? WHERE id_login= ?', post, function(err, rows, fields) {
+    let post = [email, password, id_login];
+    query = connect.con.query('UPDATE login SET email=?, password=? WHERE id_login= ?', post, function(err, rows, fields) {
        console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
@@ -319,24 +276,19 @@ function updateUser(req, res) {const name = req.sanitize('name').escape();
 
 function readUsers(req, res) {
     let query = "";
-    query = ('select id_login, email, profile from login where profile="Administrador" or profile="Auditor"', function (err, rows, fields) {
+    query = connect.con.query('select id_login, email, profile from login where profile="Administrador" union select id_login, email, profile from login where profile="Auditor"', function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
-                res.status(404).send({
-                    "msg": "data not found"
-                });
+                res.status(404).send("Data not found");
             }
             else {
                 res.status(200).send(rows);
             }
         }
         else
-            res.status(400).send({
-                "msg": err.code
-            });
-        console.log('Error while performing Query.', err);
-    }) ;   
+            console.log('Error while performing Query.', err);
+    });  
 }
 
 module.exports = {
