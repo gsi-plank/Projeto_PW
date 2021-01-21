@@ -56,7 +56,7 @@ function saveUsers() {
         data.name = document.getElementById("name").value;
         data.email = document.getElementById("email").value;
         data.date_birth = document.getElementById("date").value;
-        data.age = getAge(data.date_birth);
+        data.age = getAge(data.date_birth).toString();
         data.phone_nr = document.getElementById("n_tel").value;
         data.cc = document.getElementById("cc").value;
         data.password = document.getElementById("pwd").value;

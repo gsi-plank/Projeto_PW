@@ -30,19 +30,19 @@ function postData(route, data) {
             console.log(response.headers); //=> Headers
             console.log(response.url); //=> String
             if (response.status === 409) {
-                alert("Duplicated!");
+                alert("Duplicado!");
             }
             else {
                 throw Error(response.statusText);
             }
         }
         else {
-            alert("submitted with success");
+            alert("Submetido com sucesso");
         }
     }).then(function(result) {
         console.log(result);
     }).catch(function(err) {
-        alert("Submission error");
+        alert("Erro de submissão");
         console.error(err);
     });
 }
