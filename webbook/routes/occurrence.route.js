@@ -95,4 +95,8 @@ server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational'
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation.updateIndEvaluation)
 
+//questions
+server.route('/questions')
+    .get(controllerChecklist.readQuestions)
+
 module.exports = server;

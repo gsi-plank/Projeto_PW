@@ -11,3 +11,5 @@ server.route('/operationals')
 
 server.route('/operationals/:id_operational')
     .get(controllerOperational.readOperational)
+
+module.exports = server;

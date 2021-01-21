@@ -1,5 +1,6 @@
 const server = require('../server.js');
 const controllerUser = require('../controllers/user.controller');
+const controllerMode = require('../controllers/darkmode.controller');
 const bodyParser = require('body-parser');
  
 server.route('/users')
@@ -7,6 +8,8 @@ server.route('/users')
 
 server.route('/users/:id_login')
     .put(controllerUser.updateUser)
+    .get(controllerMode.readMode)
+    .delete(controllerMode.deleteMode)
 
 server.route('/users/:email')
     .get(controllerUser.selectLogin)
@@ -28,3 +31,14 @@ server.route('/audits/:id_login')
     .get(controllerUser.readAudit)
     .put(controllerUser.updateAudit) 
     .delete(controllerUser.deleteAudit)
+
+server.route('/mode')
+    .post(controllerMode.addMode)    
+
+server.route('/users/:id_login/dark')
+    .put(controllerMode.updateDark)
+
+server.route('/users/:id_login/light')
+    .put(controllerMode.updateLight)
+
+module.exports = server;

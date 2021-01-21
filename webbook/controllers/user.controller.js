@@ -38,18 +38,32 @@ function addAdmin(req, res) {
     const phone_nr = req.sanitize('phone_nr').escape();
     const address = req.sanitize('address').escape();
     const education = req.sanitize('education').escape();
-    let post = [email, password, profile, name, age, nationality, cc, date_birth, phone_nr, address, education, email]
+    let post1 = [email, password, profile]; 
     let query = ""
-    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?); insert into administrator (name, age, nationality, cc, date_birth, phone_nr, address, education, id_login) VALUES (?,?,?,?,?,?,?,?,(select id_login from login where email=?))',
-    post, function (err, rows, fields) {
+    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?)',
+    post1, function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
-            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("1 - Number of records inserted: " + rows.affectedRows);
         } else {
             if (err.code == "ER_DUP_ENTRY") {
-                res.status(409).send({"msg": err.code});
                 console.log('1 - Error while performing Query.', err);
+            } else
+                res.status(400).send({ "msg": err.code });
+        }
+    });
+    let post2 = [name, age, nationality, cc, date_birth, phone_nr, address, education, email]
+    let query1 = ""
+    query1 = connect.con.query('insert into administrator (name, age, nationality, cc, date_birth, phone_nr, address, education, id_login) VALUES (?,?,?,?,?,?,?,?,(select id_login from login where email=?))',
+    post2, function (err, rows, fields) {
+        console.log(query.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("2 - Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                res.status(409).send({"msg": err.code});
+                console.log('2 - Error while performing Query.', err);
             } else
                 res.status(400).send({ "msg": err.code });
         }
@@ -151,9 +165,10 @@ function addAudit(req, res) {
     const cc = req.sanitize('cc').escape();
     const date_birth = req.sanitize('date_birth').escape();
     const phone_nr = req.sanitize('phone_nr').escape();
-    let post1 = [email, password, profile, name, age, cc, date_birth, phone_nr, email]
-    let query = ""
-    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?); insert into auditor (name, age, cc, date_birth, phone_nr, id_login) VALUES (?,?,?,?,?,(select id_login from login where email=?))', 
+    let post1 = [email, password, profile] 
+    let post2 = [name, age, cc, date_birth, phone_nr, email]
+    let query = "";
+    query = connect.con.query('INSERT INTO login (email, password, profile) values (?,?,?)', 
     post1, function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
@@ -161,11 +176,23 @@ function addAudit(req, res) {
             console.log("1 - Number of records inserted: " + rows.affectedRows);
         } else {
             if (err.code == "ER_DUP_ENTRY") {
-                res.status(409).send({"msg": err.code});
                 console.log('1 - Error while performing Query.', err);
             } else
-                res.status(400).send({ "msg": err.code });
                 console.log('1 - Error while performing Query.', err);
+        }
+    });
+    let query1="";
+    query1 = connect.con.query('insert into auditor (name, age, cc, date_birth, phone_nr, id_login) VALUES (?,?,?,?,?,(select id_login from login where email=?))', 
+    post2, function (err, rows, fields) {
+        console.log(query1.sql);
+        if (!err) {
+            res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
+            console.log("2 - Number of records inserted: " + rows.affectedRows);
+        } else {
+            if (err.code == "ER_DUP_ENTRY") {
+                console.log('2 - Error while performing Query.', err);
+            } else
+                console.log('2 - Error while performing Query.', err);
         }
     });
 }

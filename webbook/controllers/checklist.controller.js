@@ -26,7 +26,7 @@ function readAnswers(req, res) {
 }
 
 function deleteChecklist(req, res) {
-    const id_occurrence = req.sanitize('id_checklist').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
     query = connect.con.query('DELETE from checklist where id_occurrence=?', id_occurrence, 
     function (err, rows, fields){
@@ -82,7 +82,7 @@ function addChecklist(req, res) {
     const question_5 = req.sanitize('question_5').escape();
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let post = [
-        idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5, id_occurrence
+        id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5
     ]
     let query = ""
     query = connect.con.query('INSERT INTO checklist (id_occurrence, idq1, question_1, idq2, question_2, idq3, question_3, idq4, question_4, idq5, question_5) values (?,?,?,?,?,?,?,?,?,?,?)', post, 
@@ -101,9 +101,32 @@ function addChecklist(req, res) {
     });
 }
 
+function readQuestions(req, res) {
+    connect.con.query('SELECT question from question', function(err, rows, fields) {
+            if (!err) {
+                //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+                if (rows.length == 0) {
+                    res.status(404).send({
+                        "msg": "data not found"
+                    });
+                }
+                else {
+                    res.status(200).send(rows);
+                }
+            }
+            else
+                res.status(400).send({
+                    "msg": err.code
+                });
+            console.log('Error while performing Query.', err);
+        });
+}
+
 module.exports = {
     readChecklist : readAnswers,
     createChecklist : addChecklist,
     updateChecklist : updateChecklist,
-    deleteChecklist : deleteChecklist
+    deleteChecklist : deleteChecklist,
+
+    readQuestions : readQuestions
 }
