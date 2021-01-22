@@ -26,7 +26,6 @@ server.route('/occurrences/:id_occurrence/address')
     .get(controllerOccurrence.readAddress)
 
 server.route('/occurrences/:id_occurrence/arrival')
-    .get(controllerOccurrence.readArrival)
     .put(controllerOccurrence.updateOccurrenceArrival)
 
 server.route('/occurrences/:id_occurrence/cost')
@@ -92,18 +91,8 @@ server.route('/occurrences/:id_occurrence/individual_evaluation')
     .get(controllerIEvaluation.listOpPointsOccur) // certo
     .post(controllerIEvaluation.createIndEvaluation)
 
-server.route('/occurrences/:id_occurrence/individual_evaluation/done')
-    .get(controllerIEvaluation.evalDone) // certo
-
-server.route('/occurrences/:id_occurrence/individual_evaluation/notdone')
-    .get(controllerIEvaluation.evalNotDone) // certo
-
 server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation.updateIndEvaluation)
-
-//questions
-server.route('/questions')
-    .get(controllerChecklist.readQuestions)
 
 module.exports = server;
