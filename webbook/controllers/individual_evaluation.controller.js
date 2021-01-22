@@ -111,10 +111,59 @@ function addIndividual_eval(req, res) {
     });
 }
 
+function evalDone(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    connect.con.query('select operational_occurrence.id_operational from operational_occurrence right join individual_evaluation on (operational_occurrence.id_occurrence=individual_evaluation.id_occurrence and operational_occurrence.id_operational=individual_evaluation.id_operational) where individual_evaluation.id_occurrence=?',
+    [id_occurrence], function(err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            res.status(400).send({
+                "msg": err.code
+            });
+        console.log('Error while performing Query.', err);
+    });
+}
+
+function evalNotDone(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    connect.con.query('select operational_occurrence.id_operational from operational_occurrence left join individual_evaluation on (operational_occurrence.id_occurrence=individual_evaluation.id_occurrence and operational_occurrence.id_operational=individual_evaluation.id_operational) where (operational_occurrence.id_occurrence=? and individual_evaluation.id_occurrence is null)',
+    [id_occurrence], function(err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            res.status(400).send({
+                "msg": err.code
+            });
+        console.log('Error while performing Query.', err);
+    });
+}
+
 module.exports = {
     listOpPointsTotal : listOpPointsTotal,
     listOpPointsOccur : listOpPointsOccur,
     deleteIndEvaluation : deleteIndividual_eval,
     updateIndEvaluation : updateIndividual_eval,
-    createIndEvaluation : addIndividual_eval
+    createIndEvaluation : addIndividual_eval,
+
+    evalDone : evalDone,
+    evalNotDone : evalNotDone
 }
