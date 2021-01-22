@@ -1,11 +1,11 @@
-const { con } = require('../assets/bd');
 const connect = require ('../assets/bd');
 
 //login
 function login (req, res) {
     const email = req.sanitize('email').escape();
     let query = "";
-    query = connect.con.query('SELECT email, password FROM login where email=?', email, function (err, rows, fields){
+    query = connect.con.query('SELECT email, password FROM login where email=?', [email], function (err, rows, fields){
+        console.log(query.sql);
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
