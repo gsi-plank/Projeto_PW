@@ -100,7 +100,7 @@ import * as selector from "./functions/selectorWeekMonthYear.js";
             if(selected) {
             window.location ="occurrenceDate.html";
             } else {
-                alert("Selecione uma ocorrencia");
+                alert("Selecione uma ocorrência");
             }
         })
     }
