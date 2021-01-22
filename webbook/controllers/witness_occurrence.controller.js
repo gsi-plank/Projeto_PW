@@ -7,7 +7,7 @@ function readByWitOccur(req, res) {
     let post = [
         id_occurrence, id_witness
     ]
-    connect.con.query('SELECT id_witness, id_occurrence, testimony, date, justification from witness_occurrence where id_occurrence =? and id_witness = ?', post,
+    connect.con.query('SELECT id_witness, id_occurrence, testimony, justification from witness_occurrence where id_occurrence =? and id_witness = ?', post,
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -31,7 +31,7 @@ function readByWitOccur(req, res) {
 function listWitByOccur(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
-    query = connect.con.query ('SELECT id_witness, id_occurrence, testimony, date, justification FROM witness_occurrence where id_occurrence=?', id_occurrence, 
+    query = connect.con.query ('SELECT id_witness, id_occurrence, testimony, justification FROM witness_occurrence where id_occurrence=?', id_occurrence, 
     function (err, rows, fields) {
         if (!err) {
             if (rows.length == 0) {
@@ -62,18 +62,17 @@ function deleteWitness_occurrence(req, res) {
 
 function updateWitness_occurrence(req, res) {
     const testimony = req.sanitize('testimony').escape();
-    const date = req.sanitize('date').escape();
     const justification = req.sanitize('justification').escape();
     const id_witness = req.sanitize('id_witness').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
     let post = [
         testimony,
-        date,
-        group_nr,
         justification,
-        id_witness
+        id_witness,
+        id_occurrence
     ]
     let query = "";
-    query = connect.con.query('UPDATE witness_occurrence SET testimony=?, date?, justification=? WHERE id_witness=?', post, function (err, rows, fields){
+    query = connect.con.query('UPDATE witness_occurrence SET testimony=?, justification=? WHERE id_witness=? and id_occurrence=?', post, function (err, rows, fields){
         console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
@@ -88,17 +87,16 @@ function updateWitness_occurrence(req, res) {
 function addWitness_Occurrence(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     const testimony = req.sanitize('testimony').escape();
-    const date = req.sanitize('date').escape();
     const justification = req.sanitize('justification').escape();
     const name = null;
     const email = null;
     const place = null;
     const profession = null;
     let post = [
-        id_occurrence, testimony, date, justification, name, email, place, profession
+        id_occurrence, testimony, justification, name, email, place, profession
     ]
     let query = ""
-    query = connect.con.query('INSERT INTO witness_occurrence values (?,?,?,?,?,?,?,?)', post, 
+    query = connect.con.query('INSERT INTO witness_occurrence (id_occurrence, testimony, justification, name, email, place, profession) values (?,?,?,?,?,?,?)', post, 
     function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
@@ -118,6 +116,6 @@ module.exports = {
     listWitOccurrence : listWitByOccur,
     readWitOccurrence : readByWitOccur,
     deleteWitOccur : deleteWitness_occurrence,
-    updateWitOccur : deleteWitness_occurrence,
+    updateWitOccur : updateWitness_occurrence,
     createWitOccur : addWitness_Occurrence
 }
