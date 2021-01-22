@@ -1,4 +1,4 @@
-
+import * as fetch from "./functions/fetch.js"
 
 let slider1 = document.getElementById("review1");
 let output1 = document.getElementById("value1");
@@ -59,5 +59,15 @@ $(function () {
 
     $range.on('change', track); 
  });
+ 
+ let id_login = 1
+
+(async function() {
+    let route = "audits/"+id_login;
+    let indReview = await fetch.getData(route);
+    console.log(indReview)
+    document.getElementById("item").innerHTML = indReview.name;
+    
+})
 
 
