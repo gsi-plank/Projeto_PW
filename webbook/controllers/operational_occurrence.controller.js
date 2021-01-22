@@ -64,7 +64,7 @@ function deleteOpOccur(req, res) {
 }
 
 function updateOpOccur(req, res) {
-    const checked = req.sanitize('check').escape();
+    const checked = req.sanitize('checked').escape();
     const id_operational = req.sanitize('id_operational').escape();
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let post = [
