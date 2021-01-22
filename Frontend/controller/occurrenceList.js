@@ -4,88 +4,108 @@ import * as table from "./functions/table.js";
 import * as selector from "./functions/selectorWeekMonthYear.js";
 
 
-let occurrences = [
-    {
-        "id_occurrence": "534",
-        "arrival": "2020-12-29",
-        "departure": "2020-12-12"
-    },
-    {
-        "id_occurrence": "432",
-        "arrival": "2020-01-21",
-        "departure": "2019-07-08"
-    },
-    {
-        "id_occurrence": "422",
-        "arrival": "2020-12-01",
-        "departure": "2019-07-08"
-    },
-    {
-        "id_occurrence": "42",
-        "arrival": "2020-11-23",
-        "departure": "2019-07-08"
-    },
-    {
-        "id_occurrence": "4222",
-        "arrival": "2020-07-01",
-        "departure": "2019-07-08"
-    },
-    {
-        "id_occurrence": "4322",
-        "arrival": "2020-12-12",
-        "departure": "2019-07-08"
-    }
-    ];
-
-
 window.onload = function () {
 
+   
+    
     fillTable(0);
-    $("#button1").click(function(){
+    $("#button1").click(function () {
         fillTable(0);
-      });
-    $("#button2").click(function(){
+    });
+    $("#button2").click(function () {
         fillTable(1);
-      });
-    $("#button3").click(function(){
+    });
+    $("#button3").click(function () {
         fillTable(2);
-      });
+    });
 
 
-
-     function fillTable(type) {
+    async function fillTable(type) {
         //Confirmar o tipo
+        let routeNot = "occurrences/evaluations/not";
+        let routeDone = "occurrences/evaluations/done";
+        let occurrencesNot = await fetch.getData(routeNot);
+        let occurrencesDone = await fetch.getData(routeDone);
+
+        console.log(occurrencesNot)
+        console.log(occurrencesDone)
         console.log(type);
 
         // Filtrar a lista de ocorrencias
-        
-        let occurrenceSel = selector.filtrator(occurrences, type);
-        
+
+        let occurrenceSelNot = selector.filtrator(occurrencesNot, type);
+        let occurrenceSelDone = selector.filtrator(occurrencesDone, type);
+
         // se nao existir correncias
-        if(occurrenceSel.length == 0){
-            let tab = document.getElementById("tableList");
-            tab.innerHTML =  "";
-            return;
-        }
+        if (!(occurrenceSelDone.length == 0 && occurrenceSelNot.length == 0)) {
+            if (occurrenceSelNot.length == 0) {
+                let tab = document.getElementById("tableNot");
+                tab.innerHTML = "";
+            }
+            if (occurrenceSelDone.length == 0) {
+                let tab = document.getElementById("tableDone");
+                tab.innerHTML = "";
+            }
+        } else return;
+
+        //Ordernar as ocurrencias por data de chegada
+        occurrenceSelNot.sort(function (a, b) {
+            var dateA = new Date(a.arrival), dateB = new Date(b.arrival)
+            return dateA - dateB
+        });
+        occurrenceSelDone.sort(function (a, b) {
+            var dateA = new Date(a.arrival), dateB = new Date(b.arrival)
+            return dateA - dateB
+        });
         
-        let data = []
-        
-        data.head = [
+
+        //Meter os arrays na tabela
+        let dataNot = [];
+        dataNot.head = [
             "ID",
             "Chegada",
             "Partida"
         ]
 
-        data.body = occurrenceSel;
-        console.log(occurrenceSel)
-        // console.log(occurrenceSel)
+        let dataDone = [];
+        dataDone.head = [
+            "ID",
+            "Chegada",
+            "Partida"
+        ]
 
-        let tab = document.getElementById("tableList");
-        tab.innerHTML =  table.fillTable(data);
-        // }
-        // fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
+        dataNot.body = occurrenceSelNot;
+        dataDone.body = occurrenceSelDone;
+        
+        // console.log(occurrenceSelNot)
+        // console.log(occurrenceSelDone)
+
+        let tabNot = document.getElementById("tableNot");
+        tabNot.innerHTML = table.fillTable(dataNot);
+        let tabDone = document.getElementById("tableDone");
+        tabDone.innerHTML = table.fillTable(dataDone);
+
+        $("#tableNot tr").click(function() {
+            var selected = $(this).hasClass("highlight");
+            $("#tableNot tr").removeClass("highlight");
+            if(!selected)
+                    $(this).addClass("highlight");
+    
+                    var id = $(this).closest("tr").find('td:eq(-3)').text();
+                    console.log(id);
+            sessionStorage.setItem("id_occurrence", id);
+        });
+
+        
+      
+        document.getElementById("btnoccurrence").addEventListener("click", function(){
+            var selected = $("#tableNot tr").hasClass("highlight");
+            if(selected) {
+            window.location ="occurrenceDate.html";
+            } else {
+                alert("Selecione uma ocorrencia");
+            }
+        })
     }
 }
-
-    
 

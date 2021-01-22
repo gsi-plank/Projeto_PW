@@ -412,6 +412,10 @@ table td:last-child, th:last-child{
   width:100px;
 }
 
+.highlight {
+            background: red !important;
+}
+
 .btn-default {
   width: 30px;
   height: 30px;
