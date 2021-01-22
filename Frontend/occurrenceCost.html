@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <link rel="stylesheet" href="./css/occurrence.css" />
+    <link rel="stylesheet" href="./css/forms.css" />
     <title>Custo da ocorrência</title>
     </head>
 
     <body>
     
-
     <div id="app-header">
         <div class="container">
             <ul>
@@ -39,21 +39,29 @@
     <div class="container-3">
     <h5 id="custoOcorrencia">3. Custo da ocorrência:</h5>
         <form id="formOccurrenceCost">
-            <div class="form-group">
-                <h4>Distância percorrida</h4>
-                <input id="newDistance" type="text" class="form-control">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4>Distância percorrida</h4>
+                    <input id="newDistance" type="text">
+                </div>
             </div>
-            <div class="form-group">
-                <h4>Combustível gasto pelo veículo (100km)</h4>
-                <input id="newFuel" type="text" class="form-control">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4>Combustível gasto pelo veículo (100km)</h4>
+                    <input id="newFuel" type="text">
+                </div>
             </div>
-            <div class="form-group">  
-                <h4>Duração da operação</h4>
-                <input id="newDuration" type="text" class="form-control">
+            <div class="field">
+                <div class="input-wrapper">  
+                    <h4>Duração da operação</h4>
+                    <input id="newDuration" type="text">
+                </div>
             </div>
-            <div class="form-group">
-                <h4>Nº de operacionais</h4>
-                <input id="newNumber" type="number" class="form-control">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4>Nº de operacionais</h4>
+                    <input id="newNumber" type="text">
+                </div>
             </div>
         </form>
             <button id="submit" type="button"  onclick="calcularValor()">Calcular total</button>
