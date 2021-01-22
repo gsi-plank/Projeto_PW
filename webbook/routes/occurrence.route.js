@@ -7,6 +7,7 @@ const controllerCostOccur = require ('../controllers/occurrence_cost.controller'
 const controllerGEvaluation = require ('../controllers/group_evaluation.controller');
 const controllerIEvaluation = require ('../controllers/individual_evaluation.controller');
 const controllerChecklist = require ('../controllers/checklist.controller');
+const controllerVehicle = require ('../controllers/vehicle.controller');
 const bodyParser = require('body-parser');
 
 server.route('/occurrences')
@@ -72,6 +73,9 @@ server.route('/occurrences/:id_occurrence/cost')
 
 server.route('/occurrences/:id_occurrence/cost/duration')
     .put(controllerCostOccur.updateCostOccur)
+
+server.route('/occurrences/:id_occurrence/cost/fuel_average')
+    .get(controllerVehicle.readFAverage)   
 
 //group evaluation
 server.route('/occurrences/:id_occurrence/group_evaluation')
