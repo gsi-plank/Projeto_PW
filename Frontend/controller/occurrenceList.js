@@ -4,9 +4,6 @@ import * as table from "./functions/table.js";
 import * as selector from "./functions/selectorWeekMonthYear.js";
 
 
-window.onload = function () {
-
-   
     
     fillTable(0);
     $("#button1").click(function () {
@@ -107,5 +104,5 @@ window.onload = function () {
             }
         })
     }
-}
+
 
