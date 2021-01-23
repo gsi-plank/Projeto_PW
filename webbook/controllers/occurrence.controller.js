@@ -87,12 +87,10 @@ function readArrival(req, res) {
                 else {
                     res.status(200).send(rows);
                 }
+            } else {
+                res.status(400).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
             }
-            else
-                res.status(400).send({
-                    "msg": err.code
-                });
-            console.log('Error while performing Query.', err);
         });
 }
 
@@ -158,6 +156,23 @@ function updateOccurrenceCost(req, res) {
     });
 }
 
+function updateOccurrenceDistance(req, res) {
+    const distance = req.sanitize('distancce').escape();
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let post = [ distance, id_occurrence ]
+    let query = "";
+    query = connect.con.query('UPDATE occurrence SET distance=? WHERE id_occurrence=?', post, function (err, rows, fields){
+        console.log(query.sql);
+        if(!err) {
+            console.log('Number of records updated: ' + rows.affectedRows);
+            res.status(200).send({"msg": "updated with success"});
+        } else {
+            res.status(400).send({"msg": err.code});
+            console.log('Error while performing query', err);
+        }
+    });
+}
+
 module.exports = {
     listOccurrence: listOccurrence,
     readOccurrence: readOccurrence,
@@ -165,6 +180,7 @@ module.exports = {
     readArrival: readArrival,
     updateOccurrenceArrival: updateOccurrenceArrival,
     updateOccurrenceCost : updateOccurrenceCost,
+    updateOccurrenceDistance : updateOccurrenceDistance,
     deleteOccurrence: deleteOccurrence,
     readTypeOps: readOcTypeOp
 };
