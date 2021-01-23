@@ -73,7 +73,7 @@ function addAdmin(req, res) {
 function readAdmin(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = connect.con.query('select login.id_login, administrator.name, login.email, login.password from (login inner join administrator on administrator.id_login = login.id_login) where login.id_login = ?', id_login, function (err, rows, fields) {
+    query = connect.con.query('select administrator.name, login.email, administrator.date_birth, administrator.phone_nr login.password from (login inner join administrator on administrator.id_login = login.id_login) where login.id_login = ?', id_login, function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -200,7 +200,7 @@ function addAudit(req, res) {
 function readAudit(req, res) {
     const id_login = req.sanitize('id_login').escape();
     let query = "";
-    query = connect.con.query('select login.id_login, auditor.name, login.email, login.password from (login inner join auditor on auditor.id_login = login.id_login) where login.id_login = ?', [id_login], function (err, rows, fields) {
+    query = connect.con.query('select auditor.name, login.email, auditor.date_birth, auditor.phone_nr from (login inner join auditor on auditor.id_login = login.id_login) where login.id_login = ?', [id_login], function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
