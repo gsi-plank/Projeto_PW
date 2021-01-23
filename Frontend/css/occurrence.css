@@ -118,6 +118,10 @@
     margin-top: 70px;
 }
 
+.icon{
+    position: relative;
+}
+
 /* Janela da lista de ocorrências */
 .radioButtons {
     margin-top: 70px;
