@@ -119,6 +119,14 @@
 }
 
 .icon{
+    position: absolute;
+    margin-left: 265px;
+    margin-top: -45px;
+}
+
+form input[type="text"] {
+    max-height: 70px;
+    height: 70px;
 }
 
 /* Janela da lista de ocorrências */

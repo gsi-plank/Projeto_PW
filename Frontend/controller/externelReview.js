@@ -13,7 +13,7 @@ $('#myTable').on('click', 'i', function () {
 })
 
 $('p button').click(function () {
-    $('#myTable').append('<div class="field"><div class="input-wrapper"><h4>Testemunho:</h4><input type="text" class="teste"><i class="fas fa-times"></i></input></div></div><div class="field"><div class="input-wrapper"><h4>Justificação:</h4><input type="text" class="teste"/><i class="fas fa-times"></i></input></div></div>')
+    $('#myTable').append('<div class="field"><div class="input-wrapper"><h4>Testemunho:</h4><input type="text" class="teste"><i class="fas fa-times icon"></i></input></div></div><div class="field"><div class="input-wrapper"><h4>Justificação:</h4><input type="text" class="teste"/><i class="fas fa-times icon"></i></input></div></div>')
 });
 
 

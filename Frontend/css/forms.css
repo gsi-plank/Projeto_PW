@@ -1,10 +1,3 @@
-/*form {*/
-/*    background: #fff;*/
-/*    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15), 0 8px 19px -7px rgba(0, 0, 0, 0.19), 0 1px 5px 0 rgba(0, 0, 0, 0.12);*/
-/*    border-radius: 1px;*/
-/*    padding: 20px;*/
-/*    position: relative;*/
-/*}*/
 
 form .input-wrapper {
     position: relative;
@@ -14,18 +7,6 @@ form .field {
     margin: 6px 0 18px 0;
     position: relative;
 }
-
-/*form .placeholder {*/
-/*    color: #4f4f4f;*/
-/*    font-size: 12px;*/
-/*    position: absolute;*/
-/*    z-index: 2;*/
-/*    left: 10px;*/
-/*    top: -7px;*/
-/*    background: #ffffff;*/
-/*    padding: 0 4px;*/
-/*    pointer-events: none;*/
-/*}*/
 
 form input:focus + .placeholder {
     color: #8933f0;
@@ -95,23 +76,6 @@ form input[type='text'][disabled], form input[type='password'][disabled], form t
 form input[type='text'].error, form input[type='password'].error, form textarea.error {
     border: 1px solid #fa4531;
 }
-
-
-/*button, input[type='submit'], input[type='reset'], .file-input-fake-button {*/
-/*    position: relative;*/
-/*    background: #6c3289;*/
-/*    border: 0;*/
-/*    outline: none;*/
-/*    padding: 18px 30px;*/
-/*    border-radius: 36px;*/
-/*    display: block;*/
-/*    width: 100%;*/
-/*    box-sizing: border-box;*/
-/*    cursor: pointer;*/
-/*    color: #ffffff;*/
-/*    margin-top: 45px;*/
-/*}*/
-
 
 
 
