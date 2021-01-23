@@ -1,4 +1,4 @@
-
+import * as fetch from "./functions/fetch.js"
 
 // let newPassword = document.getElementById("newPassword").value;
 // let confirmPassword = document.getElementById("confirmPassword").value;

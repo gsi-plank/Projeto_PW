@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/user.css" type="text/css"/>
   <link rel="stylesheet" href="./css/global.css" type="text/css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
     <title>Administrador</title>
 </head>
@@ -43,9 +42,13 @@
         <h5 id="auditoresTxt">Auditores: </h5>
 
         <!--Criate new table with fetch-->
-        <div id="dyanmicTable"></div>
-
-        <a href="newAuditor.html"><button id="addAuditor" type="button" class="title">Adicionar auditor</button></a>
+        <div id="tableAudits"></div>
+        <ul>
+            <li><button id="addAuditor" class="title">Adicionar auditor</button></li>
+            <li> <button id="deleteAuditor" class="title">Eleminar auditor</button></li>
+        </ul>
+        
+       
     </div>
     
     
@@ -73,12 +76,11 @@
     </div>
    
     <!--JS Files-->
-    <script src="./controller/test.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   
     <script type= "module" src="./controller/admin.js"></script>
-    <script type="module" src="./controller/set.theme.mode.js"></script>
+     <script type="module" src="./controller/set.theme.mode.js"></script> 
 </body>
 
 </html>

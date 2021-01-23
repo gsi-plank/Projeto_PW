@@ -8,9 +8,15 @@ let id_occurrence = 1;
     console.log(route);
     let costOccu = await fetch.getData(route);
     console.log(costOccu);
-    console.log(costOccu[0].distance)
+    console.log(costOccu[0].distance);
     document.getElementById("newDuration").value = costOccu[0].duration;
     document.getElementById("newNumber").value = costOccu[0].num_of_operationals;
+    
+    let route2 = "occurrences/"+id_occurrence + "/cost/fuel_average";
+    let fuelOccu = await fetch.getData(route2);
+    console.log(fuelOccu[0].fuel_average);
+    
+    document.getElementById("newFuel").value = fuelOccu[0].fuel_average;
     
 })();
 

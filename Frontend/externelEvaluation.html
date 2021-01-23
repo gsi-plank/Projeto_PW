@@ -37,51 +37,39 @@
         </div>
     </div>
     <div class="container-3">
-    <div class="grid-container">
-        <div class="item1">-->
-            <h4>Avaliação externa:</h4>
-            <input type="text" class="ext"> </input>
-        </div>
-        <div class="item2">
-            <h4>Justificação:</h4>
-            <input type="text" class="ext"> </input>
-        </div>
-        <div id="externalReviewBox"></div> 
-    <!--    <div class="item1">-->
-    <!--    <h4> Avaliação do Local</h4>-->
-    <!--        <input id type="text" class="fname" />-->
-    <!--</div>-->
-<!--        <div class="item2">-->
-<!--        <table id="myTable" style="border: 1px solid black">-->
-<!--    <tr>-->
-<!--        <h4> Avaliação Externa </h4>-->
-<!--        <td>-->
-<!--            <h4>Relato da Testemunha</h4>-->
-<!--            <input id type="text" class="fname" />-->
-<!--        </td>-->
-        
-<!--    </tr>-->
-<!--    <tr>-->
-        
-<!--        <td>-->
-<!--            <h4>Justificação</h4>-->
-<!--            <input type="text" class="fname" />-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <input id="remBtn" type="button" value="Remover">-->
-<!--    </tr>-->
-   
-<!--</table>-->
-<!--<p>-->
-<!--    <input id="addAuditor" type="button" value="Adicionar Testemunha">-->
-<!--</p>-->
-<!--</div>-->
-<!--</div>-->
+        <table id="myTable" style="border: 1px solid black">
+        <tr>
+            <h4> Avaliação Externa </h4>
+            <td>
+                <h4>Testemunho</h4>
+                <input id type="text" class="fname" />
+            </td>
+        <td>
+            <div>
+                <input class="remBtn" id="remBtn" type="button" value="Remover" name="image" style="display:none"/><i class="fas fa-times"></i>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+            <h4>Justificação</h4>
+            <input type="text" class="fname" />
+        </td>
+        <td>
+            <input class="remBtn" id="remBtn" type="button" value="Remover">
+    </tr>
+    
+</table>
+<p>
+    <input class= "addAuditor" id="addAuditor" type="button" value="Adicionar Testemunha">
+</p>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="./controller/externelReview.js"></script>
+<script type="module" src="./controller/externelReview.js"></script>
+<script type="module" src="./controller/set.theme.mode.js"></script>
     
 </body>
 </html>
