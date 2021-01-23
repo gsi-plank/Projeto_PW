@@ -1,4 +1,4 @@
-
+import * as fetch from "./functions/fetch.js"
 
 window.onload = function() {
     const picture = document.getElementById("picture");
@@ -10,6 +10,20 @@ window.onload = function() {
 
 }
 
+let id_login = 22;
+
+
+(async function() {
+    let route = "users"
+    console.log(route)
+    let profile = await fetch.getData(route);
+    console.log(profile)
+    document.getElementById("name").innerHTML = profile.id_login;
+    document.getElementById("email").innerHTML = profile.email;
+    document.getElementById("date").innerHTML = profile.profile;
+    
+    
+}) ()
 
 // function dataAuditor() {
 //     const picture = document.getElementById("picture");
