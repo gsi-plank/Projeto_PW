@@ -85,7 +85,7 @@ server.route('/occurrences/:id_occurrence/group_evaluation')
     .put(controllerGEvaluation.updateGEvaluation)
 
 //checklist
-server.route('/occurrences/:id_occurrence/group_evaluation/checklist')
+server.route('/occurrences/:id_occurrence/checklist')
     .get(controllerChecklist.readChecklist) // certo
     .post(controllerChecklist.createChecklist)
     .delete(controllerChecklist.deleteChecklist)
@@ -106,8 +106,5 @@ server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational'
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation.updateIndEvaluation)
 
-//questions
-server.route('/questions')
-    .get(controllerChecklist.readQuestions)
 
 module.exports = server;
