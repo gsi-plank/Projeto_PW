@@ -20,7 +20,7 @@ let id_login = 22;
     console.log(profile)
     document.getElementById("name").innerHTML = profile.id_login;
     document.getElementById("email").innerHTML = profile.email;
-    document.getElementById("date").innerHTML = profile.profile;
+    // document.getElementById("date").innerHTML = profile.profile;
     
     
 }) ()
