@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/e195162fd2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css" />
+    <link rel="stylesheet" href="./css/forms.css" type="text/css" />
     <link rel="stylesheet" href="./css/occurrence.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Avaliação externa e do local</title>
@@ -36,33 +37,52 @@
             </ul>
         </div>
     </div>
-    <div class="container-3">
-        <table id="myTable" style="border: 1px solid black">
-        <tr>
-            <h4> Avaliação Externa </h4>
-            <td>
-                <h4>Testemunho</h4>
-                <input id type="text" class="fname" />
-            </td>
-        <td>
-            <div>
-                <input class="remBtn" id="remBtn" type="button" value="Remover" name="image" style="display:none"/><i class="fas fa-times"></i>
+<!--    <div class="container-3">-->
+<!--        <table id="myTable" style="border: 1px solid black">-->
+<!--        <tr>-->
+<!--            <h5 id="title">Avaliação Externa:</h5>-->
+<!--            <td>-->
+<!--                <h4>Testemunho:</h4>-->
+<!--                <input id type="text" class="fname"/>-->
+<!--            </td>-->
+<!--        <td>-->
+<!--            <div>-->
+<!--                <input class="remBtn" id="remBtn" type="button" value="Remover" name="image" />-->
+<!--            </div>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>-->
+<!--            <h4>Justificação:</h4>-->
+<!--            <input type="text" class="fname"/>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <input class="remBtn" id="remBtn" type="button" value="Remover">-->
+<!--    </tr>-->
+<!--</table>-->
+<!--<p>-->
+<!--    <button class= "addAuditor" id="addAuditor" type="button">Adicionar testemunha</button>-->
+<!--</p>-->
+<!--</div>-->
+
+<div class="container-3">
+        <h5 id="title">Avaliação Externa:</h5>
+        <form id="myTable">
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4>Testemunho:</h4>
+                    <input type="text" class="testemunho"><i class="fas fa-times"></i></input> 
+                </div>
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            
-            <h4>Justificação</h4>
-            <input type="text" class="fname" />
-        </td>
-        <td>
-            <input class="remBtn" id="remBtn" type="button" value="Remover">
-    </tr>
-    
-</table>
+            <div class="field">
+                <div class="input-wrapper">
+                    <h4>Justificação:</h4>
+                    <input type="text" class="justificação"/><i class="fas fa-times"></i></input> 
+                </div>
+            </div>
+        </form>
 <p>
-    <input class= "addAuditor" id="addAuditor" type="button" value="Adicionar Testemunha">
+    <button class= "addAuditor" id="addAuditor" type="button">Adicionar testemunha</button>
 </p>
 </div>
 

@@ -8,7 +8,9 @@ import * as table from "./functions/table.js";
 
 (async function() {
     refreshAudits()
-
+    let route;
+    let id_login;
+    
     $("#tableAudits tr").click(function() {
         var selected = $(this).hasClass("highlight");
         $("#tableNot tr").removeClass("highlight");

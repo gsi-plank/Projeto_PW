@@ -10,12 +10,13 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
   let setter;
   document.getElementById("time").value = time;
   document.getElementById("submit").addEventListener("click", function(){
-    let arrival2 = arrival1.getDay() + "-" + arrival1.getMonth() + "-" + arrival1.getFullYear();
+    let arrival2 = new Date(arrival1).toISOString().slice(0, 10);
     setter = document.getElementById("time").value;
     let setter1 = arrival2 +" "+ setter;
     let data = {
       arrival: setter1
     }
     fetch.putData(route1, data);
+    window.location = "checkList.html";
   })
 })()

@@ -113,15 +113,9 @@
     margin-top: 20px;
 }
 
-/* Janela para avaliação externa e do local */
-.item1 {
-    margin-top: 60px;
-    margin-bottom: 30px;
-}
-
-#addWitness {
-    margin-top: 30px;
-    margin-bottom: 100px;
+/* Janela para avaliação externa*/
+#title {
+    margin-top: 70px;
 }
 
 /* Janela da lista de ocorrências */

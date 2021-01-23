@@ -1,44 +1,50 @@
+import * as fetch from "./functions/fetch.js"
 
+let id_occurrence = sessionStorage.getItem("id_occurrence");
 
-// let listQueries = JSON.parse();
-
-// function changeQueryName() {
-//     let query = document.getElementsByTagName("span");
-
-//     for (let i = 0; i < query.length; i++) {
-
-//         // alterar as frases dos nomes das querys
-//         query[i].innerHTML = "";
-//     }
-// }
-
-
-// const checkList = document.getElementById("checkListForm");
-// checkList.addEventListener("submit", async() => {
-
-//     let chb = document.getElementsByClassName('chb');
-//     let answer = new Array();
-//     for (let i = 0; i < chb.length; i++) {
-//         if (chb[i].checked) {
-//             //converter os valor de checklist para 1 e 0
-//             answer[i] = 1;
-//         }
-//         else
-//             answer[i] = 0;
-//     }
-//     //buscar a rota para o fetch
-//     const response = await fetch(`${urlBase}(...)`),
-//         {
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             method: "POST",
-//             body: `checkList=${answer}`
-//         }
-//         const result = await response.json();
-//         if(result.value.sucess) {
-//             swal('Envio de mensagem', result.value.mensagem.pt, 'sucess');
-//         } else {
-//             //Exibir modal com erro 
-//         }
-// })
+(async function(){
+  let route1 = "occurrences/"+ id_occurrence +"/checklist/";
+  
+    document.getElementById("submit").addEventListener("click", function(){
+        let input1 = document.getElementById("action1");
+        if (input1.checked) {
+            input1 = 1;
+        } else {
+            input1 = 0
+        }
+        let input2 = document.getElementById("action2");
+        if (input2.checked) {
+          input2= 1;
+      } else {
+          input2= 0
+      }
+        let input3 = document.getElementById("action3");
+        if (input3.checked) {
+          input3 = 1;
+      } else {
+          input3 = 0
+      }
+        let input4 = document.getElementById("action4");
+        if (input4.checked) {
+          input4 = 1;
+      } else {
+          input4 = 0
+      }
+        let input5= document.getElementById("action5");
+        if (input5.checked) {
+          input5 = 1;
+      } else {
+          input5 = 0
+      }
+        let data = {
+      question_1: input1,
+      question_2: input2,
+      question_3: input3,
+      question_4: input4,
+      question_5: input5
+    }
+    console.log(data)
+    fetch.postData(route1, data);
+    window.location = "occurrenceCost.html";
+  })
+})()
