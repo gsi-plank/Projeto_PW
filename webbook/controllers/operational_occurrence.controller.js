@@ -4,7 +4,7 @@ const connect = require('../assets/bd');
 function listOpByOccur(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
-    query = connect.con.query('SELECT OO.id_operational, O.name, OO.checked from operational_occurrence as OO left join operational as O on OO.id_operational=O.id_operational where OO.id_occurrence=2', 
+    query = connect.con.query('SELECT OO.id_operational, O.name, OO.checked from operational_occurrence as OO left join operational as O on OO.id_operational=O.id_operational where OO.id_occurrence=?', 
     id_occurrence, function (err, rows, fields) {
         if (!err) {
             if (rows.length == 0) {
