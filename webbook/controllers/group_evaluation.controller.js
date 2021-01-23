@@ -78,14 +78,13 @@ function updateGEval(req, res) {
 
 function addGEval(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    const id_auditor = req.sanitize('id_auditor').escape();
     const score = req.sanitize('score').escape();
     const invoices = req.sanitize('invoices').escape();
     let post = [
-        id_occurrence, id_auditor, score, invoices,   
+        id_occurrence, score, invoices,   
     ]
     let query = ""
-    query = connect.con.query('INSERT INTO group_evaluation (id_occurrence, id_auditor, score, invoices) values (?,?,?,?)', post, 
+    query = connect.con.query('INSERT INTO group_evaluation (id_occurrence, score, invoices) values (?,?,?)', post, 
     function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
