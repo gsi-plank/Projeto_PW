@@ -1,19 +1,21 @@
-function checkTime(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
-  }
-  
- function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    // add a zero in front of numbers<10
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-  }
+import * as fetch from "./functions/fetch.js"
 
-window.onload(setTimeout(startTime(), 500));
+let id_occurrence = sessionStorage.getItem("id_occurrence");
+
+(async function(){
+  let route1 = "occurrences/"+ id_occurrence +"/arrival/"
+  let occurrence = await fetch.getData(route1, {id_occurrence}); 
+  let arrival1 = new Date(occurrence[0].arrival);
+  let time = ""+arrival1.getHours()+":"+arrival1.getMinutes()+"" ;
+  let setter;
+  document.getElementById("time").value = time;
+  document.getElementById("submit").addEventListener("click", function(){
+    let arrival2 = arrival1.getDay() + "-" + arrival1.getMonth() + "-" + arrival1.getFullYear();
+    setter = document.getElementById("time").value;
+    let setter1 = arrival2 +" "+ setter;
+    let data = {
+      arrival: setter1
+    }
+    fetch.putData(route1, data);
+  })
+})()

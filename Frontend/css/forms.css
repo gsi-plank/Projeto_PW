@@ -31,7 +31,7 @@ form input:focus + .placeholder {
     color: #8933f0;
 }
 
-form input[type='text'], form input[type='password'],form input[type='date'] {
+form input[type='text'], form input[type='password'],form input[type='date'], form input[type='email'] {
     font-size: 14px;
     position: relative;
     display: block;
@@ -72,7 +72,7 @@ form .field > label > input[type='text']:focus, form .field > label > input[type
     border-bottom: 5px solid #c83535;
 }
 
-form input[type='text'], form input[type='date'], form input[type='password'], form textarea, .select-box {
+form input[type='text'], form input[type='date'], form input[type='password'], form input[type='email'], form textarea, .select-box {
     font-weight: 400;
     box-sizing: border-box;
     width: 100%;

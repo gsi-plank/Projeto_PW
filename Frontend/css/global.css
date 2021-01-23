@@ -413,7 +413,7 @@ table td:last-child, th:last-child{
 }
 
 .highlight {
-            background: red !important;
+  background: rgba(181, 2, 2, 0.69) !important;
 }
 
 .btn-default {

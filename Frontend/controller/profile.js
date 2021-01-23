@@ -14,37 +14,32 @@ let id_login = 22;
 
 
 (async function() {
-    let route = "users"
-    console.log(route)
-    let profile = await fetch.getData(route);
-    console.log(profile)
-    document.getElementById("name").innerHTML = profile.id_login;
-    document.getElementById("email").innerHTML = profile.email;
-    // document.getElementById("date").innerHTML = profile.profile;
+    let route = "users";
+    let users = await fetch.getData(route);
+    let person;
     
+    for(const user of users){
+    if(user.id_login == id_login){
+    person = user;
+    break;
+    }
+}
+
+    document.getElementById("id").value = person.id_login;
+    document.getElementById("email").value = person.email;
+    document.getElementById("cargo").value = person.profile;
     
-}) ()
+    if(person.profile == "Administrador") {
+        route= "admins/"+id_login;
+        let admin = await fetch.getData(route);
+        
+        document.getElementById("name").value = admin[0].name;
+    } else {
+        route= "audits/"+id_login;
+        let audits = await fetch.getData(route);
+        console.log(route)
+        console.log(audits[0].name)
+        document.getElementById("name").value = audits[0].name;
+    }
+})();
 
-// function dataAuditor() {
-//     const picture = document.getElementById("picture");
-//     const response = await fetch(`${urlBase}/auditor`);
-//     const auditor = await response.json();
-//     let fotoAuditor = "";
-
-
-//     if (auditor.foto !== null) {
-//         const fotoAuditor += `
-//     <img id="profilePicture" class="mx-auto rounded-circle" src="${auditor.foto}" alt="">
-//     `
-//     }
-//     picture.innerHTML = fotoAuditor;
-
-
-//     const name = document.getElementById("name").value;
-//     const email = document.getElementById("email").value;
-//     const date = document.getElementById("date").value;
-
-//     name = auditor.name;
-//     email = auditor.email;
-//     date = auditor.date;
-// }

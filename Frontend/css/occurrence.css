@@ -130,6 +130,19 @@
     margin-bottom: 10px;
 }
 
+#tableNot {
+    margin-top: -24px;
+    margin-bottom: 11px;
+}
+
+#ocorrence1Txt {
+    margin-top: 42px;
+}
+
+#tableDone {
+    margin-top: -24px;
+    margin-bottom: 100px;
+}
 /* Janela principal */
 #occurrences {
     margin-top: 400px;
