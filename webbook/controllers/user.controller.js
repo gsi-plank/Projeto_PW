@@ -318,6 +318,24 @@ function readUsers(req, res) {
     });  
 }
 
+function readUserEmail(req, res) {
+    const id_login = req.sanitize('id_login').escape();
+    let query = "";
+    query = connect.con.query('select email from login where id_login=?', id_login, function (err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            console.log('Error while performing Query.', err);
+    });  
+}
+
 module.exports = {
     listAdmin: listAdmin,
     readAdmin: readAdmin,
@@ -333,5 +351,6 @@ module.exports = {
     
     selectLogin : login,
     updateUser : updateUser,
-    allUsers : readUsers
+    allUsers : readUsers,
+    readEmail : readUserEmail
 }

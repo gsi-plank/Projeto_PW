@@ -13,6 +13,9 @@ server.route('/users/:id_login')
 
 server.route('/users/password/:email')
     .get(controllerUser.selectLogin)
+
+server.route('/users/:id_login/email')
+    .get(controllerUser.readEmail)
     
 server.route('/admins')
     .get(controllerUser.listAdmin)
