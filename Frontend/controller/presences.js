@@ -1,7 +1,7 @@
 import * as fetch from "./functions/fetch.js";
 
-// let id_occurrence = sessionStorage.getItem("id_occurrence");
-let id_occurrence = 2;
+let id_occurrence = sessionStorage.getItem("id_occurrence");
+
 (async function() {
     let route = "occurrences/"+ id_occurrence + "/operationals/";
     let operationals = await fetch.getData(route);
@@ -43,7 +43,7 @@ let id_occurrence = 2;
             }
             routeOpera = route + operational.id_operational;
             console.log(operational)
-            fetch.putData(routeOpera, operational)
+            fetch.putData(routeOpera, operational);
         }
     })
 })()

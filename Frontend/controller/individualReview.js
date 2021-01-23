@@ -1,4 +1,4 @@
-import * as fetch from "./functions/fetch.js"
+import * as fetch from "./functions/fetch.js";
 
 let id_occurrence = sessionStorage.getItem("id_occurrence");
 let id_operational = sessionStorage.getItem("id_operational");
@@ -65,9 +65,12 @@ $(function () {
 
 (async function(){
   
-  let route1 = "occurrences/"+ id_occurrence +"/individual_evaluation/"
-  let route2 = route1 + id_operational;
+  let route1 = "occurrences/"+ id_occurrence +"/individual_evaluation/notDone"
+  let route2 = "occurrences/"+ id_occurrence +"/individual_evaluation/" + id_operational;
+  //operacionais nao avaliados
   let operationals = await fetch.getData(route1);
+
+  //obter o operacional da pagina
   let operational; 
     for(const oper of operationals){
       if(oper.id_operational == id_operational){
@@ -76,13 +79,15 @@ $(function () {
       }
     }
     console.log(operational)
-
+  document.getElementById("name").innerText("")
   let score;
+
   document.getElementById("submit").addEventListener("click", function(){
     score = document.getElementById("totalPontos").innerText;
     operational.score = score;
     operational.id_occurrence = id_occurrence;
     console.log(operational)
+
     
     fetch.putData(route2, operational);
   })

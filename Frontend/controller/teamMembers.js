@@ -18,8 +18,8 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
     let routeNot = "occurrences/" + id_occurrence + "/individual_evaluation/notdone";
     let operationalsNot = await fetch.getData(routeNot);
     console.log(operationalsNot)
-    // let routeDone = "occurrences/" + id_occurrence + "/individual_evaluation/done";
-    // let operationalsDone = await fetch.getData(routeDone);
+    let routeDone = "occurrences/" + id_occurrence + "/individual_evaluation/done";
+    let operationalsDone = await fetch.getData(routeDone);
 
     
     //Diferenciar os operacionais avaliados dos nao avalidados
