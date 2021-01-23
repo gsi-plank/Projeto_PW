@@ -136,7 +136,7 @@ function evalDone(req, res) {
 
 function evalNotDone(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
-    connect.con.query('select A.id_operational, operational.name from (select operational_occurrence.id_operational from operational_occurrence left join individual_evaluation on (operational_occurrence.id_occurrence=individual_evaluation.id_occurrence and operational_occurrence.id_operational=individual_evaluation.id_operational) where (operational_occurrence.id_occurrence=? and individual_evaluation.id_occurrence is null)) as A inner join operational on operational.id_operational=A.id_operational',
+    connect.con.query('select A.id_operational, operational.name from (select operational_occurrence.id_operational from operational_occurrence left join individual_evaluation on (operational_occurrence.id_occurrence=individual_evaluation.id_occurrence and operational_occurrence.id_operational=individual_evaluation.id_operational) where (operational_occurrence.id_occurrence=? and operational_occurrence.checked=1 and individual_evaluation.id_occurrence is null)) as A inner join operational on operational.id_operational=A.id_operational',
     [id_occurrence], function(err, rows, fields) {
         if (!err) {
             //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
