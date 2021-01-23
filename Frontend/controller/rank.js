@@ -1,37 +1,10 @@
-
+import * as fetch from "./functions/fetch.js";
  
-let operationals = [
-    {
-        "name": "Borat",
-        "points": "1233"
-    },
-    {
-        "name": "Rocky",
-        "points": "3221"
-    },
-    {
-        "name": "Luffy",
-        "points": "4322"
-    },
-    {
-        "name": "Gypsy",
-        "points": "3342"
-    },
-    {
-        "name": "Pantufa",
-        "points": "2321"
-    }
-
-]
-
-
-window.onload = function () {
-
-    (function fillTable() {
-        // async function fetchAsync() {
+    (async function fillTable() {
         const rankList = document.getElementById("tableList");
-        // const response = await fetch('https://cc102f71a59f4b86b46f44cac1acf38f.vfs.cloud9.us-east-1.amazonaws.com/operationals');
-        // const operationals = await response.json();
+        const route = "operationals";
+        const operationals = await fetch.getData(route);
+        console.log(operationals)
         let txt = "";
 
         txt += '<div class="d-flex topThree">';
@@ -154,4 +127,3 @@ window.onload = function () {
         // }
         // fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
     })()
-}
