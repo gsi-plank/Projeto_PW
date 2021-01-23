@@ -1,5 +1,8 @@
 import * as fetch from "./functions/fetch.js"
 
+let id_occurrence = sessionStorage.getItem("id_occurrence");
+let id_operational = sessionStorage.getItem("id_operational");
+
 let slider1 = document.getElementById("review1");
 let output1 = document.getElementById("value1");
 output1.innerHTML = slider1.value;
@@ -59,15 +62,29 @@ $(function () {
 
     $range.on('change', track); 
  });
- 
- let id_login = 1
 
-(async function() {
-    let route = "audits/"+id_login;
-    let indReview = await fetch.getData(route);
-    console.log(indReview)
-    document.getElementById("item").innerHTML = indReview.name;
+(async function(){
+  
+  let route1 = "occurrences/"+ id_occurrence +"/individual_evaluation/"
+  let route2 = route1 + id_operational;
+  let operationals = await fetch.getData(route1);
+  let operational; 
+    for(const oper of operationals){
+      if(oper.id_operational == id_operational){
+        operational = oper;
+        break;
+      }
+    }
+    console.log(operational)
+
+  let score;
+  document.getElementById("submit").addEventListener("click", function(){
+    score = document.getElementById("totalPontos").innerText;
+    operational.score = score;
+    operational.id_occurrence = id_occurrence;
+    console.log(operational)
     
-})
-
+    fetch.putData(route2, operational);
+  })
+})()
 
