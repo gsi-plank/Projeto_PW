@@ -1,13 +1,10 @@
-"use strict"
+"use strict";
 import * as fetch from "./functions/fetch.js";
 import * as table from "./functions/table.js";
 
 
-
-
-
 (async function() {
-    refreshAudits()
+    refreshAudits();
     let route;
     let id_login;
     
@@ -28,22 +25,22 @@ import * as table from "./functions/table.js";
         if(selected) {
         route = "audits/" + id_login;
         fetch.deleteData(route);
-        refreshAudits()
+        refreshAudits();
         } else {
             alert("Selecione um auditor");
         }
-    })
-})()
+    });
+})();
 
 
 async function refreshAudits() {
-    let route = "audits"
+    let route = "audits";
     const users = await fetch.getData(route);
     console.log(users);
     let tab = document.getElementById("tableAudits");
     
     let data= [];
-    data.head= ["id","name", "age", "numero"];
+    data.head= ["ID","Nome", "Idade", "Número"];
     data.body=users;
     tab.innerHTML =  table.fillTable(data);
 }
