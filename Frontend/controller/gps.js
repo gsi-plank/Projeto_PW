@@ -1,16 +1,21 @@
-//Gps
-
+import * as fetch from "./functions/fetch.js";
 
 let map, infoWindow;
-let locations = [
-    { "id_occurrence": 2, "address": "Rua da Água Nova, 4815-598 Tagilde" }
-];
+// let locations = [
+//     { "id_occurrence": 2, "address": "Rua da Água Nova, 4815-598 Tagilde" }
+// ];
 
-let quarter = {"id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela"};
+let quarter = { "id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela" };
 
+
+(async function () {
+    await initMap()
+})()
 async function initMap() {
-    try {
+    let route = "occurrences";
+    let locations = await fetch.getData(route)
 
+    try {
         // Map options
         let options = {
             zoom: 15,
@@ -25,57 +30,60 @@ async function initMap() {
         quarter.marker = await createMarker(quarter)
         addMarker(quarter.marker);
 
+        let trueLocations = [];
         for (const location of locations) {
-            location.marker = await createMarker(location)
-        } 
-
-        // Loop through markers
-        for (let i = 0; i < locations.length; i++) {
-            // Add marker
-            addMarker(locations[i].marker);
-        }
-
-
-        
-async function createMarker(location) {
-    try {
-        let marker;
-        let aux;
-        console.log(location.address)
-        aux = await getLocationInfo(location.address);
-        console.log(aux)
-        marker = {
-            coords: { lat: aux.lat, lng: aux.lng },
-            content: `${location.id_occurrence}:   ${aux.formattedAddress}`
-        }
-        return marker;
-    } catch (err) {
-        console.log('We could not get the coordinates of locations')
-    }
-
-}
-
-function getLocationInfo(address) {
-    return new Promise((resolve, reject) => {
-        let locationInfo = {};
-        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-            params: {
-                address: address,
-                key: 'AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM'
+            if (location.address !== null && location.address !== undefined) {
+                trueLocations.push(location);
             }
-        }).then(function (response) {
-            // console.log(response);
-            // Formatted Address
-            locationInfo.formattedAddress = response.data.results[0].formatted_address;
-            locationInfo.lat = response.data.results[0].geometry.location.lat;
-            locationInfo.lng = response.data.results[0].geometry.location.lng;
-            // console.log(locationInfo)
-            resolve(locationInfo);
-        }).catch(function (err) {
-            console.log(err);
-        })
-    })
-}
+        }
+        console.log(trueLocations)
+
+        for(const trueLocation of trueLocations){
+            trueLocation.marker = await createMarker(trueLocation);
+            console.log(trueLocation.marker)
+            addMarker(trueLocation.marker);
+        }
+
+
+        async function createMarker(location) {
+            try {
+                let marker;
+                let aux;
+                console.log(location.address)
+                aux = await getLocationInfo(location.address);
+                console.log(aux)
+                marker = {
+                    coords: { lat: aux.lat, lng: aux.lng },
+                    content: `${location.id_occurrence}:   ${aux.formattedAddress}`
+                }
+                return marker;
+            } catch (err) {
+                console.log('We could not get the coordinates of locations')
+            }
+
+        }
+
+        function getLocationInfo(address) {
+            return new Promise((resolve, reject) => {
+                let locationInfo = {};
+                axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                    params: {
+                        address: address,
+                        key: 'AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM'
+                    }
+                }).then(function (response) {
+                    // console.log(response);
+                    // Formatted Address
+                    locationInfo.formattedAddress = response.data.results[0].formatted_address;
+                    locationInfo.lat = response.data.results[0].geometry.location.lat;
+                    locationInfo.lng = response.data.results[0].geometry.location.lng;
+                    // console.log(locationInfo)
+                    resolve(locationInfo);
+                }).catch(function (err) {
+                    console.log(err);
+                })
+            })
+        }
         // // let currentPosition
         // const locationButton = document.createElement("button");
         // locationButton.textContent = "Clica para a sua posição atual";
@@ -161,15 +169,15 @@ function getLocationInfo(address) {
         let coordinates = {};
         // console.log(quarter.marker.coords);
         coordinates.origin = quarter.marker.coords;
-        
+
         let typeTravel = 'DRIVING'; //WALKING, BICYCLING, TRANSIT, DRIVING;
 
-        for(let i=0; i<locations.length; i++) {
-            console.log(locations[i].marker.coords)
-            coordinates.destination = locations[i].marker.coords;
-            getDistanceGuide(coordinates, typeTravel, locations[i].id_occurrence)
+    for (const trueLocation of trueLocations) {
+                    console.log(trueLocation.marker.coords)
+                    coordinates.destination = trueLocation.marker.coords;
+                    getDistanceGuide(coordinates, typeTravel, trueLocation.id_occurrence);
         }
-       
+
 
         function getDistanceGuide(coordinates, typeTravel, id) {
             let route = {
