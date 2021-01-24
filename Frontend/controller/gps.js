@@ -1,10 +1,12 @@
+//Gps
 
-// GPS
+
 let map, infoWindow;
 let locations = [
-    "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela",
-    "R. Dr. Bráulio Caldas 465, 4815-478 Caldas de Vizela"
+    { "id_occurrence": 2, "address": "Rua da Água Nova, 4815-598 Tagilde" }
 ];
+
+let quarter = {"id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela"};
 
 async function initMap() {
     try {
@@ -18,8 +20,62 @@ async function initMap() {
 
         // New map
         map = new google.maps.Map(document.getElementById('map'), options);
-
         infoWindow = new google.maps.InfoWindow();
+
+        quarter.marker = await createMarker(quarter)
+        addMarker(quarter.marker);
+
+        for (const location of locations) {
+            location.marker = await createMarker(location)
+        } 
+
+        // Loop through markers
+        for (let i = 0; i < locations.length; i++) {
+            // Add marker
+            addMarker(locations[i].marker);
+        }
+
+
+        
+async function createMarker(location) {
+    try {
+        let marker;
+        let aux;
+        console.log(location.address)
+        aux = await getLocationInfo(location.address);
+        console.log(aux)
+        marker = {
+            coords: { lat: aux.lat, lng: aux.lng },
+            content: `${location.id_occurrence}:   ${aux.formattedAddress}`
+        }
+        return marker;
+    } catch (err) {
+        console.log('We could not get the coordinates of locations')
+    }
+
+}
+
+function getLocationInfo(address) {
+    return new Promise((resolve, reject) => {
+        let locationInfo = {};
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: address,
+                key: 'AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM'
+            }
+        }).then(function (response) {
+            // console.log(response);
+            // Formatted Address
+            locationInfo.formattedAddress = response.data.results[0].formatted_address;
+            locationInfo.lat = response.data.results[0].geometry.location.lat;
+            locationInfo.lng = response.data.results[0].geometry.location.lng;
+            // console.log(locationInfo)
+            resolve(locationInfo);
+        }).catch(function (err) {
+            console.log(err);
+        })
+    })
+}
         // // let currentPosition
         // const locationButton = document.createElement("button");
         // locationButton.textContent = "Clica para a sua posição atual";
@@ -64,14 +120,7 @@ async function initMap() {
         // }
 
 
-        let markers = await createMarkers(locations)
 
-
-        // Loop through markers
-        for (let i = 0; i < markers.length; i++) {
-            // Add marker
-            addMarker(markers[i]);
-        }
 
         // Add Marker Function
         function addMarker(props) {
@@ -110,19 +159,24 @@ async function initMap() {
         // Create route from existing points used for markers
 
         let coordinates = {};
-        coordinates.origin = markers[0].coords;
-        coordinates.destination = markers[1].coords;
-        typeTravel = 'DRIVING'; //WALKING, BICYCLING, TRANSIT, DRIVING;
+        // console.log(quarter.marker.coords);
+        coordinates.origin = quarter.marker.coords;
+        
+        let typeTravel = 'DRIVING'; //WALKING, BICYCLING, TRANSIT, DRIVING;
 
+        for(let i=0; i<locations.length; i++) {
+            console.log(locations[i].marker.coords)
+            coordinates.destination = locations[i].marker.coords;
+            getDistanceGuide(coordinates, typeTravel, locations[i].id_occurrence)
+        }
+       
 
-        getDistanceGuide(coordinates, typeTravel)
-        function getDistanceGuide(coordinates, typeTravel) {
+        function getDistanceGuide(coordinates, typeTravel, id) {
             let route = {
                 origin: coordinates.origin,
                 destination: coordinates.destination,
-                travelMode: typeTravel //WALKING, BICYCLING, TRANSIT, DRIVING
+                travelMode: typeTravel
             }
-
             directionsService.route(route,
                 function (response, status) { // anonymous function to capture directions
                     if (status !== 'OK') {
@@ -136,13 +190,12 @@ async function initMap() {
                             return;
                         }
                         else {
+                            sessionStorage.setItem("distance_id_occurrence_" + id, directionsData.distance.text)
                             document.getElementById('msg').innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
                         }
                     }
                 });
         }
-
-
     } catch (err) {
         console.log(err);
     }
@@ -152,58 +205,14 @@ async function initMap() {
 
 
 
-async function createMarkers(locations) {
-    try {
-        let markers = []
-        let marker;
-        let aux;
-        // console.log(locations)
-
-        for (let i = 0; i < locations.length; i++) {
-            aux = await getLocationInfo(locations[i]);
-            // console.log(aux)
-            marker = {
-                coords: { lat: aux.lat, lng: aux.lng },
-                content: `${aux.formattedAddress}`
-            }
-            markers.push(marker)
-        }
-        return markers
-    } catch (err) {
-        console.log('We could not get the coordinates of locations')
-    }
-
-}
-
-function getLocationInfo(location) {
-    return new Promise((resolve, reject) => {
-        let locationInfo = {};
-        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-            params: {
-                address: location,
-                key: 'AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM'
-            }
-        }).then(function (response) {
-            // console.log(response);
-            // Formatted Address
-            locationInfo.formattedAddress = response.data.results[0].formatted_address;
-            locationInfo.lat = response.data.results[0].geometry.location.lat;
-            locationInfo.lng = response.data.results[0].geometry.location.lng;
-            // console.log(locationInfo)
-            resolve(locationInfo);
-        }).catch(function (err) {
-            console.log(err);
-        })
-    })
-}
 
 
-function handleLocationError(browserHasGeolocation, infoWIndow, pos) {
-    infoWIndow.setPosition(pos);
-    infoWIndow.setContent(
-        browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Roor: Your broser dosn't support geolocation."
-    )
-    infoWIndow.open(map)
-}
+// function handleLocationError(browserHasGeolocation, infoWIndow, pos) {
+//     infoWIndow.setPosition(pos);
+//     infoWIndow.setContent(
+//         browserHasGeolocation
+//             ? "Error: The Geolocation service failed."
+//             : "Roor: Your broser dosn't support geolocation."
+//     )
+//     infoWIndow.open(map)
+// }
