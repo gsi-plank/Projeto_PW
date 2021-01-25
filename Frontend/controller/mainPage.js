@@ -23,20 +23,23 @@ import * as root from "./functions/dark.light.js";
             if (typeMode) {
                 // btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
                 btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
-                typeMode--;
+                typeMode = 0;
                 localStorage.setItem("typeMode", typeMode);
             } else {
                 // btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
                 btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
-                typeMode++;
+                typeMode = 1;
                 localStorage.setItem("typeMode", typeMode);
             }
             root.getTypeMode(typeMode);
-            root.setColor();
-        });
-    })();
+            root.setColor()
+        })
+    })()
 
-document.getElementById("occurrences").addEventListener("click", function(){
+
+
+
+document.getElementById("occurrences").addEventListener("click", function() {
     window.location = "occurrenceList.html";
 });
 
@@ -46,4 +49,3 @@ document.getElementById("admin").addEventListener("click", function() {
 
 let id_login = 1;
 
-});
