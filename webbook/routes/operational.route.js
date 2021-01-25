@@ -5,12 +5,12 @@ const {verify} = require('../controllers/middleware');
 const bodyParser = require('body-parser');
 
 server.route('/operationals/totalpoints')
-    .get(verify, controllerIndiv.listOpPointsTotal)
+    .get(controllerIndiv.listOpPointsTotal)
 
 server.route('/operationals')
-    .get(verify, controllerOperational.listOperational)
+    .get(controllerOperational.listOperational)
 
 server.route('/operationals/:id_operational')
-    .get(verify, controllerOperational.readOperational)
+    .get(controllerOperational.readOperational)
 
 module.exports = server;

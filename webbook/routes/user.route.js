@@ -7,15 +7,15 @@ const {login, logout} = require('../controllers/login.controller');
 const bodyParser = require('body-parser');
  
 server.route('/users')
-    .get(verify, controllerUser.allUsers)
+    .get(controllerUser.allUsers)
 
 server.route('/users/:id')
-    .put(verify, controllerUser.updateUser)
-    .get(verify, controllerMode.readMode)
-    .delete(verify, controllerMode.deleteMode)
+    .put(controllerUser.updateUser)
+    .get(controllerMode.readMode)
+    .delete(controllerMode.deleteMode)
 
 server.route('/users/password/:email')
-    .get(verify, controllerUser.selectLogin)
+    .get(controllerUser.selectLogin)
     
 server.route('/users/login')
     .post(login)
@@ -24,39 +24,39 @@ server.route('/users/logout')
     .get(logout)    
 
 server.route('/users/:id/email')
-    .get(verify, controllerUser.readEmail)
+    .get(controllerUser.readEmail)
 
 server.route('/users/:id/profile')
-    .get(verify, controllerUser.readProfile)
+    .get(controllerUser.readProfile)
     
 server.route('/admins')
-    .get(verify, controllerUser.listAdmin)
-    .post(verify, controllerUser.createAdmin)
+    .get(controllerUser.listAdmin)
+    .post(controllerUser.createAdmin)
 
 server.route('/admins/:id')
-    .get(verify, controllerUser.readAdmin)
-    .delete(verify, controllerUser.deleteAdmin)
-    .put(verify, controllerUser.updateAdmin)
+    .get(controllerUser.readAdmin)
+    .delete(controllerUser.deleteAdmin)
+    .put(controllerUser.updateAdmin)
     
 server.route('/audits')
-    .get(verify, controllerUser.listAudit)
-    .post(verify, controllerUser.createAudit)
+    .get(controllerUser.listAudit)
+    .post(controllerUser.createAudit)
 
 server.route('/audits/:id')
-    .get(verify, controllerUser.readAudit)
-    .put(verify, controllerUser.updateAudit) 
-    .delete(verify, controllerUser.deleteAudit)
+    .get(controllerUser.readAudit)
+    .put(controllerUser.updateAudit) 
+    .delete(controllerUser.deleteAudit)
 
 server.route('/mode')
-    .post(verify, controllerMode.addMode)    
+    .post(controllerMode.addMode)    
 
 server.route('/users/:id/dark')
-    .put(verify, controllerMode.updateDark)
+    .put(controllerMode.updateDark)
 
 server.route('/users/:id/light')
-    .put(verify, controllerMode.updateLight)
+    .put(controllerMode.updateLight)
 
 server.route('/users/:id/light')
-    .put(verify, controllerMode.updateLight)
+    .put(controllerMode.updateLight)
 
 module.exports = server;
