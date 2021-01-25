@@ -8,7 +8,14 @@ window.onload = function() {
     `
     picture.innerHTML = fotoAuditor;
 
-}
+};
+
+
+document.getElementById("editProfile").addEventListener("click", function() {
+  window.location = "editProfile.html";  
+});
+
+
 
 let id_login = 22;
 

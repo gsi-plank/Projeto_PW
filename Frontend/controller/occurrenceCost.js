@@ -1,36 +1,90 @@
 import * as fetch from "./functions/fetch.js"
 
-let id_occurrence = 1;
+let id_occurrence = sessionStorage.getItem("id_occurrence");
+//let distance = sessionStorage.getItem("distance_id_occurrence_"+id_occurrence);
+let distance = "7.7 km";
 
-//função para ir buscar os valores
-(async function() {
-    let route = "occurrences/"+id_occurrence + "/cost";
-    console.log(route);
-    let costOccu = await fetch.getData(route);
-    console.log(costOccu);
-    console.log(costOccu[0].distance);
-    document.getElementById("newDuration").value = costOccu[0].duration;
-    document.getElementById("newNumber").value = costOccu[0].num_of_operationals;
-    
-    let route2 = "occurrences/"+id_occurrence + "/cost/fuel_average";
-    let fuelOccu = await fetch.getData(route2);
-    console.log(fuelOccu[0].fuel_average);
-    
-    document.getElementById("newFuel").value = fuelOccu[0].fuel_average;
-    
-})();
+async function preencher() {
+    let route1 = "occurrences/" + id_occurrence + "/cost/fuel_average";
+    let route2 = "occurrences/" + id_occurrence + "/cost/countop";
+    let distancia = distance.slice(0, -3);
 
-// window.onload = function() {
-    function calcularValor() {
+    document.getElementById("newDistance").value = distancia;
+    let custogas = await fetch.getData(route1, {id_occurrence});
 
-        const preco_gasoleo = 1.2;
+    let n_oper = await fetch.getData(route2, {id_occurrence});
+    document.getElementById("newNumber").value = n_oper[0].count;
 
-        let Distancia = document.getElementById("newDistance").value;
-        let Combustivel = document.getElementById("newFuel").value;
-        let Duracao = document.getElementById("newDuration").value;
-        let Numero = document.getElementById("newNumber").value;
+    let avg = custogas[0].fuel_average;
+    document.getElementById("newFuel").value = avg;   
+}
 
-        let custoTotal = (Distancia * (Combustivel / 100) * preco_gasoleo) + (Duracao * 5 * Numero);
-        document.getElementById("preco").innerHTML = custoTotal.toFixed(2) + "€";
+preencher();
+
+document.getElementById("calcule").addEventListener("click", async function(){
+    preencher();
+    let route1 = "occurrences/" + id_occurrence + "/cost/fuel_average";
+    let route2 = "occurrences/" + id_occurrence + "/cost/countop";
+    let custogas = await fetch.getData(route1, {id_occurrence});
+    let price = custogas[0].fuel_price;
+    let avg = custogas[0].fuel_average;
+
+    let n_oper = await fetch.getData(route2, {id_occurrence});
+    let count = n_oper[0].count;
+    let dur = document.getElementById("newDuration").value;
+
+    let oper=0;
+    let route3 = "occurrences/" + id_occurrence + "/cost/operationals";
+    let costop = await fetch.getData(route3, {id_occurrence});
+
+    if (document.getElementById("newDuration").value !== "" ) {
+        for (let i = 0; i < count; i++) {
+            oper = oper + (costop[i].pay_per_hour * dur);
+        }
+        let distance1 = parseFloat(distance);
+        let costgas = (avg * distance1 / 100) * price;
+        let costTotal = oper + costgas;
+        document.getElementById("preco").innerHTML = costTotal.toFixed(2) + "€";
+    } else {
+        var notify = $.notify('<strong>Erro!</strong> Insira um valor na duração!', {
+            type: 'danger',
+            allow_dismiss: true,
+          });
     }
+});
 
+document.getElementById("submit").addEventListener("click", async function(){
+    let distance = document.getElementById("newDistance").value;
+    let duration = document.getElementById("newDuration").value;
+    let n_operationals = document.getElementById("newNumber").value;
+    let costa = document.getElementById("preco").innerHTML;
+    let cost = costa.slice(0, -1)
+    let route1 = "occurrences/"+id_occurrence+"/cost";
+
+
+    let data = {
+        duration : duration,
+        num_of_operationals : n_operationals,
+        distance : distance,
+        cost : cost
+    }
+    let data1 = {
+        cost : cost
+    }
+    if (document.getElementById("newDuration").value !== "" ) {
+        if (document.getElementById("preco").innerHTML !== "" ) {
+          fetch.postData(route1, data);
+          fetch.putData(route1, data1);
+        } else {
+            var notify = $.notify('<strong>Erro!</strong> Calcule o custo da ocorrência!', {
+                        type: 'danger',
+                        allow_dismiss: true,
+                      });
+        }
+     } else {
+        var notify = $.notify('<strong>Erro!</strong> Insira um valor na duração!', {
+                    type: 'danger',
+                    allow_dismiss: true,
+                  });
+     }
+});

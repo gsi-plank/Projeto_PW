@@ -93,3 +93,10 @@ $(function () {
   });
 })();
 
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+})
+
+document.getElementById("submit").addEventListener("click", function(){
+    window.location = "evaluatedTeam.html";
+})

@@ -5,7 +5,7 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
 (async function() {
     let route = "occurrences/"+ id_occurrence + "/operationals/";
     let operationals = await fetch.getData(route);
-    console.log(operationals)
+    console.log(operationals);
     let txt = `<div class="container-3">    
     <h5 id="registoColab">Registo de colaboradores no terreno: </h5>
     <div class="form">
@@ -26,7 +26,7 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
     </div>
     `
     document.getElementById("presences").innerHTML = txt;
-    console.log(txt)
+    console.log(txt);
     let checkboxes = document.getElementsByName("checkbox");
     let submit = document.getElementById("submit");
     let routeOpera;
@@ -42,8 +42,12 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
                 }
             }
             routeOpera = route + operational.id_operational;
-            console.log(operational)
+            console.log(operational);
             fetch.putData(routeOpera, operational);
         }
-    })
-})()
+    });
+})();
+
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+})

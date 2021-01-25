@@ -57,6 +57,11 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
     document.getElementById(ID).addEventListener("click", function() {
         sessionStorage.setItem("id_operational", ID);
         window.location = "individualReview.html";
-    })
+    });
     }
-})()
+})();
+
+document.getElementById("back1").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+});
+

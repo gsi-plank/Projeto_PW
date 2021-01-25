@@ -48,3 +48,11 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
     window.location = "occurrenceCost.html";
   })
 })()
+
+document.getElementById("submit").addEventListener("click", function() {
+  window.location = "occurenceCost.html";
+})
+
+document.getElementById("back").addEventListener("click", function() {
+  window.location = "arrivalTime.html";
+})

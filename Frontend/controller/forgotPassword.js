@@ -10,3 +10,10 @@ let id_login = 22;
     document.getElementById("confirmacao").value = email[0].email;
     
 })();
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "login.html";
+})
+
+document.getElementById("submit").addEventListener("click", function(){
+    window.location = "login.html";
+})

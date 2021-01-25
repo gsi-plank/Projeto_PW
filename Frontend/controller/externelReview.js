@@ -24,3 +24,11 @@ function saveTestimony() {
 //   var nodesSameClass = parent.getElementsByName("witnesses");
 //     let witnessesNumber = nodesSameClass.length;
 //     console.log(witnessesNumber);
+
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+})
+
+document.getElementById("submit").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+})

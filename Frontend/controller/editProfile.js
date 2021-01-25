@@ -45,3 +45,11 @@ let id_login = sessionStorage.getItem("id_login");
     }
   })
 })()
+
+document.getElementById("submit").addEventListener("click", function() {
+  window.location = "mainPage.html";
+})
+
+document.getElementById("back").addEventListener("click", function() {
+  window.location = "profile.html";
+})

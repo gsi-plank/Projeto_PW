@@ -2,16 +2,16 @@ import * as fetch from "./functions/fetch.js";
 
 
 
-    // window.onload = function(){
+    window.onload = function(){
     validator();
     
 
     // submit
-    // document.getElementById("formNewUser").onsubmit = function(e) {
-    //     //validação do formulário ao submeter
-    //     validator();
-    // };
-    
+    document.getElementById("formNewUser").onsubmit = function(e) {
+        //validação do formulário ao submeter
+        validator();
+    };
+};
   
 
     //função de validação
@@ -66,4 +66,7 @@ import * as fetch from "./functions/fetch.js";
         fetch.postData(route, data);
     }
 
-// }
+
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "admin.html";
+});

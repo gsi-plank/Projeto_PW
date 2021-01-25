@@ -102,7 +102,9 @@ import * as selector from "./functions/selectorWeekMonthYear.js";
             } else {
                 alert("Selecione uma ocorrência");
             }
-        })
+        });
     }
 
-
+document.getElementById("back").addEventListener("click", function(){
+    window.location = "mainPage.html";
+})

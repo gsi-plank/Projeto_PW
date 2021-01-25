@@ -25,14 +25,14 @@
         <button id="ham-button" class="ham-button"><i class="fas fa-bars"></i></button>
         <div class="side-menu" id="side-menu" style="display:none;">
             <h3>Menu</h3>
-            <a target='blank' href='#'><i class="fas fa-user-shield"></i> Administrador</a>
+            <a target='blank' id="admin"><i class="fas fa-user-shield"></i> Administrador</a>
             <a id="btnMode" target='blank'><i class="fas fa-moon"></i> Darkmode</a>
             <a target='blank' href='#'><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
         </div>
 
         <div id="map"></div>
         <div id="msg"></div>
-        <a href="./occurrenceList.html"><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
+        <button id="occurrences" type="button" class="title textCenter">Ocorrências</button>
     </div>
 
     <div id="app-footer">
@@ -59,7 +59,7 @@
     
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM&callback=initMap">
     </script>
-    <!--<script type="module" src="./controller/set.theme.mode.js"></script>-->
+    <script type="module" src="./controller/set.theme.mode.js"></script>
 </body>
 
 </html>

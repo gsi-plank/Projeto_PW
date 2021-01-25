@@ -71,5 +71,9 @@ function findTotal(){
     console.log(data);
     fetch.postData(route1, data);
     window.location = "evaluatedTeam.html";
-  })
+  });
 })();
+
+document.getElementById("back").addEventListener("click", function(){
+  window.location = "occurrenceDate.html";
+})

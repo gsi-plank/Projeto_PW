@@ -1,10 +1,7 @@
 import * as root from "./functions/dark.light.js";
 
-window.onload = function () {
     (function () {
-        // let route = "";
-        // let typeMode = await fetch.getData(route);
-        let typeMode = 0;
+        let typeMode = localStorage.getItem("typeMode");
         let btnTypeMode = document.getElementById("btnMode");
         let btnHam = document.getElementById("ham-button");
         //MENU
@@ -22,21 +19,31 @@ window.onload = function () {
             }
         });
 
-        root.getTypeMode(typeMode)
-        root.setColor()
-
         btnTypeMode.addEventListener("click", function () {
             if (typeMode) {
                 // btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
                 btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
                 typeMode--;
+                localStorage.setItem("typeMode", typeMode);
             } else {
                 // btnTypeMode.innerHTML = '<i class="fas fa-sun"></i> Lightmode';
                 btnTypeMode.innerHTML = '<i class="fas fa-moon"></i> Darkmode';
                 typeMode++;
+                localStorage.setItem("typeMode", typeMode);
             }
             root.getTypeMode(typeMode);
-            root.setColor()
-        })
-    })()
-}
+            root.setColor();
+        });
+    })();
+
+document.getElementById("occurrences").addEventListener("click", function(){
+    window.location = "occurrenceList.html";
+});
+
+document.getElementById("admin").addEventListener("click", function() {
+    window.location = "admin.html";
+});
+
+let id_login = 1;
+
+});
