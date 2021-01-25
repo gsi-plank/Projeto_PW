@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSanitizer = require('express-sanitizer');
 const expressValidator = require('express-validator');
-const {login, logout} = require('./controllers/auth.controller.js')
+const {login, logout} = require('./controllers/login.controller.js')
 
 //iniciar a aplicação
 var server = express();
