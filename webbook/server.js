@@ -15,9 +15,10 @@ server.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 server.use(expressSanitizer());
 server.use(expressValidator());
 let port = process.env.PORT || 8080 ;
+const host = process.env.HOST || '18.234.240.95';
 server.listen(port, function(err) {
     if (!err) {
-        console.log('Your app is listening on port ' +port);
+        console.log('Your app is listening on host '+host+' and port ' +port);
     }
     else { console.log(err); }
 });
