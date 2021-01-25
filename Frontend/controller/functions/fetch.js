@@ -3,7 +3,7 @@ export { getData, putData, postData, deleteData };
 
 // https://dmitripavlutin.com/javascript-fetch-async-await/
 
-const urlBase = "https://projeto-pw.herokuapp.com/"
+const urlBase = "https://58717807e0f449edb5fcb157313592f1.vfs.cloud9.us-east-1.amazonaws.com/"
 // const urlBase = "https://660274fa4a8a48228a25454f70ccac83.vfs.cloud9.us-east-1.amazonaws.com/"
 // const urlBase = "http://localhost:8080/"
 
