@@ -1,20 +1,14 @@
 import * as fetch from "./functions/fetch.js";
 
-let map, infoWindow;
-// let locations = [
-//     { "id_occurrence": 2, "address": "Rua da Água Nova, 4815-598 Tagilde" }
-// ];
 
+let map, infoWindow;
 let quarter = { "id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntários 336, 4815-394 Caldas de Vizela" };
 
-
-(async function () {
-    await initMap()
-})()
-async function initMap() {
+(async function initMap() {
     let route = "occurrences";
     let locations = await fetch.getData(route)
-
+    
+    
     try {
         // Map options
         let options = {
@@ -36,11 +30,11 @@ async function initMap() {
                 trueLocations.push(location);
             }
         }
-        console.log(trueLocations)
+        // console.log(trueLocations)
 
         for(const trueLocation of trueLocations){
             trueLocation.marker = await createMarker(trueLocation);
-            console.log(trueLocation.marker)
+            // console.log(trueLocation.marker)
             addMarker(trueLocation.marker);
         }
 
@@ -49,12 +43,12 @@ async function initMap() {
             try {
                 let marker;
                 let aux;
-                console.log(location.address)
+                // console.log(location.address)
                 aux = await getLocationInfo(location.address);
-                console.log(aux)
+                // console.log(aux)
                 marker = {
                     coords: { lat: aux.lat, lng: aux.lng },
-                    content: `${location.id_occurrence}:   ${aux.formattedAddress}`
+                    content: `${location.id_occurrence}:${aux.formattedAddress}`
                 }
                 return marker;
             } catch (err) {
@@ -84,58 +78,13 @@ async function initMap() {
                 })
             })
         }
-        // // let currentPosition
-        // const locationButton = document.createElement("button");
-        // locationButton.textContent = "Clica para a sua posição atual";
-        // locationButton.classList.add("custom-map-control-button");
-        // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-
-        // // let currentPosition = 
-        // locationButton.addEventListener("click", () => {
-        //     // Try HTML5 geolocaiton
-
-        //     if (navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(
-        //             (position) => {
-        //                 const pos = {
-        //                     lat: position.coords.latitude,
-        //                     lng: position.coords.longitude,
-        //                 };
-        //                 infoWindow.setPosition(pos);
-        //                 infoWindow.setContent("Location found.");
-        //                 infoWindow.open(map);
-        //                 map.setCenter(pos);
-        //                 CurrentPosition(pos);
-        //             },
-        //             () => {
-
-        //                 handleLocationError(true, infoWIndow, map.getCenter())
-        //             }
-
-        //         );
-        //     } else {
-        //         //Browser dosn't support Geolocation
-        //         handleLocationError(false, infoWindow, map.getCenter())
-
-        //     }
-        // }
-        // )
-
-
-        // let currentPosition;
-        // function CurrentPosition(a){
-        //     currentPosition = a;
-        // }
-
-
 
 
         // Add Marker Function
         function addMarker(props) {
             let marker = new google.maps.Marker({
                 position: props.coords,
-                map: map,
-                // icon:props.iconImage
+                map: map
             });
 
             // Check for customicon
@@ -143,7 +92,7 @@ async function initMap() {
                 // Set icon image
                 marker.setIcon(props.iconImage);
             }
-
+            
             // Check content
             if (props.content) {
                 let infoWindow = new google.maps.InfoWindow({
@@ -154,13 +103,10 @@ async function initMap() {
                     infoWindow.open(map, marker);
                 });
             }
+            console.log(props.content)
         }
 
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////////
-
-
+    
         let directionsService = new google.maps.DirectionsService();
         let directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map); // Existing map object displays directions
@@ -173,7 +119,7 @@ async function initMap() {
         let typeTravel = 'DRIVING'; //WALKING, BICYCLING, TRANSIT, DRIVING;
 
     for (const trueLocation of trueLocations) {
-                    console.log(trueLocation.marker.coords)
+                    // console.log(trueLocation.marker.coords)
                     coordinates.destination = trueLocation.marker.coords;
                     getDistanceGuide(coordinates, typeTravel, trueLocation.id_occurrence);
         }
@@ -199,7 +145,6 @@ async function initMap() {
                         }
                         else {
                             sessionStorage.setItem("distance_id_occurrence_" + id, directionsData.distance.text)
-                            document.getElementById('msg').innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
                         }
                     }
                 });
@@ -208,19 +153,4 @@ async function initMap() {
         console.log(err);
     }
 
-}
-
-
-
-
-
-
-// function handleLocationError(browserHasGeolocation, infoWIndow, pos) {
-//     infoWIndow.setPosition(pos);
-//     infoWIndow.setContent(
-//         browserHasGeolocation
-//             ? "Error: The Geolocation service failed."
-//             : "Roor: Your broser dosn't support geolocation."
-//     )
-//     infoWIndow.open(map)
-// }
+})()

@@ -44,4 +44,9 @@ async function refreshAudits() {
     data.body=users;
     tab.innerHTML =  table.fillTable(data);
 }
+
+document.getElementById("addAuditor").addEventListener("click", function() {
+    window.location = "newAuditor.html";
+});
 // refreshAudits().then(data => console.log("ok")).catch(reason => console.log(reason.message));
+

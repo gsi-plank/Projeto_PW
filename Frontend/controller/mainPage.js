@@ -40,7 +40,7 @@ import * as root from "./functions/dark.light.js";
 
 
 document.getElementById("occurrences").addEventListener("click", function() {
-    window.location = "occurrenceList.html";
+   window.location = "occurrenceList.html";
 });
 
 document.getElementById("admin").addEventListener("click", function() {
@@ -48,4 +48,21 @@ document.getElementById("admin").addEventListener("click", function() {
 });
 
 
+// terminar sessão
+document.getElementById("close").addEventListener("click", function(){
+    Swal.fire({
+        icon: 'info',
+        title: 'Terminar sessão',
+        text: 'Deseja mesmo terminar sessão?',
+        confirmButtonText: `Sim`,
+        denyButtonText: `Não`,
+}).then((result) => {
+    if (result.isConfirmed) {
+    Swal.fire('Sessão terminada', '', 'success');
+    window.location = "login.html";
+  } else if (result.isDenied) {
+    window.location = "mainPage.html";
+  }
+});
+});
 

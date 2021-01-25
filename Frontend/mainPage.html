@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/global.css" type="text/css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
+   
 
     <title>SECURE4ALL</title>
 </head>
@@ -27,13 +27,28 @@
             <h3>Menu</h3>
             <a id="admin"><i class="fas fa-user-shield"></i> Administrador</a>
             <a id="btnMode" ><i class="fas fa-moon"></i> Darkmode</a>
-            <a><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
+            <a id="close"><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
         </div>
 
         <div id="map"></div>
         <div id="msg"></div>
         <a><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
     </div>
+    
+    <input type="button" id="toggler" value="Toggler" onClick="action();" />
+<input type="button" id="togglee" value="Togglee" />
+
+<script>
+    var hidden = false;
+    function action() {
+        hidden = !hidden;
+        if(hidden) {
+            document.getElementById('togglee').style.visibility = 'hidden';
+        } else {
+            document.getElementById('togglee').style.visibility = 'visible';
+        }
+    }
+</script>
 
     <div id="app-footer">
         <ul>
@@ -54,12 +69,17 @@
         </ul>
     </div>
     
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10%22%3E"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    
     <script type="module" src="./controller/gps.js"></script>
     <script type="module" src="./controller/mainPage.js"></script>
-    
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM"></script>
     <script type="module" src="./controller/set.theme.mode.js"></script>
+    
 </body>
 
 </html>
