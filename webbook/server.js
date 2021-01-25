@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSanitizer = require('express-sanitizer');
 const expressValidator = require('express-validator');
+const {login, logout} = require('./controllers/auth.controller.js')
 
 //iniciar a aplicação
 var server = express();
@@ -21,6 +22,9 @@ server.listen(port, function(err) {
     else { console.log(err); }
 });
 
+//LOGIN
+server.post('/login', login)
+server.get('/logout',logout )
 //multer
 // const path = require ('path');  
 // app.use('/uploads', express.static(path.join(__dirname, '/upload')));  
