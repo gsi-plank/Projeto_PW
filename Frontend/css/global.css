@@ -463,12 +463,24 @@ body {
 }
 
 /* Sweet Alert */
-.swal2-popup .swal2-styled.swal2-confirm{
-  width: 94px;
-  background-color: var(--secondary-color) !important;
+/*.swal2-popup .swal2-styled.swal2-confirm{*/
+/*  width: 94px;*/
+/*  background-color: var(--secondary-color) !important;*/
+/*}*/
+
+/*.swal2-popup .swal2-styled.swal2-cancel {*/
+/*  width: 126px;*/
+/*  background-color: var(--shadow-color) !important;*/
+/*}*/
+
+.swal2-popup {
+  background: var(--background-color) !important;
 }
 
-.swal2-popup .swal2-styled.swal2-cancel {
-  width: 126px;
-  background-color: var(--shadow-color) !important;
+.swal2-title {
+  color: var(--font-color) !important;
+}
+
+.swal2-content {
+  color: var(--font-color) !important;
 }

@@ -22,7 +22,7 @@ async function getData(route) {
 function postData(route, data) {
     console.log(urlBase + route)
     fetch(urlBase + route, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(data)
     }).then(function(response) {
@@ -59,7 +59,7 @@ function deleteData(route) {
 
 function putData(route, data) {
     fetch(urlBase + route, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'application/json' },
         method: 'PUT',
         body: JSON.stringify(data)
     }).then(function(response) {

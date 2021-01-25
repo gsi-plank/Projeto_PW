@@ -1,27 +1,21 @@
-   import * as fetch from "./functions/fetch.js"
-   import * as root from "./functions/dark.light.js"
-   
-   //Se for a primera vez a entrar no site
-   if(localStorage.getItem("typeMode") == undefined){
-       //cor default (light-mode)
-       localStorage.setItem("typeMode", 1);
-       root.getTypeMode(1);
-       root.setColor();
-   } 
+import * as fetch from "./functions/fetch.js"
 
-   document.getElementById("togglePassword").addEventListener("click", function() {
-        let view = document.getElementById("passInput");
-         if (view.type === "password") {
-             view.type = "text";
-         }
-         else {
-             view.type = "password";
-         }
-    })
+document.getElementById("togglePassword").addEventListener("click", function() {
+    if (document.getElementById("passInput").type === "password") {
+        document.getElementById("passInput").type = "text";  
+    } else {
+        document.getElementById("passInput").type = "password";
+    }
+})
 
-
-//   SPLASH
-    // setTimeout(() => {
-    //       document.getElementById('splash').classList.toggle('fade');
-    //   },2000);
- 
+document.getElementById("submitInput").addEventListener("click", function() {
+    let route1 = 'users/login';
+    let email = document.getElementById("mailInput").value;
+    let password = document.getElementById("passInput").value;
+    let data = {
+        email,
+        password
+    }
+    fetch.postData(route1, data);
+    window.location = "mainPage.html";
+})

@@ -55,11 +55,15 @@ document.getElementById("close").addEventListener("click", function(){
         text: 'Deseja mesmo terminar sessão?',
         showCancelButton: true,
         confirmButtonText: `Sim`,
-        cancelButtonColor: `Cancelar`,
+        confirmButtonColor: '#AB0404',
+        cancelButtonText: `Cancelar`,
+        bordercolor: 'transparent'
 }).then((result) => {
-    if (result.isConfirmed) {
-    Swal.fire('Sessão terminada', '', 'success');
+    if (result.value) {
+    // Swal.fire('Sessão terminada', '', 'success');
+    sessionStorage.clear();
     window.location = "login.html";
+    
   } else if(result.dismiss === Swal.DismissReason.cancel){
     // window.location = "mainPage.html";
   }
