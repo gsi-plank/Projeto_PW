@@ -51,17 +51,17 @@ document.getElementById("admin").addEventListener("click", function() {
 // terminar sessão
 document.getElementById("close").addEventListener("click", function(){
     Swal.fire({
-        icon: 'info',
         title: 'Terminar sessão',
         text: 'Deseja mesmo terminar sessão?',
+        showCancelButton: true,
         confirmButtonText: `Sim`,
-        denyButtonText: `Não`,
+        cancelButtonColor: `Cancelar`,
 }).then((result) => {
     if (result.isConfirmed) {
     Swal.fire('Sessão terminada', '', 'success');
     window.location = "login.html";
-  } else if (result.isDenied) {
-    window.location = "mainPage.html";
+  } else if(result.dismiss === Swal.DismissReason.cancel){
+    // window.location = "mainPage.html";
   }
 });
 });

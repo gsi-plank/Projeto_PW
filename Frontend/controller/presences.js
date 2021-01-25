@@ -9,13 +9,13 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
     let txt = `<div class="container-3">    
     <h5 id="registoColab">Registo de colaboradores no terreno: </h5>
     <div class="form">
-        <form action="/action_page.php">`
+        <form>`
     
     for(const operational of operationals) {
     txt += `
             <div class="checkbox-container">
-                <input type="checkbox" name="checkbox" id="${operational.id_operational}">
-                <label for="presenca1"> ${operational.name} </label><br>
+                <input type="checkbox" name="checkbox" id="${operational.id_operational}"></input>
+                <label> ${operational.name} </label><br>
             </div>
     `   
     }
