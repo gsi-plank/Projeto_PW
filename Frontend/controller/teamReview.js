@@ -61,19 +61,28 @@ function findTotal(){
 }
 
 (async function(){
-  let route1 = "occurrences/"+ id_occurrence +"/group_evaluation"
+  let route1 = "occurrences/"+ id_occurrence +"/group_evaluation";
 
   document.getElementById("submit").addEventListener("click", function(){
-    let data = {
-      score : document.getElementById("total").innerHTML,
-      invoices : document.getElementById("invoice").value
-    };
-    console.log(data);
+    if(document.getElementById('total').innerHTML !== 0){
+      let data = {
+        score : document.getElementById("total").innerHTML,
+        invoices : document.getElementById("invoice").value
+      };
     fetch.postData(route1, data);
-    window.location = "evaluatedTeam.html";
+    window.location = "occurrenceDate.html";
+    } else {
+      Swal.fire({
+      icon: 'error',
+      title: 'Erro',
+      text: 'Avalie a equipa!',
+      });
+    }
   });
 })();
 
+
 document.getElementById("back").addEventListener("click", function(){
   window.location = "occurrenceDate.html";
-})
+});
+

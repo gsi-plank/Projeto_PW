@@ -34,19 +34,19 @@ function postData(route, data) {
             if (response.status === 409) {
                 alert("Duplicado!");
             }
-            else {
-                throw Error(response.statusText);
-            }
-        }
-        else {
-            alert("Submetido com sucesso");
-        }
-    }).then(function(result) {
-        console.log(result);
-    }).catch(function(err) {
-        alert("Erro de submissão");
-        console.error(err);
-    });
+    //         else {
+    //             throw Error(response.statusText);
+    //         }
+    //     }
+    //     else {
+    //         alert("Submetido com sucesso");
+    //     }
+    // }).then(function(result) {
+    //     console.log(result);
+    // }).catch(function(err) {
+    //     alert("Erro de submissão");
+    //     console.error(err);
+    // });
 }
 
 function deleteData(route) {
