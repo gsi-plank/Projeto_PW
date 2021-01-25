@@ -219,24 +219,24 @@ form input[type="text"] {
     margin-bottom: 100px;
 }
 
-.addAuditor {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    position: sticky;
-    left: 40px;
-    background: #AB0404;
-    border-radius: 10px;
-    border-color: darkred;
-}
+/*.addAuditor {*/
+/*    margin: 0;*/
+/*    font-family: inherit;*/
+/*    font-size: inherit;*/
+/*    line-height: inherit;*/
+/*    position: sticky;*/
+/*    left: 40px;*/
+/*    background: #AB0404;*/
+/*    border-radius: 10px;*/
+/*    border-color: darkred;*/
+/*}*/
 
-.remBtn {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-     background: #AB0404;
-    border-radius: 10px;
-    border-color: darkred;
-}
+/*.remBtn {*/
+/*    margin: 0;*/
+/*    font-family: inherit;*/
+/*    font-size: inherit;*/
+/*    line-height: inherit;*/
+/*     background: #AB0404;*/
+/*    border-radius: 10px;*/
+/*    border-color: darkred;*/
+/*}*/

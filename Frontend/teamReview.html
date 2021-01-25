@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/global.css" type="text/css"/>
     <link rel="stylesheet" href="./css/occurrence.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10%22%3E"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
+     <link rel="stylesheet" href="./css/forms.css"/>
+   
     
     <title>Avaliação da equipa</title>
 </head>
@@ -78,8 +76,14 @@
             </div>
 
         <div>
-            <h3 id="obserTxt">Observações:</h3>
-            <input id="invoice" type="input" class="inputText" size="35">
+            <form>
+                <div class="field">
+                    <div class="input-wrapper">
+                        <h3 id="obserTxt">Observações:</h3>
+                        <input id="invoice" type="text" class="inputText">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -107,6 +111,10 @@
 
     <script type="module" src="./controller/teamReview.js"></script>
     <script type="module" src="./controller/set.theme.mode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10%22%3E"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css"/>
 </body>
 
 </html>
