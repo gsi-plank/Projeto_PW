@@ -2,7 +2,7 @@ const connect = require('../assets/bd');
 
 //INDIVIDUAL EVALUATION
 function listOpPointsTotal(req, res) {
-    connect.con.query('select name , speciality ,SUM(individual_evaluation.score) as points from operational left join individual_evaluation on operational.id_operational=individual_evaluation.id_operational group by operational.id_operational',
+    connect.con.query('select name, IFNULL(SUM(individual_evaluation.score), 0) as points from operational left join individual_evaluation on operational.id_operational=individual_evaluation.id_operational group by operational.id_operational order by points desc',
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).

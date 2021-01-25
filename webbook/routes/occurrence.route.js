@@ -23,6 +23,9 @@ server.route('/occurrences/:id_occurrence')
     .get(controllerOccurrence.readOccurrence)
     .delete(controllerOccurrence.deleteOccurrence)
 
+server.route('/occurrences/evaluations/points')
+    .get(controllerOccurrence.readOccPoints)
+
 server.route('/occurrences/:id_occurrence/address')
     .get(controllerOccurrence.readAddress)
 
@@ -57,6 +60,9 @@ server.route('/occurrences/:id_occurrence/witnesses/:id_witness')
     .get(controllerWitOccur.readWitOccurrence) // supostamente certo
     .put(controllerWitOccur.updateWitOccur) // outros updates como points departure etc..
     .delete(controllerWitOccur.deleteWitOccur)
+
+server.route('/occurrences/witnesses/count')
+    .get(controllerWitOccur.countWitn)
 
 //material occurrence
 server.route('/occurrences/:id_occurrence/materials')
@@ -115,6 +121,5 @@ server.route('/occurrences/:id_occurrence/individual_evaluation/notdone')
 server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
     .delete(controllerIEvaluation.deleteIndEvaluation)
     .put(controllerIEvaluation.updateIndEvaluation)
-
 
 module.exports = server;

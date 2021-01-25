@@ -1,6 +1,8 @@
 const server = require('../server.js');
 const controllerUser = require('../controllers/user.controller');
 const controllerMode = require('../controllers/darkmode.controller');
+const controllerImage = require('../controllers/images.controller');
+const controllerLogin = require('../controllers/login.controller');
 const bodyParser = require('body-parser');
  
 server.route('/users')
@@ -12,7 +14,7 @@ server.route('/users/:id')
     .delete(controllerMode.deleteMode)
 
 server.route('/users/password/:email')
-    .get(controllerUser.selectLogin)
+    .get(controllerLogin.login)
 
 server.route('/users/:id/email')
     .get(controllerUser.readEmail)
@@ -43,6 +45,9 @@ server.route('/mode')
 
 server.route('/users/:id/dark')
     .put(controllerMode.updateDark)
+
+server.route('/users/:id/light')
+    .put(controllerMode.updateLight)
 
 server.route('/users/:id/light')
     .put(controllerMode.updateLight)

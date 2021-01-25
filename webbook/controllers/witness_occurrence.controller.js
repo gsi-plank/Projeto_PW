@@ -3,11 +3,9 @@ const connect = require('../assets/bd');
 //witness occurrence
 function readByWitOccur(req, res) {
     const id_witness = req.sanitize('id_witness').escape();
-    const id_occurrence = req.sanitize('id_occurrence').escape(); 
-    let post = [
-        id_occurrence, id_witness
-    ]
-    connect.con.query('SELECT id_witness, id_occurrence, testimony, justification from witness_occurrence where id_occurrence =? and id_witness = ?', post,
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let post = [id_occurrence, id_witness]
+    connect.con.query('SELECT id_witness, id_occurrence, testimony, justification from witness_occurrence where group_nr=4 and id_occurrence =? and id_witness = ?', post,
         function(err, rows, fields) {
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
@@ -31,7 +29,7 @@ function readByWitOccur(req, res) {
 function listWitByOccur(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
-    query = connect.con.query ('SELECT id_witness, id_occurrence, testimony, justification FROM witness_occurrence where id_occurrence=?', id_occurrence, 
+    query = connect.con.query ('SELECT id_witness, id_occurrence, testimony, justification FROM witness_occurrence where group_nr=4 and id_occurrence=?', id_occurrence, 
     function (err, rows, fields) {
         if (!err) {
             if (rows.length == 0) {
@@ -96,7 +94,7 @@ function addWitness_Occurrence(req, res) {
         id_occurrence, testimony, justification, name, email, place, profession
     ]
     let query = ""
-    query = connect.con.query('INSERT INTO witness_occurrence (id_occurrence, testimony, justification, name, email, place, profession) values (?,?,?,?,?,?,?)', post, 
+    query = connect.con.query('INSERT INTO witness_occurrence (id_occurrence, testimony, justification, name, email, place, profession, group_nr) values (?,?,?,?,?,?,?,4)', post, 
     function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
@@ -112,10 +110,26 @@ function addWitness_Occurrence(req, res) {
     });
 }
 
+function countByOccur(req, res) {
+    let query = "";
+    query = connect.con.query ('select id_occurrence, count(id_witness) from witness_occurrence  where group_nr=4 group by id_occurrence',
+    function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+                } else {
+                    res.status(200).send(rows);
+                }
+        } else
+            console.log('Error while performing query', err);
+    });
+}
+
 module.exports = {
     listWitOccurrence : listWitByOccur,
     readWitOccurrence : readByWitOccur,
     deleteWitOccur : deleteWitness_occurrence,
     updateWitOccur : updateWitness_occurrence,
-    createWitOccur : addWitness_Occurrence
+    createWitOccur : addWitness_Occurrence,
+    countWitn : countByOccur
 }

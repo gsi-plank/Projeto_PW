@@ -86,7 +86,6 @@ function addGEval(req, res) {
     let query = ""
     query = connect.con.query('INSERT INTO group_evaluation (id_occurrence, score, invoices) values (?,?,?)', post, 
     function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("Number of records inserted: " + rows.affectedRows);

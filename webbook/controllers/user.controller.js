@@ -29,7 +29,7 @@ function login (req, res) {
 function addAdmin(req, res) {
     const email = req.sanitize('email').escape();
     const password = req.sanitize('password').escape();
-    const profile = "Administrador";
+    const profile = "administrator";
     const status = "active";
     const createdAt = new Date();
     const updatedAt = new Date();
@@ -159,7 +159,7 @@ function updateAdmin(req, res) {
 function addAudit(req, res) {
     const email = req.sanitize('email').escape();
     const password = req.sanitize('password').escape();
-    const profile = "Auditor";
+    const profile = "auditor";
     const status = "active";
     const createdAt = newDate();
     const updatedAt = newDate();
@@ -303,7 +303,7 @@ function updateUser(req, res) {
 
 function readUsers(req, res) {
     let query = "";
-    query = connect.con.query('select id, email, profile from users where profile="Administrador" union select id, email, profile from users where profile="Auditor"', function (err, rows, fields) {
+    query = connect.con.query('select id, email, profile from users where profile="administrator" union select id, email, profile from users where profile="auditor"', function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
