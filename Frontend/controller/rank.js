@@ -2,8 +2,9 @@ import * as fetch from "./functions/fetch.js";
  
     (async function fillTable() {
         const rankList = document.getElementById("tableList");
-        const route = "operationals";
+        const route = "operationals/totalpoints";
         const operationals = await fetch.getData(route);
+        
         console.log(operationals)
         let txt = "";
 

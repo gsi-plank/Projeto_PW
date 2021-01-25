@@ -1,65 +1,83 @@
 "use strict";
 import * as chart from "./functions/chart.js";
 import * as selector from "./functions/selectorWeekMonthYear.js"
+import * as fetch from "./functions/fetch.js"
 
-
-let occurrences = [{
-    "id_occurrence": "534",
-    "arrival": "2020-12-29",
-    "departure": "2020-12-12"
-  },
-  {
-    "id_occurrence": "432",
-    "arrival": "2021-01-17",
-    "departure": "2019-07-08"
-  },
-  {
-    "id_occurrence": "422",
-    "arrival": "2020-12-01",
-    "departure": "2019-07-08"
-  },
-  {
-    "id_occurrence": "42",
-    "arrival": "2020-11-23",
-    "departure": "2019-07-08"
-  },
-  {
-    "id_occurrence": "4222",
-    "arrival": "2020-07-01",
-    "departure": "2019-07-08"
-  },
-  {
-    "id_occurrence": "4322",
-    "arrival": "2020-12-12",
-    "departure": "2019-07-08"
-  }
-];
-
+//Variaveis globais
 let today = new Date();
 
-fillLineChart(0);
-$("#button1").click(function() {
-  fillLineChart(0);
-});
-$("#button2").click(function() {
-  fillLineChart(1);
-});
-$("#button3").click(function() {
-  fillLineChart(2);
-});
+(async function () {
+  let route1 = "occurrences";
+  let route2 = route1 + "/evaluations/points";
+  let route3 = route1 + "/witnesses/count";
+  let occurrences = await fetch.getData(route1);
+  let occurrencesPoints = await fetch.getData(route2);
+  let occurrenceWit = await fetch.getData(route3);
 
 
 
-function fillLineChart(type) {
+  // let occurrencesWit = 
+ console.log(occurrences)
+  // Para o primeiro grafico
+  fillLineChart(0, occurrences);
+  $("#button1").click(function () {
+    fillLineChart(0, occurrences);
+  });
+  $("#button2").click(function () {
+    fillLineChart(1, occurrences);
+  });
+  $("#button3").click(function () {
+    fillLineChart(2, occurrences);
+  });
+
+  //Avaliação equipa
+  fillBarChart(occurrencesPoints)
+
+  //Witness
+  fillLineChart2(occurrenceWit)
+
+  //
+})()
+
+function fillLineChart2(occurrences) {
+  //Testemunhas
+  let lineChart2 = document.getElementById("lineChart2").getContext('2d');
+  let labelLineChart2 = [];
+  let dataLineChart2 = [];
+
+  for(const occurrence of occurrences){
+    labelLineChart2.push(occurrence.id_occurrence)
+    dataLineChart2.push(occurrence.n_witnesses)
+  }
+  console.log(labelLineChart2)
+  console.log(dataLineChart2)
+  chart.createLineChart2(lineChart2, labelLineChart2, dataLineChart2);
+}
+
+function fillBarChart(occurrences) {
+  let barChart = document.getElementById("barChart").getContext('2d');
+
+  // buscar os primeiros 5 melhores classificados
+  let labelBarChart = [];
+  let dataBarChart = [];
+  for(let i=0; i<5; i++){
+    labelBarChart.push(occurrences[i].id_occurrence);
+    dataBarChart.push(occurrences[i].points);
+  }
+
+  chart.createBarChart(barChart, labelBarChart, dataBarChart);
+}
+
+
+function fillLineChart(type, occurrences) {
   //Confirmar o tipo
   console.log(type);
 
   // Filtrar a lista de ocorrencias
-
   let occurrenceSel = selector.filtrator(occurrences, type);
-  
+
   let lineChart = document.getElementById('lineChart').getContext('2d');
-  
+
   // se nao existir ocorrencias nesse periodo de tempo 
   if (occurrenceSel.length == 0) {
     let labelLineChart = [];
@@ -67,48 +85,16 @@ function fillLineChart(type) {
     chart.createLineChart(lineChart, labelLineChart, dataLineChart);
     return;
   }
-  
+
   let labelLineChart = getLabelChart(type);
   let dataLineChart = getOccurrencesArryChart(occurrenceSel, type);
   chart.createLineChart(lineChart, labelLineChart, dataLineChart);
 }
 
-(function() {
 
-  //Avaliação equipa
-  let barChart = document.getElementById("barChart").getContext('2d');
-  let labelBarChart = ["Equipa 1", "Equipa 2", "Equipa 8", "Equipa 3", "Equipa 5"];
-  let dataBarChart = [5, 2, 1, 4, 3];
-  let colors = getColorsNeed(dataBarChart);
-  chart.createBarChart(barChart, labelBarChart, dataBarChart, colors);
 
-  //Testemunhas
-  let lineChart2 = document.getElementById("lineChart2").getContext('2d');
-  let labelLineChart2 = ["Oc 251", "Oc 444", "Oc 120", "Oc 005", "Oc 200"];
-  let dataLineChart2 = [3, 0, 1, 4, 2];
-  chart.createLineChart2(lineChart2, labelLineChart2, dataLineChart2);
 
-})();
 
-function getColorsNeed(data) {
-  //Get root color
-  let docStyle = getComputedStyle(document.documentElement);
-  //get variable
-
-  let secondaryColor = docStyle.getPropertyValue('--secondary-color');
-  let graficColor = docStyle.getPropertyValue('--grafic-color');
-
-  let colors = [];
-
-  for (let i = 0; i < data.length; i++) {
-    if (i % 2 == 0) {
-      colors.push(secondaryColor);
-    }
-    else
-      colors.push(graficColor);
-  }
-  return colors;
-}
 // +++++++++++++++++++gerador de legendas++++++++++++++++++++++++++++++++++
 function getLabelChart(key) {
   switch (key) {
