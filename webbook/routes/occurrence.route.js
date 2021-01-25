@@ -8,118 +8,119 @@ const controllerGEvaluation = require ('../controllers/group_evaluation.controll
 const controllerIEvaluation = require ('../controllers/individual_evaluation.controller');
 const controllerChecklist = require ('../controllers/checklist.controller');
 const controllerVehicle = require ('../controllers/vehicle.controller');
+const {verify} = require('../controllers/middleware');
 const bodyParser = require('body-parser');
 
 server.route('/occurrences')
-    .get(controllerOccurrence.listOccurrence)
+    .get(verify, controllerOccurrence.listOccurrence)
 
 server.route('/occurrences/evaluations/done')
-    .get(controllerCostOccur.evalDone)
+    .get(verify, controllerCostOccur.evalDone)
 
 server.route('/occurrences/evaluations/not')
-    .get(controllerCostOccur.evalNotDone)
+    .get(verify, controllerCostOccur.evalNotDone)
 
 server.route('/occurrences/:id_occurrence')
-    .get(controllerOccurrence.readOccurrence)
-    .delete(controllerOccurrence.deleteOccurrence)
+    .get(verify, controllerOccurrence.readOccurrence)
+    .delete(verify, controllerOccurrence.deleteOccurrence)
 
 server.route('/occurrences/evaluations/points')
-    .get(controllerOccurrence.readOccPoints)
+    .get(verify, controllerOccurrence.readOccPoints)
 
 server.route('/occurrences/:id_occurrence/address')
-    .get(controllerOccurrence.readAddress)
+    .get(verify, controllerOccurrence.readAddress)
 
 server.route('/occurrences/:id_occurrence/distance')
-    .put(controllerOccurrence.updateOccurrenceDistance)
+    .put(verify, controllerOccurrence.updateOccurrenceDistance)
 
 server.route('/occurrences/:id_occurrence/arrival')
-    .get(controllerOccurrence.readArrival)
-    .put(controllerOccurrence.updateOccurrenceArrival)
+    .get(verify, controllerOccurrence.readArrival)
+    .put(verify, controllerOccurrence.updateOccurrenceArrival)
 
 server.route('/occurrences/:id_occurrence/cost')
-    .put(controllerOccurrence.updateOccurrenceCost)
+    .put(verify, controllerOccurrence.updateOccurrenceCost)
     
 server.route('/occurrences/:id_occurrence/type')
-    .get(controllerOccurrence.readTypeOps)
+    .get(verify, controllerOccurrence.readTypeOps)
 
 // Operational Occurrence
 server.route('/occurrences/:id_occurrence/operationals')
-    .get(controllerOpOccur.listOpOccurrence) // certo
+    .get(verify, controllerOpOccur.listOpOccurrence) // certo
 
 server.route('/occurrences/:id_occurrence/operationals/:id_operational')
-    .get(controllerOpOccur.readByOperationalOcur) // supostamente certo
-    .put(controllerOpOccur.updateOperationalOccurrence) // outros updates como points departure etc..
-    .delete(controllerOpOccur.deleteOperationalOccurrence)
+    .get(verify, controllerOpOccur.readByOperationalOcur) // supostamente certo
+    .put(verify, controllerOpOccur.updateOperationalOccurrence) // outros updates como points departure etc..
+    .delete(verify, controllerOpOccur.deleteOperationalOccurrence)
 
 // Witness Occurrence 
 server.route('/occurrences/:id_occurrence/witnesses')
-    .get(controllerWitOccur.listWitOccurrence) // certo
-    .post(controllerWitOccur.createWitOccur)
+    .get(verify, controllerWitOccur.listWitOccurrence) // certo
+    .post(verify, controllerWitOccur.createWitOccur)
 
 server.route('/occurrences/:id_occurrence/witnesses/:id_witness')
-    .get(controllerWitOccur.readWitOccurrence) // supostamente certo
-    .put(controllerWitOccur.updateWitOccur) // outros updates como points departure etc..
-    .delete(controllerWitOccur.deleteWitOccur)
+    .get(verify, controllerWitOccur.readWitOccurrence) // supostamente certo
+    .put(verify, controllerWitOccur.updateWitOccur) // outros updates como points departure etc..
+    .delete(verify, controllerWitOccur.deleteWitOccur)
 
 server.route('/occurrences/witnesses/count')
-    .get(controllerWitOccur.countWitn)
+    .get(verify, controllerWitOccur.countWitn)
 
 //material occurrence
 server.route('/occurrences/:id_occurrence/materials')
-    .get(controllerMatOccur.listMatOccurrence) // certo
-    .post(controllerMatOccur.createMatOccur)
+    .get(verify, controllerMatOccur.listMatOccurrence) // certo
+    .post(verify, controllerMatOccur.createMatOccur)
 
 server.route('/occurrences/:id_occurrence/materials/:id_material')
-    .get(controllerMatOccur.readMatOccurrence) // supostamente certo
-    .put(controllerMatOccur.updateMatOccur) // outros updates como points departure etc..
-    .delete(controllerMatOccur.deleteMatOccur)
+    .get(verify, controllerMatOccur.readMatOccurrence) // supostamente certo
+    .put(verify, controllerMatOccur.updateMatOccur) // outros updates como points departure etc..
+    .delete(verify, controllerMatOccur.deleteMatOccur)
 
 //cost occurrence
 server.route('/occurrences/:id_occurrence/cost')
-    .get(controllerCostOccur.readCostOccurrence) // certo
-    .post(controllerCostOccur.createCostOccur)
-    .delete(controllerCostOccur.deleteCostOccur)
+    .get(verify, controllerCostOccur.readCostOccurrence) // certo
+    .post(verify, controllerCostOccur.createCostOccur)
+    .delete(verify, controllerCostOccur.deleteCostOccur)
 
 server.route('/occurrences/:id_occurrence/cost/operationals')
     .get(controllerCostOccur.getPriceOp)
 
 server.route('/occurrences/:id_occurrence/cost/countop')
-    .get(controllerOpOccur.countOperationals)
+    .get(verify, controllerOpOccur.countOperationals)
 
 
 server.route('/occurrences/:id_occurrence/cost/duration')
-    .put(controllerCostOccur.updateCostOccur)
+    .put(verify, controllerCostOccur.updateCostOccur)
 
 server.route('/occurrences/:id_occurrence/cost/fuel_average')
-    .get(controllerVehicle.readFAverage)   
+    .get(verify, controllerVehicle.readFAverage)   
 
 //group evaluation
 server.route('/occurrences/:id_occurrence/group_evaluation')
-    .get(controllerGEvaluation.readOccurEval) // certo
-    .post(controllerGEvaluation.createGEvaluation)
-    .delete(controllerGEvaluation.deleteGEvaluation)
-    .put(controllerGEvaluation.updateGEvaluation)
+    .get(verify, controllerGEvaluation.readOccurEval) // certo
+    .post(verify, controllerGEvaluation.createGEvaluation)
+    .delete(verify, controllerGEvaluation.deleteGEvaluation)
+    .put(verify, controllerGEvaluation.updateGEvaluation)
 
 //checklist
 server.route('/occurrences/:id_occurrence/checklist')
-    .get(controllerChecklist.readChecklist) // certo
-    .post(controllerChecklist.createChecklist)
-    .delete(controllerChecklist.deleteChecklist)
-    .put(controllerChecklist.updateChecklist)
+    .get(verify, controllerChecklist.readChecklist) // certo
+    .post(verify, controllerChecklist.createChecklist)
+    .delete(verify, controllerChecklist.deleteChecklist)
+    .put(verify, controllerChecklist.updateChecklist)
 
 //individual evaluation
 server.route('/occurrences/:id_occurrence/individual_evaluation')
-    .get(controllerIEvaluation.listOpPointsOccur) // certo
-    .post(controllerIEvaluation.createIndEvaluation)
+    .get(verify, controllerIEvaluation.listOpPointsOccur) // certo
+    .post(verify, controllerIEvaluation.createIndEvaluation)
 
 server.route('/occurrences/:id_occurrence/individual_evaluation/done')
-    .get(controllerIEvaluation.evalDone) // certo
+    .get(verify, controllerIEvaluation.evalDone) // certo
 
 server.route('/occurrences/:id_occurrence/individual_evaluation/notdone')
-    .get(controllerIEvaluation.evalNotDone) // certo
+    .get(verify, controllerIEvaluation.evalNotDone) // certo
 
 server.route('/occurrences/:id_occurrence/individual_evaluation/:id_operational')
-    .delete(controllerIEvaluation.deleteIndEvaluation)
-    .put(controllerIEvaluation.updateIndEvaluation)
+    .delete(verify, controllerIEvaluation.deleteIndEvaluation)
+    .put(verify, controllerIEvaluation.updateIndEvaluation)
 
 module.exports = server;
