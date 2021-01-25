@@ -44,6 +44,7 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
             routeOpera = route + operational.id_operational;
             console.log(operational);
             fetch.putData(routeOpera, operational);
+            // window.location = "occurrenceDate.html";
         }
     });
 })();

@@ -64,25 +64,15 @@ function findTotal(){
   let route1 = "occurrences/"+ id_occurrence +"/group_evaluation";
 
   document.getElementById("submit").addEventListener("click", function(){
-    if(document.getElementById('total').value !== 0){
-      let data = {
-        score : document.getElementById("total").innerHTML,
-        invoices : document.getElementById("invoice").value
-      };
+    let data = {
+      score : document.getElementById("total").innerHTML,
+      invoices : document.getElementById("invoice").value
+    };
     fetch.postData(route1, data);
     window.location = "occurrenceDate.html";
-    } else {
-      // alert("Avalie a equipa")
-      Swal.fire({
-      icon: 'error',
-      title: 'Erro',
-      text: 'Avalie a equipa!',
-      });
-    }
 })();
 });
 
 document.getElementById("back").addEventListener("click", function(){
   window.location = "occurrenceDate.html";
 });
-

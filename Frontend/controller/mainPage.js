@@ -47,5 +47,5 @@ document.getElementById("admin").addEventListener("click", function() {
     window.location = "admin.html";
 });
 
-let id_login = 1;
+
 
