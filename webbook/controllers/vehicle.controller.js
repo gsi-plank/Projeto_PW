@@ -4,7 +4,8 @@ const connect = require ('../assets/bd');
 function readFAverageByOc(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
-    query = connect.con.query('SELECT DISTINCT vehicle.fuel_average from (select id_occurrence, regist From occur_vehic_material where id_occurrence=?) as A inner join vehicle on A.regist=vehicle.regist', id_occurrence, function (err, rows, fields) {
+    query = connect.con.query('SELECT DISTINCT c.fuel_average, d.fuel_price from (select A.id_occurrence, v.regist, v.fuel_average, v.fuel_type from (select o.id_occurrence, f.regist from occur_vehic_material as o inner join vehicle_material as f on o.id_vei_mat=f.id_vei_mat) as A inner join vehicle as v on A.regist=v.regist where A.id_occurrence=?) as c inner join fuel_price as d on d.fuel_type=c.fuel_type',
+    id_occurrence, function (err, rows, fields) {
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -23,6 +24,7 @@ function readFAverageByOc(req, res) {
         console.log('Error while performing Query.', err);
     });
 }
+
 
 module.exports = {
     readFAverage: readFAverageByOc

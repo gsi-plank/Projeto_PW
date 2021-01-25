@@ -76,7 +76,7 @@ function addCost(req, res) {
     let post = [
         id_occurrence, duration, num_of_operationals, distance, cost    ]
     let query = ""
-    query = connect.con.query('INSERT INTO cost-occurrence (id_occurrence, duration, num_of_operationals, distance, cost) values (?,?,?,?,?)', post, 
+    query = connect.con.query('INSERT INTO cost_occurrence (id_occurrence, duration, num_of_operationals, distance, cost) values (?,?,?,?,?)', post, 
     function (err, rows, fields) {
         console.log(query.sql);
         if (!err) {
@@ -128,11 +128,32 @@ function costDone(req, res) {
     });
 }
 
+function priceOp(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let query = ""
+    query = connect.con.query('select O.pay_per_hour from operational as O inner join operational_occurrence as OO on O.id_operational = OO.id_operational where id_occurrence=? and OO.checked=1',
+    [id_occurrence], function (err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
+            }
+            else {
+                res.status(200).send(rows);
+            }
+        }
+        else
+            console.log('Error while performing Query.', err);
+    });
+}
+
 module.exports = {
     readCostOccurrence : readCost,
     deleteCostOccur : deleteCost,
     updateCostOccur : updateCostDuration,
     createCostOccur : addCost,
     evalNotDone : costNotDone,
-    evalDone : costDone
+    evalDone : costDone,
+
+    getPriceOp : priceOp
 }

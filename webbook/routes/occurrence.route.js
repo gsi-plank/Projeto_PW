@@ -74,6 +74,13 @@ server.route('/occurrences/:id_occurrence/cost')
     .post(controllerCostOccur.createCostOccur)
     .delete(controllerCostOccur.deleteCostOccur)
 
+server.route('/occurrences/:id_occurrence/cost/operationals')
+    .get(controllerCostOccur.getPriceOp)
+
+server.route('/occurrences/:id_occurrence/cost/countop')
+    .get(controllerOpOccur.countOperationals)
+
+
 server.route('/occurrences/:id_occurrence/cost/duration')
     .put(controllerCostOccur.updateCostOccur)
 

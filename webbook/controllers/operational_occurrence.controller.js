@@ -85,9 +85,29 @@ function updateOpOccur(req, res) {
     });
 }
 
+function countOpOccur(req, res) {
+    const id_occurrence = req.sanitize('id_occurrence').escape();
+    let query = "";
+    query = connect.con.query('SELECT COUNT(id_operational) as  count FROM operational_occurrence WHERE id_occurrence=? and checked=1;', [id_occurrence], function (err, rows, fields) {
+        if (!err) {
+            if (rows.length == 0) {
+                res.status(404).send({
+                    "msg": "data not found"
+                });
+            } else {
+                res.status(200).send(rows);
+            }
+        } else
+            res.status(400).send({"msg": err.code});
+        console.log('Error while performing Query.', err);
+    });
+}
+
+
 module.exports = {
     listOpOccurrence : listOpByOccur,
     readByOperationalOcur : readOpOccur,
     deleteOperationalOccurrence : deleteOpOccur,
-    updateOperationalOccurrence : updateOpOccur
+    updateOperationalOccurrence : updateOpOccur,
+    countOperationals : countOpOccur
 }
