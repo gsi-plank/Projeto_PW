@@ -18,11 +18,11 @@ function readByWitOccur(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
-            console.log('Error while performing Query.', err);
+            console.log('Error while performing Query.', err);}
         });
 }
 
@@ -47,7 +47,6 @@ function deleteWitness_occurrence(req, res) {
     let query = "";
     query = connect.con.query('DELETE from witness_occurrence where id_witness=?', id_witness, 
     function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -71,7 +70,6 @@ function updateWitness_occurrence(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE witness_occurrence SET testimony=?, justification=? WHERE id_witness=? and id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -96,7 +94,6 @@ function addWitness_Occurrence(req, res) {
     let query = ""
     query = connect.con.query('INSERT INTO witness_occurrence (id_occurrence, testimony, justification, name, email, place, profession, group_nr) values (?,?,?,?,?,?,?,4)', post, 
     function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("Number of records inserted: " + rows.affectedRows);

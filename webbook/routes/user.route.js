@@ -1,7 +1,6 @@
 const server = require('../server.js');
 const controllerUser = require('../controllers/user.controller');
 const controllerMode = require('../controllers/darkmode.controller');
-const controllerImage = require('../controllers/images.controller');
 const {verify} = require('../controllers/middleware');
 const {login, logout} = require('../controllers/login.controller');
 const bodyParser = require('body-parser');
@@ -16,6 +15,9 @@ server.route('/users/:id')
 
 server.route('/users/password/:email')
     .get(controllerUser.selectLogin)
+
+server.route('/users/newPassword/:email')
+    .put(controllerUser.updatePwd)
     
 server.route('/users/login')
     .post(login)
@@ -28,6 +30,9 @@ server.route('/users/:id/email')
 
 server.route('/users/:id/profile')
     .get(controllerUser.readProfile)
+
+server.route('/users/:email/profile/mail')
+    .get(controllerUser.readProfileByMail)
     
 server.route('/admins')
     .get(controllerUser.listAdmin)

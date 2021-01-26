@@ -14,9 +14,9 @@ function listOpByOccur(req, res) {
             } else {
                 res.status(200).send(rows);
             }
-        } else
+        } else {
             res.status(400).send({"msg": err.code});
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     });
 }
 
@@ -37,9 +37,9 @@ function readOpOccur(req, res) {
             } else {
                 res.status(200).send(rows);
             }
-        } else
+        } else {
             res.status(400).send({"msg": err.code});
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     });
 }
 
@@ -52,7 +52,6 @@ function deleteOpOccur(req, res) {
     ]
     let query = "";
     query = connect.con.query('DELETE from operational_occurrence where id_occurrence=? and id_operational=?', del, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -74,7 +73,6 @@ function updateOpOccur(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE operational_occurrence SET checked=? WHERE id_occurrence=? and id_operational=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});

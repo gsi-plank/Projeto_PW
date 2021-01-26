@@ -17,11 +17,11 @@ function readFAverageByOc(req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     });
 }
 

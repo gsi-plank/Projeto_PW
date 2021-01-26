@@ -15,11 +15,12 @@ function listOpPointsTotal(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
             console.log('Error while performing Query.', err);
+        }
         });
 }
 
@@ -38,11 +39,11 @@ function listOpPointsOccur(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
-            console.log('Error while performing Query.', err);
+            console.log('Error while performing Query.', err);}
         });
 }
 
@@ -53,7 +54,6 @@ function deleteIndividual_eval(req, res) {
     let query = "";
     query = connect.con.query('DELETE from individual_evaluation where id_occurrence=? and id_operational=?', post, 
     function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -77,7 +77,6 @@ function updateIndividual_eval(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE individual_evaluation SET score=?, invoices=? WHERE id_occurrence=? and id_operational=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -97,7 +96,6 @@ function addIndividual_eval(req, res) {
     let query = ""
     query = connect.con.query('INSERT INTO individual_evaluation (id_occurrence, id_operational, score, invoices) values (?,?,?,?)', post, 
     function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("Number of records inserted: " + rows.affectedRows);
@@ -126,11 +124,12 @@ function evalDone(req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
         console.log('Error while performing Query.', err);
+    }
     });
 }
 
@@ -149,11 +148,11 @@ function evalNotDone(req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     });
 }
 

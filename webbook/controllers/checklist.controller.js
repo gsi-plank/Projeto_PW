@@ -16,12 +16,10 @@ function readAnswers(req, res) {
                 else {
                     res.status(200).send(rows);
                 }
+            } else {
+                res.status(400).send({"msg": err.code});
+                console.log('Error while performing Query.', err);
             }
-            else
-                res.status(400).send({
-                    "msg": err.code
-                });
-            console.log('Error while performing Query.', err);
         });
 }
 
@@ -58,7 +56,6 @@ function updateChecklist(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE checklist SET question_1=?, question_2=?, question_3=?, question_4=?, question_5=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -82,7 +79,6 @@ function addChecklist(req, res) {
     let query = ""
     query = connect.con.query('INSERT INTO checklist (id_occurrence, question_1, question_2, question_3, question_4, question_5) values (?,?,?,?,?,?)', post, 
     function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("Number of records inserted: " + rows.affectedRows);

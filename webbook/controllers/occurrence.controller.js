@@ -16,11 +16,12 @@ function readOccurrence(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
             console.log('Error while performing Query.', err);
+        }
         });
 }
 
@@ -58,11 +59,12 @@ function readOcTypeOp(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
             console.log('Error while performing Query.', err);
+        }
         });
 }
 
@@ -113,7 +115,7 @@ function readArrival(req, res) {
 }
 
 function listOccurrence(req, res) {
-    connect.con.query ('SELECT * FROM occurrence order by id_occurrence', function (err, rows, fields) {
+    connect.con.query ('SELECT id_occurrence, address, arrival FROM occurrence order by id_occurrence', function (err, rows, fields) {
         if (!err) {
             if (rows.length == 0) {
                 res.status(404).send("Data not found");
@@ -129,7 +131,6 @@ function deleteOccurrence(req, res) {
     const id_occurrence = req.sanitize('id_occurrence').escape();
     let query = "";
     query = connect.con.query('DELETE from occurrence where id_occurrence=?', id_occurrence, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -146,7 +147,6 @@ function updateOccurrenceArrival(req, res) {
     let post = [ arrival, id_occurrence ]
     let query = "";
     query = connect.con.query('UPDATE occurrence SET arrival=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -163,7 +163,6 @@ function updateOccurrenceCost(req, res) {
     let post = [ cost, id_occurrence ]
     let query = "";
     query = connect.con.query('UPDATE occurrence SET cost=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -180,7 +179,6 @@ function updateOccurrenceDistance(req, res) {
     let post = [ distance, id_occurrence ]
     let query = "";
     query = connect.con.query('UPDATE occurrence SET distance=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});

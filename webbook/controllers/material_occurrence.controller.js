@@ -51,7 +51,6 @@ function listMatByOccur(req, res) {
     let query="";
     query=connect.con.query('SELECT id_material, material_name, id_occurrence FROM material_occurrence where id_occurrence=?', [id_occurrence],
         function(err, rows, fields) {
-            console.log(query.sql);
             if (!err) {
                 //verifica os resultados se o numero de linhas for 0 devolve dados n�o encontrados, caso contr�rio envia os resultados (rows).
                 if (rows.length == 0) {
@@ -63,11 +62,12 @@ function listMatByOccur(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
             console.log('Error while performing Query.', err);
+        }
     });
 }
 
@@ -99,7 +99,6 @@ function updateMatOccur(req, res) {
     let post = [material_name, id_material]
     query = connect.con.query('UPDATE material_occurrence SET material_name=? WHERE id_material=?', post, function(err, rows,
         fields) {
-        console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
             res.status(200).send({ "msg": "update with success" });

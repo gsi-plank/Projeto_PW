@@ -16,11 +16,12 @@ function readOccur(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
             console.log('Error while performing Query.', err);
+        }
         });
 }
 
@@ -43,7 +44,6 @@ function deleteGEval(req, res) {
     let query = "";
     query = connect.con.query('DELETE from group_evaluation where id_occurrence=?', id_occurrence, 
     function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -65,7 +65,6 @@ function updateGEval(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE group_evaluation SET score=?, invoices=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});

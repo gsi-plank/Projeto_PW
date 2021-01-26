@@ -17,11 +17,11 @@ function readCost(req, res) {
                     res.status(200).send(rows);
                 }
             }
-            else
+            else {
                 res.status(400).send({
                     "msg": err.code
                 });
-            console.log('Error while performing Query.', err);
+            console.log('Error while performing Query.', err);}
         });
 }
 
@@ -30,7 +30,6 @@ function deleteCost(req, res) {
     let query = "";
     query = connect.con.query('DELETE from cost_occurrence where id_occurrence=?', id_occurrence, 
     function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -56,7 +55,6 @@ function updateCostDuration(req, res) {
     ]
     let query = "";
     query = connect.con.query('UPDATE cost_occurrence SET duration=?, num_of_operationals=?, distance=?, cost=? WHERE id_occurrence=?', post, function (err, rows, fields){
-        console.log(query.sql);
         if(!err) {
             console.log('Number of records updated: ' + rows.affectedRows);
             res.status(200).send({"msg": "updated with success"});
@@ -78,7 +76,6 @@ function addCost(req, res) {
     let query = ""
     query = connect.con.query('INSERT INTO cost_occurrence (id_occurrence, duration, num_of_operationals, distance, cost) values (?,?,?,?,?)', post, 
     function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             res.status(200).location(rows.insertId).send({"msg": "1 - inserted with success"});
             console.log("Number of records inserted: " + rows.affectedRows);

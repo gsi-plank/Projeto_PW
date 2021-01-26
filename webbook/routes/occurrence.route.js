@@ -8,7 +8,7 @@ const controllerGEvaluation = require ('../controllers/group_evaluation.controll
 const controllerIEvaluation = require ('../controllers/individual_evaluation.controller');
 const controllerChecklist = require ('../controllers/checklist.controller');
 const controllerVehicle = require ('../controllers/vehicle.controller');
-//const {verify} = require('../controllers/middleware');
+const {verify} = require('../controllers/middleware');
 const bodyParser = require('body-parser');
 
 server.route('/occurrences')
@@ -89,7 +89,7 @@ server.route('/occurrences/:id_occurrence/cost/countop')
 
 
 server.route('/occurrences/:id_occurrence/cost/duration')
-    .put(verify, controllerCostOccur.updateCostOccur)
+    .put(controllerCostOccur.updateCostOccur)
 
 server.route('/occurrences/:id_occurrence/cost/fuel_average')
     .get(controllerVehicle.readFAverage)   

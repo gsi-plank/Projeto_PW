@@ -5,7 +5,6 @@ function login (req, res) {
     const email = req.sanitize('email').escape();
     let query = "";
     query = connect.con.query('SELECT email, password FROM users where email=?', [email], function (err, rows, fields){
-        console.log(query.sql);
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -17,11 +16,11 @@ function login (req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     }) ; 
 }
 
@@ -86,11 +85,11 @@ function readAdmin(req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     }) ;   
 }
 
@@ -115,7 +114,6 @@ function deleteAdmin(req, res) {
     const id = req.sanitize('id').escape();
     let query = "";
     query = connect.con.query('DELETE from administrator where id = ?', id, function (err, rows, fields){
-       console.log(query.sql);
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -124,8 +122,7 @@ function deleteAdmin(req, res) {
             console.log('Error while performing query', err);
         } 
     });
-    query = connect.con.query('DELETE from login where id_login=?', id_login, function (err, rows, fields){
-       console.log(query.sql);
+    query = connect.con.query('DELETE from users where id=?', id, function (err, rows, fields){
         if(!err) {
             console.log("Number of records affected: " + rows.affectedRows);
             res.status(200).send({"msg" : "deleted with success"});
@@ -143,7 +140,6 @@ function updateAdmin(req, res) {
     let query = "";
     let post = [ address, phone_nr, id];
     query = connect.con.query('UPDATE administrator SET address=?, phone_nr=? WHERE id = ?', post, function(err, rows, fields) {
-       console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
             res.status(200).send({ "msg": "update with success" });
@@ -214,11 +210,11 @@ function readAudit(req, res) {
                 res.status(200).send(rows);
             }
         }
-        else
+        else {
             res.status(400).send({
                 "msg": err.code
             });
-        console.log('Error while performing Query.', err);
+        console.log('Error while performing Query.', err);}
     }) ; 
 }
 
@@ -269,7 +265,6 @@ function updateAudit(req, res) {
     let query = "";
     let post = [address, phone_nr, id ];
     query = connect.con.query('UPDATE auditor SET address=?, phone_nr=? WHERE id = ?', post, function(err, rows, fields) {
-       console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
             res.status(200).send({ "msg": "update with success" });
@@ -288,7 +283,6 @@ function updateUser(req, res) {
     let query = "";
     let post = [email, password, id];
     query = connect.con.query('UPDATE users SET email=?, password=? WHERE id= ?', post, function(err, rows, fields) {
-       console.log(query.sql);
         if (!err) {
             console.log("Number of records updated: " + rows.affectedRows);
             res.status(200).send({ "msg": "update with success" });
@@ -322,7 +316,6 @@ function readUserEmail(req, res) {
     const id = req.sanitize('id').escape();
     let query = "";
     query = connect.con.query('select email from users where id=?', id, function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -341,7 +334,6 @@ function readProfile(req, res) {
     const id = req.sanitize('id').escape();
     let query = "";
     query = connect.con.query('select profile from users where id=?', id, function (err, rows, fields) {
-        console.log(query.sql);
         if (!err) {
             //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
             if (rows.length == 0) {
@@ -356,28 +348,40 @@ function readProfile(req, res) {
     });  
 }
 
-function updateAvatar(req, res) {
-    const errors = validationResult(req);
-    if (errors.isEmpty()) {
-        const avatar = localStorage.getItem("localUploadedFileName");
-        console.log(avatar);
-        const id_operational = req.sanitize('id_operational').escape();
-        let query = "";
-        query = connect.con.query('UPDATE users INNER JOIN ? as a ON users.id=operational.id and id_operational=?  SET avatar=?  ', [id_operational, avatar], function(err, rows, fields) {
-            console.log(query.sql);
-            if (!err) {
-                console.log("Number of records updateAvatar: " + rows.affectedRows);
-                res.status(200).send({ "msg": "updateAvatar with success" });
+function readProfileByMail(req, res) {
+    const email = req.sanitize('email').escape();
+    let query = "";
+    query = connect.con.query('select id, profile from users where email=?', email, function (err, rows, fields) {
+        if (!err) {
+            //verifica os resultados se o número de linhas for 0 devolve dados não encontrados, caso contrário envia os resultados (rows).
+            if (rows.length == 0) {
+                res.status(404).send("Data not found");
             }
             else {
-                res.status(400).send({ "msg": err.code });
-                console.log('Error while performing Query.', err);
+                res.status(200).send(rows);
             }
-        });
-    }
-    else {
-        return res.status(400).json({ errors: errors.array() });
-    }
+        }
+        else
+            console.log('Error while performing Query.', err);
+    });  
+}
+
+function updatePwd(req, res) {
+    const email = req.sanitize('email').escape();
+    const password = req.sanitize('password').escape();
+    let query = "";
+    let post = [password, email];
+    query = connect.con.query('UPDATE users SET password=? WHERE email=?', post, function(err, rows, fields) {
+        if (!err) {
+            console.log("Number of records updated: " + rows.affectedRows);
+            res.status(200).send({ "msg": "update with success" });
+        }
+        else {
+            res.status(400).send({ "msg": err.code });
+            console.log('Error while performing Query.', err);
+        } 
+    });
+    
 }
 
 
@@ -398,5 +402,7 @@ module.exports = {
     updateUser : updateUser,
     allUsers : readUsers,
     readEmail : readUserEmail,
-    readProfile : readProfile 
+    readProfile : readProfile,
+    readProfileByMail : readProfileByMail,
+    updatePwd : updatePwd
 }
