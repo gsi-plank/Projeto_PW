@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/global.css" type="text/css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-   
+
 
     <title>SECURE4ALL</title>
 </head>
@@ -26,29 +26,13 @@
         <div class="side-menu" id="side-menu" style="display:none;">
             <h3>Menu</h3>
             <a id="admin"><i class="fas fa-user-shield"></i> Administrador</a>
-            <a id="btnMode" ><i class="fas fa-moon"></i> Darkmode</a>
+            <a id="btnMode"><i class="fas fa-moon"></i> Darkmode</a>
             <a id="close"><i class="fas fa-sign-out-alt"></i> Terminar sessão</a>
         </div>
 
         <div id="map"></div>
-        <div id="msg"></div>
-        <a><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
+        <a href="./occurrenceList.html"><button id="occurrences" type="button" class="title textCenter">Ocorrências</button></a>
     </div>
-    
-    <input type="button" id="toggler" value="Toggler" onClick="action();" />
-<input type="button" id="togglee" value="Togglee" />
-
-<script>
-    var hidden = false;
-    function action() {
-        hidden = !hidden;
-        if(hidden) {
-            document.getElementById('togglee').style.visibility = 'hidden';
-        } else {
-            document.getElementById('togglee').style.visibility = 'visible';
-        }
-    }
-</script>
 
     <div id="app-footer">
         <ul>
@@ -64,17 +48,17 @@
             <path fill-rule="evenodd"
                 d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5h-2v12h2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
             </svg></a></li>
-            <li><a href="profile.html" class="button"><img src="images/profile.png" width="30px" height="30px" class="icon"
-            alt="profile picture"></a></li>
+            <li><a href="profile.html" class="button"><img src="images/profile.png" width="30px" height="30px" class="icon" alt="profile picture"></a></li>
         </ul>
     </div>
-    
-    
     <script src="./controller/functions/sweetAlert2.js"></script>
     <script type="module" src="./controller/gps.js"></script>
     <script type="module" src="./controller/mainPage.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM"></script>
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb28UKwwuNB63cNaqpf02q7HYNEFdMrTM">
+    </script>
     <script type="module" src="./controller/set.theme.mode.js"></script>
     
 </body>
+
 </html>

@@ -44,32 +44,31 @@
         <div class="marginPicture">
             <ul>
                 <li><img id="profilePicture" src="images/profile.png" alt="profile picture" class=""></li>
-                <li><button id="editProfile" type="button">Editar foto de perfil</button></li>
             </ul>
         </div>
         <form name="demo-form-1">
             <div class="field">
 				<div class="input-wrapper">
                     <h4>Nova palavra-passe</h4>
-                    <input id="newPassword"  name="password" type="password" data-rule="required|password" autocomplete="off">
+                    <input id="newPassword"  name="password" type="password" data-rule="required|minlength-6" autocomplete="off">
                 </div>
             </div>
             <div class="field">
 				<div class="input-wrapper">
                     <h4>Confirmar palavra-passe</h4>
-                    <input id="cofirmNewPassword" name="rep_pwd" type="password" data-rule="required|minlength-6" autocomplete="off">
+                    <input id="cofirmNewPassword" name="rep_pwd" type="password" data-rule="required|password" autocomplete="off">
                 </div>
             </div>
             <div class="field">
 				<div class="input-wrapper">
                     <h4>Morada</h4>
-                    <input id="newAddress" name="add" type="text">
+                    <input id="newAddress" name="add" type="text" data-rule="required" autocomplete="off" >
                 </div>
             </div>
             <div class="field">
 				<div class="input-wrapper">
                     <h4>Número de telefone</h4>
-                    <input id="phone" name="nr" type="text" data-rule-minlength="9" data-rule-maxlength="9">
+                    <input id="phone" name="nr" type="text" data-rule="required|maxlength-9|minlength-9|integer" autocomplete="off">
                 </div>
             </div>
         </form>
@@ -98,6 +97,7 @@
         </ul>
     </div>
     
+    <script src="./controller/functions/sweetAlert2.js"></script>
     <script type="module" src="./controller/editProfile.js"></script>
     <script src="./assets/js/js-form-validator.js"></script>
 	<script src="./controller/form.js"></script>

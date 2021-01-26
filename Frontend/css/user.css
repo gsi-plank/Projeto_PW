@@ -60,6 +60,12 @@
     margin-top: 15px;
 }
 
+/* Recuperar password 2*/
+#mensagem {
+    margin-top: 120px;
+    margin-bottom: 40px;
+}
+
 /* Janela lista de auditores (admin) */
 #auditoresTxt {
     margin-top: 80px;

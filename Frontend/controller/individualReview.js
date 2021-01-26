@@ -79,7 +79,7 @@ $(function () {
       }
     }
     console.log(operational);
-  document.getElementById("name").innerText("");
+  document.getElementById("name").innerText= operational.name;
   let score;
 
   document.getElementById("submit").addEventListener("click", function(){
@@ -98,5 +98,5 @@ document.getElementById("back").addEventListener("click", function(){
 })
 
 document.getElementById("submit").addEventListener("click", function(){
-    window.location = "evaluatedTeam.html";
+    window.location = "occurrenceDate.html";
 })

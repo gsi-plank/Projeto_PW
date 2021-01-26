@@ -51,4 +51,8 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
 
 document.getElementById("back").addEventListener("click", function(){
     window.location = "occurrenceDate.html";
-})
+});
+
+document.getElementById("submit").addEventListener("click", function(){
+    window.location = "occurrenceDate.html";
+});

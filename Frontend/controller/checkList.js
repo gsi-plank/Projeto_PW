@@ -50,7 +50,7 @@ let id_occurrence = sessionStorage.getItem("id_occurrence");
 })()
 
 document.getElementById("submit").addEventListener("click", function() {
-  window.location = "occurenceCost.html";
+  window.location = "occurrenceCost.html";
 })
 
 document.getElementById("back").addEventListener("click", function() {

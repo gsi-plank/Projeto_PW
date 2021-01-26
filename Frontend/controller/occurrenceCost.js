@@ -76,15 +76,18 @@ document.getElementById("submit").addEventListener("click", async function(){
           fetch.postData(route1, data);
           fetch.putData(route1, data1);
         } else {
-            var notify = $.notify('<strong>Erro!</strong> Calcule o custo da ocorrência!', {
-                        type: 'danger',
-                        allow_dismiss: true,
-                      });
+            Swal.fire({
+        title: 'Preenche todos os campos antes de continuar!',
+        confirmButtonText: `OK`,
+        confirmButtonColor: '#AB0404',
+       })
         }
      } else {
-        var notify = $.notify('<strong>Erro!</strong> Insira um valor na duração!', {
-                    type: 'danger',
-                    allow_dismiss: true,
-                  });
+        Swal.fire({
+        title: 'Preenche todos os campos antes de continuar!',
+        confirmButtonText: `OK`,
+        confirmButtonColor: '#AB0404',
+       })
      }
 });
+

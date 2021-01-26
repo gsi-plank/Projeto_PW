@@ -12,7 +12,7 @@ let quarter = { "id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntári
     try {
         // Map options
         let options = {
-            zoom: 15,
+            zoom: 13,
             // Coordenadas centradas em vizela
             center: { lat: 41.3764108, lng: -8.309834799999999 }
         }
@@ -121,7 +121,7 @@ let quarter = { "id_occurrence": "Quartel", "address": "Av. Bombeiros Voluntári
     for (const trueLocation of trueLocations) {
                     // console.log(trueLocation.marker.coords)
                     coordinates.destination = trueLocation.marker.coords;
-                    getDistanceGuide(coordinates, typeTravel, trueLocation.id_occurrence);
+                    // getDistanceGuide(coordinates, typeTravel, trueLocation.id_occurrence);
         }
 
 

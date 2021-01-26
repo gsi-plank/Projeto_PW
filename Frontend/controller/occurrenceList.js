@@ -3,7 +3,12 @@ import * as fetch from "./functions/fetch.js";
 import * as table from "./functions/table.js";
 import * as selector from "./functions/selectorWeekMonthYear.js";
 
+// let typeUser = sessionStorage.getItem("profile");
+// let typeUser = "administrator";
 
+// if(typeUser == "administrator"){
+//     document.getElementById("btnoccurrence").style.display = "none";
+// }
     
     fillTable(0);
     $("#button1").click(function () {

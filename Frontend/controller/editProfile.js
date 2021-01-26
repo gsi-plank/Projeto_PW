@@ -38,10 +38,11 @@ let id_login = sessionStorage.getItem("id_login");
       }
       window.location = "profile.html";
     } else {
-      var notify = $.notify('<strong>Erro!</strong> As palavra passes não coincidem', {
-              type: 'danger',
-              allow_dismiss: true,
-            });
+      Swal.fire({
+        title: 'As palavras-passe não coincidem!',
+        confirmButtonText: `OK`,
+        confirmButtonColor: '#AB0404',
+       })
     }
   })
 })()
@@ -53,3 +54,25 @@ document.getElementById("submit").addEventListener("click", function() {
 document.getElementById("back").addEventListener("click", function() {
   window.location = "profile.html";
 })
+
+function validator() {
+    new Validator(document.querySelector('form[name="demo-form-1"]'), function(err, res) {
+        if (res) {
+            saveUsers();
+        }
+    }, {
+        rules: {
+            password: function(value) {
+                console.log(value);
+                return (value === document.getElementById("pwd").value);
+            }
+        },
+        messages: {
+            en: {
+                password: {
+                    incorrect: "As palavras-passe não coicidem"
+                }
+            }
+        }
+    });
+}

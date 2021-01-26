@@ -4,7 +4,7 @@ import * as table from "./functions/table.js";
 
 
 (async function() {
-    refreshAudits();
+    await refreshAudits();
     let route;
     let id_login;
     
@@ -27,7 +27,7 @@ import * as table from "./functions/table.js";
         fetch.deleteData(route);
         refreshAudits();
         } else {
-            alert("Selecione um auditor");
+            Swal.fire("Selecione um auditor");
         }
     });
 })();
@@ -48,5 +48,4 @@ async function refreshAudits() {
 document.getElementById("addAuditor").addEventListener("click", function() {
     window.location = "newAuditor.html";
 });
-// refreshAudits().then(data => console.log("ok")).catch(reason => console.log(reason.message));
 

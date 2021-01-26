@@ -1,19 +1,21 @@
 import * as fetch from "./functions/fetch.js"
 
-let id_login = 22;
-
-(async function() {
-    let route = "users/"+id_login + "/email";
-    let email = await fetch.getData(route);
-    console.log(route)
-    console.log(email[0].email);
-    document.getElementById("confirmacao").value = email[0].email;
-    
-})();
 document.getElementById("back").addEventListener("click", function(){
     window.location = "login.html";
 })
 
-document.getElementById("submit").addEventListener("click", function(){
-    window.location = "login.html";
-})
+document.getElementById("continuar").addEventListener("click", async function(){
+    let email = document.getElementById("confirmacao").value;
+    let route1 = 'users/password/'+ email;
+    let a = await fetch.getData(route1, {email});
+    sessionStorage.setItem('email', email);
+    window.location = "newPassword.html";
+});
+
+document.getElementById("submit").addEventListener("click", async function(){
+    let email = document.getElementById("confirmacao").value;
+    let route1 = 'users/password/'+ email;
+    let a = await fetch.getData(route1, {email});
+    sessionStorage.setItem('email', email);
+    window.location = "newPassword.html";
+});
